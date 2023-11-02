@@ -12,9 +12,19 @@
 
 #include "minishell.h"
 
-void	echo(int n, char *s)
+void	echo(char *s1, char *s2)
 {
-	printf("%s", s);
-	if (n)
-		printf("\n");
+	int	i;
+	int	j;
+
+	i = 1;
+	if (s1[0] == '-')
+	{
+		while (s1[i] == 'n')
+			i++;
+	}
+	if (i > 1 && s1[i])
+		printf("%s %s", s1, s2);
+	else
+		printf("%s\n", s2);
 }
