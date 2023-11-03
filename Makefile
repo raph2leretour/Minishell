@@ -13,6 +13,7 @@ OBJ_DIR			:= obj
 LIBFT_DIR		:= libft
 SRCS			:=	\
 	main.c			\
+	builtin/echo.c		\
 	builtin/echo.c
 SRCS			:= $(SRCS:%=$(SRC_DIR)/%)
 OBJS			:= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
