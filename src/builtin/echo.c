@@ -6,25 +6,52 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:05:14 by rtissera          #+#    #+#             */
-/*   Updated: 2023/10/27 13:07:40 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/03 13:22:08 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+//#include "minishell.h"
+#include "../../inc/minishell.h"
 
-void	echo(char *s1, char *s2)
+void	echo(char **array)
 {
 	int	i;
 	int	j;
 
-	i = 1;
-	if (s1[0] == '-')
+	i = 0;
+	while (array[i])
 	{
-		while (s1[i] == 'n')
-			i++;
+		j = 0;
+		if (array[i][j] && array[i][j] == '-')
+		{
+			while (array[i][j] && array[i][j] == 'n')
+				j++;
+		}
+		else
+			break ;
+		if (array[i][j])
+			break ;
+		i++;
 	}
-	if (i > 1 && s1[i])
-		printf("%s %s", s1, s2);
+	if (i > 0)
+	{
+		while (array[i])
+		{
+			printf("%s", array[i]);
+			if (array[i + 1])
+				printf(" ");
+			i++;
+		}
+		printf("\n");
+	}
 	else
-		printf("%s\n", s2);
+	{
+		while (array[i])
+		{
+			printf("%s", array[i]);
+			if (array[i + 1])
+				printf(" ");
+			i++;
+		}
+	}
 }
