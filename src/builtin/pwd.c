@@ -6,12 +6,18 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:58:45 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/03 14:59:11 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/06 16:52:17 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishel.h"
 
-void	pwd(char **env)
+void	pwd(void)
 {
+	char	*pwd;
+
+	pwd = getenv("PWD");
+	if (!pwd)
+		return ;
+	printf("%s\n", pwd);
 }
