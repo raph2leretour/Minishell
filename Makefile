@@ -13,9 +13,13 @@ OBJ_DIR			:= obj
 LIBFT_DIR		:= libft
 SRCS			:=	\
 	main.c			\
+	builtin/cd.c		\
+	builtin/pwd.c		\
 	builtin/env.c		\
+	builtin/exit.c		\
 	builtin/echo.c		\
-	builtin/echo.c
+	builtin/unset.c		\
+	builtin/export.c
 SRCS			:= $(SRCS:%=$(SRC_DIR)/%)
 OBJS			:= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 LIBFT			:= $(LIBFT_DIR)/libft.a
