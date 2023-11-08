@@ -6,7 +6,7 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:58:45 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/06 18:55:35 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/08 12:39:57 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ void	pwd(void)
 {
 	char	*pwd;
 
-	//pwd = getenv("PWD");
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
-		return ;
+		perror("Cannot Access Pwd");
 	printf("%s\n", pwd);
 }
