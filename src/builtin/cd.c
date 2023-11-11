@@ -6,7 +6,7 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:15:28 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/11 09:59:22 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/11 11:25:20 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 
 void	cd(char *path)
 {
-	if (chdir(path))
-		perror("cd Cannot Open File");
+	if (!path)
+	{
+		if (chdir("~"))
+			perror("cd");
+	}
+	else if (!ft_strncmp(path, "-", 2))
+	{
+		if (chdir(getenv("OLDPWD")))
+			perror("cd");
+	}
+	else if (chdir(path))
+		perror("cd");
 }

@@ -6,7 +6,7 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:33:44 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/11 10:04:48 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/11 10:38:25 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	main(int ac, char **av, char **env)
 	(void)env;
 	pwd();
 	cd(av[1]);
+	pwd();
+	cd("-");
 	pwd();
 	return (0);
 }
