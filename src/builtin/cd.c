@@ -6,14 +6,14 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:15:28 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/06 18:41:45 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/11 09:59:22 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	cd(char *path, char **env)
+void	cd(char *path)
 {
 	if (chdir(path))
-		return ;
+		perror("cd Cannot Open File");
 }

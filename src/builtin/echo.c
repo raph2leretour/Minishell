@@ -6,7 +6,7 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:05:14 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/03 14:53:20 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/11 10:03:48 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	nnn(char **array, int i)
 {
+	int	j;
+
 	while (array[i])
 	{
 		if (array[i][0] && array[i][0] == '-')
@@ -34,7 +36,6 @@ int	nnn(char **array, int i)
 void	echo(char **array)
 {
 	int	i;
-	int	j;
 
 	i = nnn(array, 0);
 	if (i != 0)

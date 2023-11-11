@@ -6,7 +6,7 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/08 11:37:31 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/11 10:01:58 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 /******************************************************************************/
 int		ft_exit(int n);
 void	pwd(void);
-void	cd(char **array);
+void	cd(char *array);
 void	unset(char *name);
 void	ft_env(char **env);
 void	echo(char **array);

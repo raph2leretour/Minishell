@@ -6,11 +6,11 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:58:45 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/08 12:39:57 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/11 10:02:14 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishel.h"
+#include "minishell.h"
 
 void	pwd(void)
 {
