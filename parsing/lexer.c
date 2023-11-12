@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:16 by smilosav          #+#    #+#             */
-/*   Updated: 2023/11/02 22:46:46 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/11/12 20:58:09 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../libft/include/libft.h"
@@ -69,10 +69,12 @@ t_token	*init_token(char *value)
 {
 	t_token	*new_token;
 
-	new_token = (t_token *)malloc(sizeof(t_token));
+	new_token = (t_token *)malloc(sizeof(t_token)); //leak
 	if (!new_token)
 		return (NULL);
+	//new_token->str = (char *)malloc(sizeof(char) * ft_strlen(value) + 1);
 	new_token->str = value;
+	printf("Adresa new_token->str: %p\n", new_token->str);
 	new_token->type = NO_TYPE;
 	new_token->prev = NULL;
 	new_token->next = NULL;
@@ -87,6 +89,7 @@ t_command	*init_command(char *value)
 	new_command = (t_command *)malloc(sizeof(t_command));
 	if (!new_command)
 		return (NULL);
+	//new_command->string = (char *)malloc(sizeof(char) * ft_strlen(value) + 1);
 	new_command->string = value;
 	new_command->first_token = NULL;
 	return (new_command);
@@ -103,18 +106,19 @@ t_command	*tokenize(char *command)
 	t_command	*cmd_struct;
 	t_token		*new_token;
 
-	command = ft_strtrim(command, " \t\r\v\f\n");
+	//command = ft_strtrim(command, " \t\r\v\f\n");
 	cmd_struct = init_command(command);
 	printf("\nInput command: %s\n\n", cmd_struct->string);
-	tokens = ft_split(command, ' ');
+	tokens = ft_split(command, ' '); //leaks
 	i = 0;
 	while (tokens[i])
 	{
 		new_token = init_token(tokens[i]);
+		printf("Adresa tokens[i]: %p\n", tokens[i]);
 		init_type(new_token);
 		add_token(&(cmd_struct->first_token), new_token);
 		i++;
 	}
-	//free_split(tokens);
+	free(tokens);
 	return (cmd_struct);
 }
