@@ -6,7 +6,7 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:58:45 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/11 10:13:16 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:10:20 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ void	pwd(void)
 
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
+	{
+		free(pwd);
 		perror("pwd");
+	}
 	printf("%s\n", pwd);
+	free(pwd);
 }

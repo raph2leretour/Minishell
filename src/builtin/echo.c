@@ -6,7 +6,7 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:05:14 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/11 10:03:48 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/13 19:07:03 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,20 @@ int	nnn(char **array, int i)
 		i++;
 	}
 	return (i);
+}
+
+int	dollar(char **array, int i)
+{
+	int	j;
+	char	*var;
+
+	j = 0;
+	if (array[i][0] != "(")
+	{
+		var = getenv(array[i][0]);
+		if (var)
+			printf("%s", var);
+	}
 }
 
 void	echo(char **array)
