@@ -6,7 +6,7 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:15:28 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/11 11:25:20 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/13 14:50:07 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	cd(char *path)
 {
 	if (!path)
 	{
-		if (chdir("~"))
+		if (chdir(getenv("HOME")))
 			perror("cd");
 	}
 	else if (!ft_strncmp(path, "-", 2))
