@@ -6,7 +6,7 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:05:14 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/13 19:07:03 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:00:32 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,35 @@ int	dollar(char **array, int i)
 	char	*var;
 
 	j = 0;
-	if (array[i][0] != "(")
+	while (array[i][j])
 	{
-		var = getenv(array[i][0]);
-		if (var)
-			printf("%s", var);
+	}
+}
+
+void	printpars(char *word)
+{
+	int	i;
+	int	j;
+	char	*var;
+
+	i = 0;
+	while (word[i])
+	{
+		if (word[i] == '$')
+		{
+			j = 1
+			while (ft_isalpha(word[i + j]) || word[i + j] == '_')
+				j++;
+			var = malloc(sizeof(char) * j);
+			var[j] = '\0';
+			while (j--)
+				var[j] = word[i + j];
+			printf("%s", getenv(var));
+			i += j;
+		}
+		else
+			printf("%c", word[i]);
+		i++;
 	}
 }
 
@@ -56,7 +80,8 @@ void	echo(char **array)
 	{
 		while (array[i])
 		{
-			printf("%s", array[i]);
+			//printf("%s", array[i] + j);
+			printpars(array[i]);
 			if (array[i + 1])
 				printf(" ");
 			i++;
@@ -67,7 +92,8 @@ void	echo(char **array)
 	{
 		while (array[i])
 		{
-			printf("%s", array[i]);
+			//printf("%s", array[i] + j);
+			printpars(array[i]);
 			if (array[i + 1])
 				printf(" ");
 			i++;
