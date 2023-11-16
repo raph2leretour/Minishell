@@ -6,7 +6,7 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:05:14 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/16 15:37:15 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:39:25 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ void	printpars(char *word)
 			while (j--)
 				var[j] = word[i + j];
 			varenv = getenv(var);
-			printf("%s", varenv);
+			ft_putstr_fd(varenv, 1);
 			i += j;
 		}
 		else
-			printf("%c", word[i]);
+			ft_putchar_fd(word[i], 1);
 		i++;
 	}
 }
@@ -65,29 +65,21 @@ void	printpars(char *word)
 void	echo(char **array)
 {
 	int	i;
+	int	b;
 
 	i = nnn(array, 0);
-	if (i == 0)
+	b = 1;
+	if (i != 0)
+		b = 0;
+	while (array[i])
 	{
-		while (array[i])
-		{
-			printpars(array[i]);
-			if (array[i + 1])
-				printf(" ");
-			i++;
-		}
-		printf("\n");
+		printpars(array[i]);
+		if (array[i + 1])
+			ft_putchar_fd(' ', 1);
+		i++;
 	}
-	else
-	{
-		while (array[i])
-		{
-			printpars(array[i]);
-			if (array[i + 1])
-				printf(" ");
-			i++;
-		}
-	}
+	if (b)
+		ft_putchar_fd('\n', 1);
 }
 /*
 #include "../../inc/minishell.h"
