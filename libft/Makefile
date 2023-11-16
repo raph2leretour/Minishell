@@ -6,7 +6,7 @@
 #    By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 14:46:30 by rtissera          #+#    #+#              #
-#    Updated: 2023/07/03 13:38:45 by rtissera         ###   ########.fr        #
+#    Updated: 2023/11/16 19:15:42 by rtissera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRCS		:=							\
 	mandatory/ft_strlcat.c				\
 	mandatory/ft_isalnum.c				\
 	mandatory/ft_isascii.c				\
+	mandatory/ft_isdigit.c				\
 	mandatory/ft_isprint.c				\
 	mandatory/ft_strncmp.c				\
 	mandatory/ft_strrchr.c				\

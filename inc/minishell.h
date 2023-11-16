@@ -6,7 +6,7 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/16 14:59:33 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:13:52 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <fcntl.h>
+# include <errno.h>
 # include "../libft/include/libft.h"
 
 /******************************************************************************/
@@ -32,12 +33,12 @@
 /******************************************************************************/
 /*   FUNCTIONS                                                                */
 /******************************************************************************/
-int		ft_exit(int n);
+int		ft_exit(char *strn);
 void	pwd(void);
 void	cd(char *array);
 void	unset(char *name);
 void	ft_env(char **env);
 void	echo(char **array);
-void	ft_export(char *name);
+void	ft_export(char *name, char *value);
 
 #endif

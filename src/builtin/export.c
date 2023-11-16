@@ -6,13 +6,14 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:20:07 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/11 10:04:27 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:14:05 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_export(char *name)
+void	ft_export(char *name, char *value)
 {
 	(void)name;
+	(void)value;
 }

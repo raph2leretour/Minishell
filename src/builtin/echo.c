@@ -6,7 +6,7 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:05:14 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/16 16:39:25 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/16 18:17:15 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,33 +81,3 @@ void	echo(char **array)
 	if (b)
 		ft_putchar_fd('\n', 1);
 }
-/*
-#include "../../inc/minishell.h"
-int	main(int ac, char **av)
-{
-	int	i;
-	char	**array;
-
-	if (ac > 1)
-	{
-		array = malloc(sizeof(char *) * ac);
-		array[ac - 1] = NULL;
-		i = 0;
-		while (av[i + 1])
-		{
-			array[i] = malloc(sizeof(char) * (strlen(av[i + 1] + 1)));
-			strcpy(array[i], av[i + 1]);
-			i++;
-		}
-		echo(array);
-		i = 0;
-		while (array[i])
-		{
-			free(array[i]);
-			i++;
-		}
-		free(array);
-	}
-	return (0);
-}
-*/
