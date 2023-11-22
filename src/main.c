@@ -6,33 +6,18 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:33:44 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/16 16:49:45 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:29:31 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av)
+int	main(int ac, char **av, char **env)
 {
-	int	i;
-	char	**array;
+	t_env	*env_s;
 
-	array = malloc(sizeof(char *) * ac);
-	array[ac - 1] = NULL;
-	i = 0;
-	while (av[i + 1])
-	{
-		array[i] = malloc(sizeof(char) * (strlen(av[i + 1] + 1)));
-		strcpy(array[i], av[i + 1]);
-		i++;
-	}
-	echo(array);
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-	return (0);
+	(void)ac;
+	(void)av;
+	env_s = env_init(env);
+	ft_env(env_s);
 }

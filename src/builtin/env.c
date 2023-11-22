@@ -6,28 +6,17 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:55:39 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/06 17:11:11 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:36:37 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_env(char **env)
+void	ft_env(t_env env)
 {
-	int	i;
-
-	i = 0;
-	while (env[i])
+	while (env && env->value)
 	{
-		printf("%s\n", env[i]);
-		i++;
+		printf("%s\n", env->value);
+		env = env->next;
 	}
 }
-/*
-int	main(int ac, char **av, char **env)
-{
-	(void)ac;
-	(void)av;
-	ft_env(env);
-	return (0);
-}*/

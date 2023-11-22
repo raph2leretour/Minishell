@@ -6,7 +6,7 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/16 19:13:52 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:07:29 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@
 /******************************************************************************/
 /*   STRUCTURES                                                               */
 /******************************************************************************/
+typedef struct s_env
+{
+	char			*value;
+	struct s_env	*next;
+}	t_env;
 
 /******************************************************************************/
 /*   FUNCTIONS                                                                */
@@ -37,8 +42,9 @@ int		ft_exit(char *strn);
 void	pwd(void);
 void	cd(char *array);
 void	unset(char *name);
-void	ft_env(char **env);
+void	ft_env(t_env *env);
 void	echo(char **array);
 void	ft_export(char *name, char *value);
+t_env	*env_init(char **env);
 
 #endif

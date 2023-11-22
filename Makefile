@@ -13,6 +13,7 @@ OBJ_DIR			:= obj
 LIBFT_DIR		:= libft
 SRCS			:=	\
 	main.c			\
+	env/env_init		\
 	builtin/cd.c		\
 	builtin/pwd.c		\
 	builtin/env.c		\

@@ -6,7 +6,7 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:05:14 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/16 18:17:15 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:11:01 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	nnn(char **array, int i)
 
 void	printpars(char *word)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*var;
 	char	*varenv;
 
