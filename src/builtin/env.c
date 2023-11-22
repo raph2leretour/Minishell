@@ -6,13 +6,13 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:55:39 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/22 18:36:37 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:55:09 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_env(t_env env)
+void	ft_env(t_env *env)
 {
 	while (env && env->value)
 	{
