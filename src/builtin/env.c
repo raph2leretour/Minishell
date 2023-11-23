@@ -6,7 +6,7 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:55:39 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/22 18:55:09 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:31:19 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	ft_env(t_env *env)
 {
 	while (env && env->value)
 	{
-		printf("%s\n", env->value);
+		if (!env->e)
+			printf("%s\n", env->value);
 		env = env->next;
 	}
 }

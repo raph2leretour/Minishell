@@ -6,13 +6,19 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:20:07 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/22 18:08:34 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:39:06 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_export(char *value)
+void	ft_export(char *value, t_env *env)
 {
-	(void)value;
+	int	i;
+
+	if (value)
+	{
+		i = 0;
+		while (value[i] && value[i] != '=')
+			i++;
 }
