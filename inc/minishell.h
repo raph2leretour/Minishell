@@ -6,7 +6,7 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/23 14:30:27 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/28 18:28:41 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <readline/history.h>
 # include <fcntl.h>
 # include <errno.h>
+# include <stdbool.h>
 # include "../libft/include/libft.h"
 
 /******************************************************************************/
@@ -33,6 +34,7 @@ typedef struct s_env
 {
 	bool			e;
 	char			*value;
+	char			*name;
 	struct s_env	*next;
 }	t_env;
 
@@ -46,7 +48,8 @@ void	unset(char *name);
 void	ft_env(t_env *env);
 void	echo(char **array);
 void	clear_env(t_env *env);
-void	ft_export(char *value);
+void	ft_export(char *value, t_env *env);
+void	ft_error(const char *s, int errnum);
 t_env	*env_init(char **env);
 
 #endif

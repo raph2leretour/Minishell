@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_env.c                                        :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 19:00:46 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/28 18:40:09 by rtissera         ###   ########.fr       */
+/*   Created: 2023/11/28 15:49:51 by rtissera          #+#    #+#             */
+/*   Updated: 2023/11/28 16:11:14 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	clear_env(t_env *env)
+void	ft_error(const char *s, int errnum)
 {
-	t_env	*next_env;
-
-	while (env && env->value)
-	{
-		next_env = env->next;
-		if (env->e)
-			free(env->name);
-		free(env->value);
-		free(env);
-		env = next_env;
-	}
-	free(env);
+	printf("%s\n", s);
+	errno = errnum;
 }

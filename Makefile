@@ -21,7 +21,8 @@ SRCS			:=	\
 	builtin/unset.c		\
 	builtin/export.c	\
 	env/env_init.c		\
-	env/clear_env.c
+	env/clear_env.c		\
+	utils/ft_error.c
 SRCS			:= $(SRCS:%=$(SRC_DIR)/%)
 OBJS			:= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 LIBFT			:= $(LIBFT_DIR)/libft.a

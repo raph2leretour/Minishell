@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 18:00:55 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/23 14:30:13 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/11/28 18:40:03 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_env	*env_init(char **env)
 	env_s = malloc(sizeof(t_env *));
 	env_s->value = malloc(sizeof(char) * (ft_strlen(env[i]) + 1));
 	ft_strlcpy(env_s->value, env[i], ft_strlen(env[i]));
-	env->e = 0;
+	env_s->e = false;
 	head = env_s;
 	while (env[i])
 	{
@@ -30,7 +30,7 @@ t_env	*env_init(char **env)
 		env_s = env_s->next;
 		env_s->value = malloc(sizeof(char) * (ft_strlen(env[i]) + 1));
 		ft_strlcpy(env_s->value, env[i], ft_strlen(env[i]));
-		env->e = 0;
+		env_s->e = false;
 		i++;
 	}
 	env_s->next = NULL;
