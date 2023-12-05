@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2023/11/12 21:05:54 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/05 14:48:21 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -39,6 +39,9 @@ int	main(void)
 		str = readline("minishell$ ");
 		//add_history(str);
 		cmd = tokenize(str);
+		/*check_syntax(cmd);
+		expand(cmd);
+		get_simple_commands(cmd);*/
 		print_command(cmd->first_token);
 		free_cmd(cmd);
 		free(str);
