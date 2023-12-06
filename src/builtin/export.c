@@ -6,7 +6,7 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:20:07 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/28 18:39:53 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/06 13:34:06 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	ft_export(char *value, t_env *env)
 	}
 	else
 	{
+		head = env;
 		while (env)
 		{
 			if (env->e)
