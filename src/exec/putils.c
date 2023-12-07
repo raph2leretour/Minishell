@@ -6,11 +6,11 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:54:42 by rtissera          #+#    #+#             */
-/*   Updated: 2023/06/27 11:30:21 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/07 18:16:36 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/pipex.h"
+#include "minishell.h"
 
 void	execificator(char *cmd, char **env, int fd[2])
 {
@@ -35,7 +35,8 @@ void	execificator(char *cmd, char **env, int fd[2])
 				close(fd[1]);
 			}
 		}
-		error();
+		printf("%S:", cmd);
+		ft_error("Command Not Found", -1);
 	}
 	iwanttobreakfree(scmd);
 }
@@ -78,10 +79,4 @@ char	*get_path(char *scmd, char **env)
 	}
 	iwanttobreakfree(paths);
 	return (NULL);
-}
-
-void	error(void)
-{
-	perror("Error");
-	exit(EXIT_FAILURE);
 }

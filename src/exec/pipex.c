@@ -1,80 +1,80 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 13:57:53 by rtissera          #+#    #+#             */
-/*   Updated: 2023/06/27 11:19:23 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/07 18:34:13 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "minishell.h"
 
-void	child_process(char **av, char **env, int fd[2])
+void	child_process(char **argv, char **envp, int fd[2])
 {
 	int	infile;
 
-	infile = open(av[1], O_RDONLY, 0777);
+	infile = open(argv[1], O_RDONLY, 0777);
 	if (infile == -1)
 	{
 		close(fd[0]);
 		close(fd[1]);
-		error();
+		ft_error(NULL, -1);
 	}
 	dup2(fd[1], STDOUT_FILENO);
 	dup2(infile, STDIN_FILENO);
 	close(fd[0]);
 	close(fd[1]);
 	close(infile);
-	execificator(av[2], env, fd);
+	execificator(argv[2], envp, fd);
 }
 
-void	parent_process(char **av, char **env, int fd[2])
+void	parent_process(char **argv, char **envp, int fd[2])
 {
 	int	outfile;
 
-	outfile = open(av[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	outfile = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (outfile == -1)
 	{
 		close(fd[0]);
 		close(fd[1]);
-		error();
+		ft_error(NULL, -1);
 	}
 	dup2(fd[0], STDIN_FILENO);
 	dup2(outfile, STDOUT_FILENO);
 	close(fd[0]);
 	close(fd[1]);
 	close(outfile);
-	execificator(av[3], env, fd);
+	execificator(argv[3], envp, fd);
 }
 
-int	main(int ac, char **av, char **env)
+int	pipex(int argc, char **argv, char **envp)
 {
 	int		fd[2];
 	pid_t	pid1;
 
-	if (ac == 5)
+	if (argc == 5)
 	{
 		if (pipe(fd) == -1)
-			error();
+			ft_error(NULL, -1);
 		pid1 = fork();
 		if (pid1 == -1)
-			error();
+			ft_error(NULL, -1);
 		if (pid1 == 0)
-			child_process(av, env, fd);
+			child_process(argv, envp, fd);
 		pid1 = fork();
 		if (pid1 == -1)
-			error();
+			ft_error(NULL, -1);
 		if (pid1 == 0)
-			parent_process(av, env, fd);
+			parent_process(argv, envp, fd);
 		close(fd[0]);
 		close(fd[1]);
-		wait(NULL);
-		wait(NULL);
+		waitpid(-1, &wstatus, 0);
+		waitpid(-1, &wstatus, 0);
 	}
 	else
-		ft_printf("Error: Bad arguments");
+		printf("Error: Bad arguments");
 	return (0);
 }
