@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   putils.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:54:42 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/07 18:16:36 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/08 14:00:00 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	execificator(char *cmd, char **env, int fd[2])
 				close(fd[1]);
 			}
 		}
-		printf("%S:", cmd);
+		printf("%s:", cmd);
 		ft_error("Command Not Found", -1);
 	}
 	iwanttobreakfree(scmd);

@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 19:00:46 by rtissera          #+#    #+#             */
-/*   Updated: 2023/11/28 18:40:09 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/08 14:17:49 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	clear_env(t_env *env)
 	while (env && env->value)
 	{
 		next_env = env->next;
-		if (env->e)
-			free(env->name);
 		free(env->value);
 		free(env);
 		env = next_env;

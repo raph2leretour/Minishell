@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 13:57:53 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/07 18:34:13 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/08 13:59:40 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ int	pipex(int argc, char **argv, char **envp)
 			parent_process(argv, envp, fd);
 		close(fd[0]);
 		close(fd[1]);
-		waitpid(-1, &wstatus, 0);
-		waitpid(-1, &wstatus, 0);
+		wait(NULL);
+		wait(NULL);
 	}
 	else
 		printf("Error: Bad arguments");

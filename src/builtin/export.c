@@ -6,7 +6,7 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:20:07 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/06 13:34:06 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/08 16:05:49 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,46 +31,41 @@ int	is_valid(char *value)
 	int	i;
 
 	if (ft_isdigit(value[0]))
-		return (inid(value), 0);
+		return (inid(value), 1);
 	i = 0;
 	while (value[i] && value[i] != '=')
 	{
 		if (!ft_isalnum(value[i]) && value[i] != '_')
-			return (inid(value), 0);
+			return (inid(value), 1);
 		i++;
 	}
 	while (value[i])
 	{
 		if (!ft_isprint(value[i]))
-			return (inid(value), 0);
+			return (inid(value), 1);
 		i++;
 	}
-	return (i);
+	return (0);
 }
 
 void	ft_export(char *value, t_env *env)
 {
-	int		i;
+	char	**print;
 	t_env	*head;
 
 	if (value)
 	{
-		i = is_valid(value);
-		if (i == 0)
+		if (is_valid(value))
 			return ;
 		head = env;
 		while (env && env->next)
 			env = env->next;
 		env->next = malloc(sizeof(t_env *));
 		env = env->next;
-		i = 0;
-		while (value[i] && value[i] != '=')
-			i++;
-		env->name = malloc(sizeof(char) * (i + 1));
-		ft_strlcpy(env->name, value, i + 1);
-		env->value = malloc(sizeof(char) * (ft_strlen(value) - i));
-		ft_strlcpy(env->value, value + i + 1, ft_strlen(value) - i + 1);
+		env->value = malloc(sizeof(char) * (ft_strlen(value) + 1));
+		ft_strlcpy(env->value, value, ft_strlen(value));
 		env->e = true;
+		env->next = NULL;
 	}
 	else
 	{
@@ -78,7 +73,10 @@ void	ft_export(char *value, t_env *env)
 		while (env)
 		{
 			if (env->e)
-				printf("declare -x %s=\"%s\"", env->name, env->value);
+			{
+				print = ft_split(env->value, '=');
+				printf("declare -x %s=\"%s\"\n", print[0], print[1]);
+			}
 			env = env->next;
 		}
 	}

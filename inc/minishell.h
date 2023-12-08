@@ -6,7 +6,7 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/07 18:10:30 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/08 14:08:47 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # include <fcntl.h>
 # include <errno.h>
 # include <stdbool.h>
+# include <sys/wait.h>
+# include <sys/stat.h>
+# include <sys/types.h>
 # include "../libft/include/libft.h"
 
 /******************************************************************************/
@@ -34,7 +37,6 @@ typedef struct s_env
 {
 	bool			e;
 	char			*value;
-	char			*name;
 	struct s_env	*next;
 }	t_env;
 
