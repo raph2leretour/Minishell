@@ -6,7 +6,7 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/08 14:08:47 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/08 17:07:23 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ int		pipex(int argc, char **argv, char **envp);
 char	*get_path(char *scmd, char **env);
 void	pwd(void);
 void	cd(char *array);
-void	unset(char *name);
 void	ft_env(t_env *env);
 void	echo(char **array);
 void	clear_env(t_env *env);
+void	unset(char *name, t_env *env);
 void	iwanttobreakfree(char **tofree);
 void	ft_export(char *value, t_env *env);
 void	ft_error(const char *s, int errnum);

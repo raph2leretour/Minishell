@@ -6,7 +6,7 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:20:07 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/08 16:05:49 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/08 17:52:15 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,17 @@ int	is_valid(char *value)
 	return (0);
 }
 
+void	printsort(t_env *env)
+{
+	head = env;
+	while (env)
+	{
+		print = ft_split(env->value, '=');
+		printf("declare -x %s=\"%s\"\n", print[0], print[1]);
+		env = env->next;
+	}
+}
+
 void	ft_export(char *value, t_env *env)
 {
 	char	**print;
@@ -69,16 +80,7 @@ void	ft_export(char *value, t_env *env)
 	}
 	else
 	{
-		head = env;
-		while (env)
-		{
-			if (env->e)
-			{
-				print = ft_split(env->value, '=');
-				printf("declare -x %s=\"%s\"\n", print[0], print[1]);
-			}
-			env = env->next;
-		}
+		printsort(env);
 	}
 	env = head;
 }

@@ -6,7 +6,7 @@
 /*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:39:50 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/08 16:20:22 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/08 17:08:19 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,19 @@
 void	unset(char *name, t_env *env)
 {
 	t_env	*head;
+	t_env	*next;
+	t_env	*prev;
 
 	head = env;
-	while (ft_strncmp(name, env->value, ft_strlen(name)))
+	while (env && env->next && \
+		ft_strncmp(name, env->next->value, ft_strlen(name)))
 		env = env->next;
+	prev = env;
+	env = env->next;
+	next = env->next;
+	free(env->value);
+	free(env);
+	env = prev;
+	env->next = next;
+	env = head;
 }
