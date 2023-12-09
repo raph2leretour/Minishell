@@ -6,11 +6,12 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 09:44:34 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/05 19:13:01 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/08 15:58:12 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../libft/include/libft.h"
 #include "lexer.h"
+#include <stdio.h>
 
 //get the length of the word
 //skip the quotes
@@ -33,8 +34,11 @@ int	word_len(char *cmd, int i)
 				len++;
 			}
 		}
-		len++;
-		i++;
+		if (cmd[i] && is_word(cmd[i]))
+		{
+			i++;
+			len++;
+		}
 	}
 	return (len);
 }
@@ -49,9 +53,12 @@ int	add_token_word(t_command *cmd_struct, int i)
 	t_token		*new_token;
 
 	len = word_len(cmd_struct->string, i);
+	//printf("len: %d\n", len);
 	cmd = ft_substr(cmd_struct->string, i, len);
 	new_token = init_token(cmd, WORD);
+	//printf("i: %d\n", i);
 	i += len;
+	//printf("i: %d\n", i);
 	add_token(&cmd_struct->first_token, new_token);
 	return (i);
 }

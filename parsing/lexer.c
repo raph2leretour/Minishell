@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:16 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/05 19:50:46 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/09 07:29:45 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../libft/include/libft.h"
@@ -22,7 +22,6 @@ t_token	*init_token(char *value, int type)
 	if (!new_token)
 		return (NULL);
 	new_token->str = value;
-	//printf("Adresa new_token->str: %p\n", new_token->str);
 	new_token->type = type;
 	new_token->prev = NULL;
 	new_token->next = NULL;
@@ -37,9 +36,9 @@ t_command	*init_command(char *value)
 	new_command = (t_command *)malloc(sizeof(t_command));
 	if (!new_command)
 		return (NULL);
-	//new_command->string = (char *)malloc(sizeof(char) * ft_strlen(value) + 1);
 	new_command->string = value;
 	new_command->first_token = NULL;
+	new_command->first_cmd = NULL;
 	return (new_command);
 }
 
@@ -47,14 +46,16 @@ t_command	*init_command(char *value)
 the command structure as a doubly linked list*/
 t_command	*tokenize(char *input_cmd)
 {
-	int			i;
+	int		i;
+	int		len;
 	t_command	*cmd_struct;
 
 	input_cmd = ft_strtrim(input_cmd, " ");
 	cmd_struct = init_command(input_cmd);
 	printf("\nInput command: %s\n\n", cmd_struct->string);
 	i = 0;
-	while (cmd_struct->string[i])
+	len = ft_strlen(cmd_struct->string);
+	while (i < len && cmd_struct->string[i])
 	{
 		while (is_space(cmd_struct->string[i]))
 			i++;
