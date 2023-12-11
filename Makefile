@@ -38,7 +38,7 @@ OBJS			:= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 LIBFT			:= $(LIBFT_DIR)/libft.a
 
 CC			:= cc
-CFLAGS		:= -Wall -Wextra -Werror -g -lreadline
+CFLAGS		:= -Wall -Wextra -Werror -g
 CPPFLAGS	:= -I inc
 
 #------------------------------------------------#
@@ -56,7 +56,7 @@ DIR_DUP		= mkdir -p $(@D)
 all: $(LIBFT) $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $(NAME) $(LIBFT)
+	$(CC) $(OBJS) -o $(NAME) $(LIBFT) -lreadline
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(DIR_DUP)
