@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "lexer.h"
 
 void	child_process(char **argv, char **envp, int fd[2])
 {
@@ -55,26 +56,21 @@ int	pipex(int argc, char **argv, char **envp)
 	int		fd[2];
 	pid_t	pid1;
 
-	if (argc == 5)
-	{
-		if (pipe(fd) == -1)
-			ft_error(NULL, -1);
-		pid1 = fork();
-		if (pid1 == -1)
-			ft_error(NULL, -1);
-		if (pid1 == 0)
-			child_process(argv, envp, fd);
-		pid1 = fork();
-		if (pid1 == -1)
-			ft_error(NULL, -1);
-		if (pid1 == 0)
-			parent_process(argv, envp, fd);
-		close(fd[0]);
-		close(fd[1]);
-		wait(NULL);
-		wait(NULL);
-	}
-	else
-		printf("Error: Bad arguments");
+	if (pipe(fd) == -1)
+		ft_error(NULL, -1);
+	pid1 = fork();
+	if (pid1 == -1)
+		ft_error(NULL, -1);
+	if (pid1 == 0)
+		child_process(argv, envp, fd);
+	pid1 = fork();
+	if (pid1 == -1)
+		ft_error(NULL, -1);
+	if (pid1 == 0)
+		parent_process(argv, envp, fd);
+	close(fd[0]);
+	close(fd[1]);
+	wait(NULL);
+	wait(NULL);
 	return (0);
 }

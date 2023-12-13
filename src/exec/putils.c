@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "lexer.h"
 
 void	execificator(char *cmd, char **env, int fd[2])
 {
