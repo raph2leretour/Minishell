@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtissera <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/11 17:51:13 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/14 21:30:49 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_env
 /*   FUNCTIONS                                                                */
 /******************************************************************************/
 int		ft_exit(char *strn, t_env *env);
-int		pipex(int argc, char **argv, char **envp);
+int		pipex(char **argv, char **envp);
 char	*get_path(char *scmd, char **env);
 void	pwd(void);
 void	cd(char *array);

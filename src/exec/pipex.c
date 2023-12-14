@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 13:57:53 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/14 19:35:58 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/14 21:31:04 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,11 @@ void	parent_process(char **argv, char **envp, int fd[2])
 	execificator(argv[3], envp, fd);
 }
 
-int	pipex(int argc, char **argv, char **envp)
+int	pipex(char **argv, char **envp)
 {
 	int		fd[2];
 	pid_t	pid1;
 
-	(void)argc;
 	if (pipe(fd) == -1)
 		ft_error(NULL, -1);
 	pid1 = fork();
