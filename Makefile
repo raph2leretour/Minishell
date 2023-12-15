@@ -23,6 +23,8 @@ SRCS			:=		\
 	env/env_init.c			\
 	env/clear_env.c			\
 	utils/ft_error.c		\
+	exec/pipes.c			\
+	exec/execution.c		\
 	exec/pipex.c			\
 	exec/putils.c			\
 	parsing/free.c			\
