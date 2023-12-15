@@ -25,8 +25,6 @@ SRCS			:=		\
 	utils/ft_error.c		\
 	exec/pipes.c			\
 	exec/execution.c		\
-	exec/pipex.c			\
-	exec/putils.c			\
 	parsing/free.c			\
 	parsing/lexer.c			\
 	parsing/parser.c		\

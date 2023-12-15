@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/14 21:30:49 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/15 17:02:51 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,31 +33,29 @@
 /******************************************************************************/
 /*   STRUCTURES                                                               */
 /******************************************************************************/
-typedef struct s_env
-{
-	bool			e;
-	char			*value;
-	struct s_env	*next;
-}	t_env;
+/*
+* typedef struct s_env
+* {
+* 	bool			e;
+* 	char			*value;
+* 	struct s_env	*next;
+* }	t_env;
+*/
 
 /******************************************************************************/
 /*   FUNCTIONS                                                                */
 /******************************************************************************/
+int		execution(t_command *s_cmd);
+int		create_pipe(t_commmand *s_cmd);
 int		ft_exit(char *strn, t_env *env);
-int		pipex(char **argv, char **envp);
-char	*get_path(char *scmd, char **env);
 void	pwd(void);
 void	cd(char *array);
 void	ft_env(t_env *env);
 void	echo(char **array);
 void	clear_env(t_env *env);
 void	unset(char *name, t_env *env);
-void	iwanttobreakfree(char **tofree);
 void	ft_export(char *value, t_env *env);
 void	ft_error(const char *s, int errnum);
-void	execificator(char *cmd, char **env, int fd[2]);
-void	child_process(char **argv, char **envp, int fd[2]);
-void	parent_process(char **argv, char **envp, int fd[2]);
 t_env	*env_init(char **env);
 
 #endif
