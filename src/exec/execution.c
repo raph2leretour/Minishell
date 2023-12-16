@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/15 18:14:31 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/16 15:26:22 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 
 int	is_builtin(t_command *cmd)
 {
-	if (ft_strncmp(cmd->full_path, "cd", 2))
+	if (ft_strncmp(cmd->first_cmd->full_path, "cd", 2))
 		return (cd(cmd));
-	else if (ft_strncmp(cmd->full_path, "echo", 4))
+	else if (ft_strncmp(cmd->first_cmd->full_path, "echo", 4))
 		return (echo(cmd));
-	else if (ft_strncmp(cmd->full_path, "env", 3))
+	else if (ft_strncmp(cmd->first_cmd->full_path, "env", 3))
 		return (ft_env(cmd));
-	else if (ft_strncmp(cmd->full_path, "exit", 4))
+	else if (ft_strncmp(cmd->first_cmd->full_path, "exit", 4))
 		return (ft_exit(cmd));
-	else if (ft_strncmp(cmd->full_path, "export", 6))
+	else if (ft_strncmp(cmd->first_cmd->full_path, "export", 6))
 		return (ft_export(cmd));
-	else if (ft_strncmp(cmd->full_path, "pwd", 3))
+	else if (ft_strncmp(cmd->first_cmd->full_path, "pwd", 3))
 		return (pwd(cmd));
-	else if (ft_strncmp(cmd->full_path, "unset", 5))
+	else if (ft_strncmp(cmd->first_cmd->full_path, "unset", 5))
 		return (unset(cmd));
 	else
 	{
