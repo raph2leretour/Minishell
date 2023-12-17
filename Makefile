@@ -9,24 +9,25 @@ NAME		:= Minishell
 SRC_DIR		:= src
 OBJ_DIR		:= obj
 LIBFT_DIR	:= libft
-SRCS		:=		\
-	main.c				\
-	builtin/cd.c			\
-	builtin/pwd.c			\
-	builtin/env.c			\
-	builtin/exit.c			\
-	builtin/echo.c			\
-	builtin/unset.c			\
-	builtin/export.c		\
-	env/env_init.c			\
-	env/clear_env.c			\
-	utils/ft_error.c		\
-	exec/pipes.c			\
-	exec/execution.c		\
-	parsing/free.c			\
-	parsing/lexer.c			\
-	parsing/parser.c		\
-	parsing/lst_token.c		\
+SRCS		:=					\
+	main.c						\
+	builtin/cd.c				\
+	builtin/pwd.c				\
+	builtin/env.c				\
+	builtin/exit.c				\
+	builtin/echo.c				\
+	builtin/unset.c				\
+	builtin/export.c			\
+	env/env_init.c				\
+	env/clear_env.c				\
+	utils/ft_error.c			\
+	exec/pipes.c				\
+	exec/execution.c			\
+	exec/clear_pipes.c			\
+	parsing/free.c				\
+	parsing/lexer.c				\
+	parsing/parser.c			\
+	parsing/lst_token.c			\
 	parsing/add_tokens.c		\
 	parsing/lexer_utils.c		\
 	parsing/add_token_word.c	\

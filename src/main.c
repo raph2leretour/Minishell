@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/11 16:36:38 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/17 21:00:00 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "lexer.h"
 
 void	print_command(t_token *first_token)
 {
@@ -49,7 +48,7 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	env_s = env_init(envp);
 	while (1)
-	{	
+	{
 		str = readline("minishell$ ");
 		//add_history(str);
 		cmd = tokenize(str);

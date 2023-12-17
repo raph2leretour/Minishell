@@ -6,17 +6,16 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/16 17:53:42 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/17 20:59:40 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "lexer.h"
 
 void	is_builtin(t_command *cmd)
 {
 	if (ft_strncmp(cmd->first_cmd->full_path, "cd", 2))
-		return (cd(cmd->first_token->next));
+		return (cd(cmd->first_token->next->str));
 	else if (ft_strncmp(cmd->first_cmd->full_path, "echo", 4))
 		return (echo(cmd->argv));
 	else if (ft_strncmp(cmd->first_cmd->full_path, "env", 3))
