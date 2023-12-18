@@ -6,13 +6,31 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/18 17:14:21 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/18 19:17:39 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	is_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token)
+int	is_builtin(char *path)
+{
+	if (ft_strncmp(path, "cd", 2) \
+		|| ft_strncmp(path, "echo", 4) \
+		|| ft_strncmp(path, "env", 3) \
+		|| ft_strncmp(path, "exit", 4) \
+		|| ft_strncmp(path, "export", 6) \
+		|| ft_strncmp(path, "pwd", 3) \
+		|| ft_strncmp(path, "unset", 5))
+	{
+		return (1);
+	}
+	else
+	{
+		return (0);
+	}
+}
+
+void	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token)
 {
 	if (ft_strncmp(token->str, "cd", 2))
 		return (cd(token->next->str));
@@ -37,7 +55,7 @@ void	is_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token)
 
 int	execution(t_command *t_cmd, t_simple_cmd *cmd)
 {
-	pid_t			pid;
+	pid_t	pid;
 
 	while (cmd)
 	{
@@ -48,8 +66,8 @@ int	execution(t_command *t_cmd, t_simple_cmd *cmd)
 		{
 			dup2(STDIN_FILENO, cmd->infile);
 			dup2(STDOUT_FILENO, cmd->outfile);
-			if (!cmd->full_path)
-				is_builtin(t_cmd, cmd, cmd->first_token);
+			if (is_builtin(cmd->full_path))
+				do_builtin(t_cmd, cmd, cmd->first_token);
 			else
 			{
 				if (execve(cmd->full_path, split_cmd(cmd), t_cmd->envp) == -1)

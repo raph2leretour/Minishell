@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/18 17:14:15 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/18 19:21:52 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_env
 /******************************************************************************/
 /*   FUNCTIONS                                                                */
 /******************************************************************************/
+int		is_builtin(char *path);
 int		create_pipe(t_command *s_cmd);
 int		execution(t_command *s_cmd, t_simple_cmd *cmd);
 char	**split_cmd(t_simple_cmd *cmd);
@@ -60,6 +61,7 @@ void	unset(char *name, t_env *env);
 void	ft_exit(char *strn, t_env *env);
 void	ft_export(char *value, t_env *env);
 void	ft_error(const char *s, int errnum);
+void	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token);
 t_env	*env_init(char **env);
 
 #endif
