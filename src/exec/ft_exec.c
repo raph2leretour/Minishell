@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipes.c                                            :+:      :+:    :+:   */
+/*   ft_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/14 21:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/18 15:01:09 by rtissera         ###   ########.fr       */
+/*   Created: 2023/12/18 14:35:17 by rtissera          #+#    #+#             */
+/*   Updated: 2023/12/18 15:01:48 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	create_pipe(t_command *t_cmd)
+void	ft_exec(t_command *t_cmd)
 {
-	int				pip[2];
-	t_simple_cmd	*cmd;
+	int	status;
+	int	return_value;
 
-	cmd = t_cmd->first_cmd;
-	while (cmd)
+	create_pipe(t_cmd);
+	execution(t_cmd);
+	while (waitpid(-1, &status, 0) == -1)
 	{
-		if (cmd->next)
+		if (WIFEXITED(status))
 		{
-			if (pipe(pip))
-			{
-				perror("Pipe:");
-				clear_pipes(t_cmd);
-				return (-1);
-			}
-			cmd->outfile = pip[1];
-			cmd->infile = pip[0];
+			return_value = status;
 		}
-		cmd = cmd->next;
 	}
-	return (0);
+	clear_pipes(t_cmd);
 }

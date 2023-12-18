@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/17 20:59:40 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/18 15:00:35 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	is_builtin(t_command *cmd)
 	if (ft_strncmp(cmd->first_cmd->full_path, "cd", 2))
 		return (cd(cmd->first_token->next->str));
 	else if (ft_strncmp(cmd->first_cmd->full_path, "echo", 4))
-		return (echo(cmd->argv));
+		return (echo(cmd->s_cmd));
 	else if (ft_strncmp(cmd->first_cmd->full_path, "env", 3))
 		return (ft_env(cmd->envp));
 	else if (ft_strncmp(cmd->first_cmd->full_path, "exit", 4))
@@ -54,7 +54,7 @@ int	execution(t_command *t_cmd)
 				is_builtin(t_cmd);
 			else
 			{
-				if (execve(cmd->full_path, cmd->argv, t_cmd->envp) == -1)
+				if (execve(cmd->full_path, cmd->s_cmd, t_cmd->envp) == -1)
 				{
 					printf("%s: ", cmd->first_token);
 					ft_error("Command Not Found", -1);

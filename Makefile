@@ -22,6 +22,7 @@ SRCS		:=					\
 	env/clear_env.c				\
 	utils/ft_error.c			\
 	exec/pipes.c				\
+	exec/ft_exec.c				\
 	exec/execution.c			\
 	exec/clear_pipes.c			\
 	parsing/free.c				\
