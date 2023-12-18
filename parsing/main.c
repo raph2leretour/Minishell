@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/09 07:56:32 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/16 19:03:14 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -54,8 +54,8 @@ int	main(void)
 		str = readline("minishell$ ");
 		//add_history(str);
 		cmd = tokenize(str);
-		/*check_syntax(cmd);
-		expand(cmd);*/
+		check_syntax(cmd);
+		//expand(cmd);
 		set_simple_commands(cmd);
 		printf("\n-----------Tokenization:----------\n");
 		print_command(cmd->first_token);

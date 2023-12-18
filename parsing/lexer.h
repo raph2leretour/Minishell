@@ -6,13 +6,14 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:57:10 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/08 19:58:33 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/18 21:09:50 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LEXER_H
 # define LEXER_H
 
 #include "../libft/include/libft.h"
+#include <stdio.h>
 # define WORD 1
 # define REDIRECTION 2
 # define PARENTHESIS 3
@@ -59,6 +60,7 @@ t_simple_cmd	*cmd_last(t_simple_cmd *lst);
 void	add_token(t_token **lst, t_token *new_token);
 void	add_simple_cmd(t_simple_cmd **lst, t_simple_cmd *new_cmd);
 void	free_cmd(t_command *cmd);
+void	check_syntax(t_command *cmd_struct);
 
 int	add_token_word(t_command *cmd_struct, int i);
 int	add_token_redirection(t_command *cmd_struct, int i);
@@ -70,5 +72,9 @@ int	is_space(char c);
 int	is_parenthesis(char c);
 int	is_redirection(char c);
 int	is_word(char c);
+
+int	check_types(t_command *cmd_struct);
+int	check_redirections(t_command *cmd_struct);
+int	check_between_pipes(t_command *cmd_struct);
 
 #endif
