@@ -21,6 +21,7 @@ SRCS		:=					\
 	env/env_init.c				\
 	env/clear_env.c				\
 	utils/ft_error.c			\
+	utils/split_cmd.c			\
 	exec/pipes.c				\
 	exec/ft_exec.c				\
 	exec/execution.c			\

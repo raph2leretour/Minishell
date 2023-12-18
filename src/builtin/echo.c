@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:05:14 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/17 21:00:03 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:13:42 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	printpars(char *word)
 	char	*var;
 	char	*varenv;
 
-	i = 0;
+	i = 1;
 	while (word[i])
 	{
 		if (word[i] == '$')
@@ -67,7 +67,7 @@ void	echo(char **array)
 	int	i;
 	int	b;
 
-	i = nnn(array, 0);
+	i = nnn(array, 1);
 	b = 1;
 	if (i != 0)
 		b = 0;
