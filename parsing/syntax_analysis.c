@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 18:25:26 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/18 21:08:54 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/19 12:32:59 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../libft/include/libft.h"
@@ -54,6 +54,7 @@ void	check_syntax(t_command *cmd_struct)
 	if (cmd_struct->first_token)
 	{
 		check_types(cmd_struct);
+		check_quotes(cmd_struct);
 		check_pipe_location(cmd_struct);
 		check_between_pipes(cmd_struct);
 		check_redirections(cmd_struct);

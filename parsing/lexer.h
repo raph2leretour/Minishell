@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:57:10 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/18 21:09:50 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/19 12:12:13 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LEXER_H
@@ -74,6 +74,7 @@ int	is_redirection(char c);
 int	is_word(char c);
 
 int	check_types(t_command *cmd_struct);
+int	check_quotes(t_command *cmd_struct);
 int	check_redirections(t_command *cmd_struct);
 int	check_between_pipes(t_command *cmd_struct);
 
