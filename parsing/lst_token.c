@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 22:39:37 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/09 07:54:55 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/19 21:50:39 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lexer.h"
@@ -37,6 +37,18 @@ t_simple_cmd	*cmd_last(t_simple_cmd *lst)
 	return (aux);
 }
 
+//return the last env variable
+t_env	*env_last(t_env *lst)
+{
+	t_env	*aux;
+
+	if (lst == NULL)
+		return (lst);
+	aux = lst;
+	while (aux->next != NULL)
+		aux = aux->next;
+	return (aux);
+}
 //add token to the back of the list
 void	add_token(t_token **lst, t_token *new_token)
 {
@@ -69,4 +81,21 @@ void	add_simple_cmd(t_simple_cmd **lst, t_simple_cmd *new_cmd)
 	tmp = cmd_last(*lst);
 	tmp->next = new_cmd;
 	new_cmd->prev = tmp;
+}
+
+//add env_var to the back of the list
+void	add_env_var(t_env **lst, t_env *new_env)
+{
+	t_env	*tmp;
+
+	if (new_env == NULL)
+		return ;
+	if (*lst == NULL)
+	{
+		*lst = new_env;
+		return ;
+	}
+	tmp = env_last(*lst);
+	tmp->next = new_env;
+	new_env->prev = tmp;
 }

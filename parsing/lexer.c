@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:16 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/09 07:29:45 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/19 21:58:39 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../libft/include/libft.h"
@@ -39,6 +39,7 @@ t_command	*init_command(char *value)
 	new_command->string = value;
 	new_command->first_token = NULL;
 	new_command->first_cmd = NULL;
+	new_command->lst_env = NULL;
 	return (new_command);
 }
 
