@@ -6,13 +6,13 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 15:31:55 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/18 16:28:32 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:32:36 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*freeror(char **s_cmd)
+char	**freeror(char **s_cmd)
 {
 	int	i;
 

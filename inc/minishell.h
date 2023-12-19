@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/18 19:21:52 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:31:19 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@
 typedef struct s_env
 {
 	bool			e;
+	//KARL LOGNAME=rtissera
+	//		key=value
+	char 			*name;
 	char			*value;
 	struct s_env	*next;
 }	t_env;
@@ -52,7 +55,7 @@ int		execution(t_command *s_cmd, t_simple_cmd *cmd);
 char	**split_cmd(t_simple_cmd *cmd);
 void	pwd(void);
 void	cd(char *array);
-void	ft_env(t_env *env);
+void	ft_env(t_simple_cmd *cmd, t_env *env);
 void	echo(char **array);
 void	clear_env(t_env *env);
 void	ft_exec(t_command *t_cmd);

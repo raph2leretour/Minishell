@@ -3,17 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:57:10 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/11 16:35:36 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/19 15:13:21 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef LEXER_H
+
 # define LEXER_H
 
 #include "../libft/include/libft.h"
 # define WORD 1
+//# define COMMAND 0
+//# define OPTION 1
+//# define WORD/ARG 2
+// HEREDOC 3
+// OUTFILE 4
+// APPEND 5
+//INFILE 6
+//PIPE 7
+
 # define REDIRECTION 2
 # define PARENTHESIS 3
 # define PIPE 4

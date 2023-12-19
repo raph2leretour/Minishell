@@ -6,12 +6,12 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:55:39 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/18 17:14:57 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:31:58 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+/*
 void	ft_env(t_simple_cmd *cmd, t_env *env)
 {
 	while (env && env->value)
@@ -26,3 +26,4 @@ void	ft_env(t_simple_cmd *cmd, t_env *env)
 		env = env->next;
 	}
 }
+*/
