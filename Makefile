@@ -20,6 +20,7 @@ SRCS		:=					\
 	builtin/export.c			\
 	env/env_init.c				\
 	env/clear_env.c				\
+	env/get_true_env.c			\
 	utils/ft_error.c			\
 	utils/split_cmd.c			\
 	exec/pipes.c				\
