@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 12:01:05 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/20 15:39:17 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/20 17:34:43 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,10 @@ int	check_single(t_command *cmd_struct, char *word, int i)
 void	check_if_all_quotes_closed(t_command *cmd_struct, char *word)
 {
 	int	i;
-	int	len;
+	//int	len;
 
 	i = 0;
-	len = ft_strlen(word);
+	//len = ft_strlen(word);
 	while (word[i])
 	{
 		while (word[i] && word[i] != '"' && word[i] != '\'')

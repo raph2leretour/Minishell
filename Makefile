@@ -37,7 +37,7 @@ SRCS		:=					\
 	parsing/syntax_pipe.c		\
 	parsing/lexer_utils.c		\
 	parsing/get_cmd_path.c		\
-	parsing/syntax_cotes.c		\
+	parsing/syntax_quotes.c		\
 	parsing/handle_quotes.c		\
 	parsing/delete_quotes.c		\
 	parsing/add_token_word.c	\
