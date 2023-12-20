@@ -6,13 +6,13 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:39:50 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/17 21:00:29 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/20 18:05:35 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	unset(char *name, t_env *env)
+void	unset(t_simple_cmd *cmd)
 {
 	t_env	*head;
 	t_env	*next;

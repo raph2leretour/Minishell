@@ -6,13 +6,13 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:20:07 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/20 15:31:23 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/20 18:21:52 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* void	inid(char *value)
+void	inid(char *value)
 {
 	char	*errc;
 	char	*errc2;
@@ -48,7 +48,7 @@ int	is_valid(char *value)
 	return (0);
 }
 
-void	ft_export(char *value, t_env *env)
+void	ft_export(t_simple_cmd *cmd)
 {
 	char	**print;
 	t_env	*head;
@@ -79,4 +79,3 @@ void	ft_export(char *value, t_env *env)
 	}
 	env = head;
 }
- */
