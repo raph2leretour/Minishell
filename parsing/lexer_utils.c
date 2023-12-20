@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 07:52:49 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/05 10:34:51 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/20 11:57:45 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lexer.h"
@@ -43,7 +43,7 @@ int	is_word(char c)
 	return (0);
 }
 
-/*int	is_builtin(char *str)
+int	is_builtin(char *str)
 {
 	if (str == NULL)
 		return (0);
@@ -62,5 +62,5 @@ int	is_word(char c)
 	else if (!ft_strncmp("unset", str, ft_strlen(str)))
 		return (1);
 	return (0);
-}*/
+}
 

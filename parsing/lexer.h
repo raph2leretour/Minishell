@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:57:10 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/19 22:15:33 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/20 14:33:13 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LEXER_H
@@ -81,6 +81,7 @@ void	add_simple_cmd(t_simple_cmd **lst, t_simple_cmd *new_cmd);
 void	add_env_var(t_env **lst, t_env *new_env);
 void	free_cmd(t_command *cmd);
 void	check_syntax(t_command *cmd_struct);
+void	free_split(char **str);
 
 int	add_token_word(t_command *cmd_struct, int i);
 int	add_token_redirection(t_command *cmd_struct, int i);
@@ -92,10 +93,13 @@ int	is_space(char c);
 int	is_parenthesis(char c);
 int	is_redirection(char c);
 int	is_word(char c);
+int	is_builtin(char *str);
 
 int	check_types(t_command *cmd_struct);
 int	check_quotes(t_command *cmd_struct);
 int	check_redirections(t_command *cmd_struct);
 int	check_between_pipes(t_command *cmd_struct);
+
+char	*get_cmd_path(char *cmd, t_command *cmd_struct);
 
 #endif

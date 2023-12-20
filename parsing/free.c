@@ -6,11 +6,24 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:11:42 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/19 22:17:35 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/20 14:31:49 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../libft/include/libft.h"
 #include "lexer.h"
+
+void	free_split(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
 
 void	free_tokens(t_token *first_token)
 {

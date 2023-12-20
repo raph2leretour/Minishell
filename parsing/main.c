@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/19 22:20:03 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/20 14:30:33 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -65,8 +65,8 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
-	/*i = 0;
-	while (envp[i])
+	i = 0;
+	/*while (envp[i])
 	{
 		printf("%s\n", envp[i]);
 		i++;
