@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 12:01:05 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/19 22:28:58 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/20 16:37:00 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../libft/include/libft.h"
@@ -81,10 +81,10 @@ int	check_single(t_command *cmd_struct, char *word, int i)
 void	check_if_all_quotes_closed(t_command *cmd_struct, char *word)
 {
 	int	i;
-	int	len;
+	//int	len;
 
 	i = 0;
-	len = ft_strlen(word);
+	//len = ft_strlen(word);
 	while (word[i])
 	{
 		while (word[i] && word[i] != '"' && word[i] != '\'')

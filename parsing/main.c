@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/20 14:30:33 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/20 16:36:37 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -44,9 +44,6 @@ void	print_simple_commands(t_simple_cmd *simple_cmd)
 
 void	print_env(t_env *env_var)
 {
-	int	i;
-
-	i = 0;
 	while (env_var)
 	{
 		printf("%s", env_var->key);
@@ -59,13 +56,13 @@ void	print_env(t_env *env_var)
 int	main(int argc, char **argv, char **envp)
 {
 	char	*str;
-	char	**tokens;
-	int	i;
+	//char	**tokens;
+	//int	i;
 	t_command	*cmd;
 
 	(void)argc;
 	(void)argv;
-	i = 0;
+	//i = 0;
 	/*while (envp[i])
 	{
 		printf("%s\n", envp[i]);
@@ -81,12 +78,12 @@ int	main(int argc, char **argv, char **envp)
 		check_syntax(cmd);
 		//expand(cmd);
 		set_simple_commands(cmd);
-		printf("\n-----------Tokenization:----------\n");
-		print_command(cmd->first_token);
+		//printf("\n-----------Tokenization:----------\n");
+		//print_command(cmd->first_token);
 		printf("\n-----------Simple commands:----------\n");
 		print_simple_commands(cmd->first_cmd);
-		printf("\n-----------Environment variables:----------\n");
-		print_env(cmd->lst_env);
+		//printf("\n-----------Environment variables:----------\n");
+		//print_env(cmd->lst_env);
 		printf("\n\n\n");
 		free_cmd(cmd);
 		free(str);
