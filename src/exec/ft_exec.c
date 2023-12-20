@@ -6,13 +6,13 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:35:17 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/19 14:52:22 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:31:52 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_exec(t_command *t_cmd)
+/* void	ft_exec(t_command *t_cmd)
 {
 	int	status;
 	int	return_value;
@@ -34,7 +34,7 @@ void	ft_exec(t_command *t_cmd)
 		}
 	}
 	clear_pipes(t_cmd);
-}
+} */
 
 /*
 --> ls -la file1 blablabla

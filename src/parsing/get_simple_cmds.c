@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_simple_cmds.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:26 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/11 16:26:51 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:59:53 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "minishell.h"
+
 #include "lexer.h"
 
-t_simple_cmd	*init_simple_cmd(t_token *head_tkn)
+t_simple_cmd	*init_simple_cmd(t_token *head_tkn, t_command *cmd_struct)
 {
 	t_simple_cmd	*new_simple_cmd;
 
@@ -20,6 +20,8 @@ t_simple_cmd	*init_simple_cmd(t_token *head_tkn)
 	if (!new_simple_cmd)
 		return (NULL);
 	new_simple_cmd->full_path = NULL;
+	if (!is_builtin(head_tkn->str))
+		new_simple_cmd->full_path = get_cmd_path(head_tkn->str, cmd_struct);
 	new_simple_cmd->infile =  0;
 	new_simple_cmd->outfile = 0;
 	new_simple_cmd->first_token = head_tkn;
@@ -35,7 +37,7 @@ t_command	*set_simple_commands(t_command *cmd_struct)
 	token = cmd_struct->first_token;
 	while (token)
 	{
-		simple_cmd_struct = init_simple_cmd(init_token(token->str, token->type));
+		simple_cmd_struct = init_simple_cmd(init_token(token->str, token->type), cmd_struct);
 		add_simple_cmd(&cmd_struct->first_cmd, simple_cmd_struct);
 		token = token->next;
 		while (token && token->type != PIPE)

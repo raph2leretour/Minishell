@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 07:52:49 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/11 16:27:55 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:59:39 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "minishell.h"
+
 #include "lexer.h"
 
 int	is_space(char c)
@@ -44,7 +44,7 @@ int	is_word(char c)
 	return (0);
 }
 
-/*int	is_builtin(char *str)
+int	is_builtin(char *str)
 {
 	if (str == NULL)
 		return (0);
@@ -63,5 +63,5 @@ int	is_word(char c)
 	else if (!ft_strncmp("unset", str, ft_strlen(str)))
 		return (1);
 	return (0);
-}*/
+}
 

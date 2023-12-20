@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:11:42 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/11 16:26:27 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/20 16:00:17 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "minishell.h"
+
 #include "lexer.h"
+
+void	free_split(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
 
 void	free_tokens(t_token *first_token)
 {
@@ -53,6 +66,21 @@ void	free_simple_cmds(t_simple_cmd *first_cmd)
 	free(first_cmd);
 }
 
+void	free_env_vars(t_env *env_var)
+{
+	t_env	*tmp;
+
+	while (env_var)
+	{
+		tmp = env_var->next;
+		free(env_var->key);
+		free(env_var->value);
+		free(env_var);
+		env_var = tmp;
+	}
+	free(env_var);
+}
+
 void	free_cmd(t_command *cmd)
 {
 	//if (cmd->string)
@@ -61,5 +89,7 @@ void	free_cmd(t_command *cmd)
 		free_tokens(cmd->first_token);
 	if (cmd->first_cmd)
 		free_simple_cmds(cmd->first_cmd);
+	if (cmd->lst_env)
+		free_env_vars(cmd->lst_env);
 	free(cmd);
 }

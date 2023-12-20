@@ -3,11 +3,11 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:26 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/09 07:51:30 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:59:15 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../libft/include/libft.h"
+
 #include "lexer.h"

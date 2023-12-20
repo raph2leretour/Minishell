@@ -6,13 +6,13 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/19 13:44:32 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:31:42 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	is_builtin(char *path)
+/* int	is_builtin(char *path)
 {
 	if (ft_strncmp(path, "cd", 2) \
 		|| ft_strncmp(path, "echo", 4) \
@@ -80,3 +80,4 @@ int	execution(t_command *t_cmd, t_simple_cmd *cmd)
 		cmd = cmd->next;
 	}
 }
+ */

@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 18:00:55 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/19 17:23:47 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:32:12 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_env	*env_init(char **env)
 		val_size = ft_strlen(ft_strchr(env[i], '='));
 		s_env->value = malloc(sizeof(char) * val_size);
 		ft_strlcpy(s_env->value, ft_strchr(env[i], '=') + 1, val_size);
-		if (i = 0)
+		if (i == 0)
 			head = s_env;
 		i++;
 		s_env = s_env->next;

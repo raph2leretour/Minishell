@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   get_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:34:29 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/19 22:17:16 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/20 16:00:00 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../libft/include/libft.h"
+
 #include "lexer.h"
 
 t_env	*init_env_var(char *key, char *value)
@@ -30,13 +30,13 @@ char	*get_key(char *env_var)
 {
 	int	i;
 	char	*key;
-	
+
 	i = 0;
 	while (env_var[i] != '=')
 		i++;
 	key = ft_substr(env_var, 0, i);
 	return (key);
-	
+
 }
 
 char	*get_value(char *env_var)
@@ -44,7 +44,7 @@ char	*get_value(char *env_var)
 	int	i;
 	int	len;
 	char	*value;
-	
+
 	i = 0;
 	while (env_var[i - 1] != '=')
 		i++;
@@ -53,7 +53,7 @@ char	*get_value(char *env_var)
 		len++;
 	value = ft_substr(env_var, i, len);
 	return (value);
-	
+
 }
 
 t_command	*get_env_vars(t_command *cmd_struct, char **envp)

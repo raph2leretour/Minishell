@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   add_token_word.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 09:44:34 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/11 16:26:00 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/20 16:00:35 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "minishell.h"
+
 #include "lexer.h"
 
 //get the length of the word
