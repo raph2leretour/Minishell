@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   get_cmd_path.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 10:29:02 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/20 14:32:19 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/20 16:21:42 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../libft/include/libft.h"
+
 #include "lexer.h"
 
 char	**get_path(t_env *env_vars)
@@ -71,5 +71,5 @@ char	*get_cmd_path(char *cmd, t_command *cmd_struct)
 	}
 	free_split(full_path_split);
 	return (path);
-	
+
 }

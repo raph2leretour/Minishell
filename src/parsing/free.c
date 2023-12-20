@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:11:42 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/20 14:31:49 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/20 16:00:17 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../libft/include/libft.h"
+
 #include "lexer.h"
 
 void	free_split(char **str)
@@ -74,7 +74,7 @@ void	free_env_vars(t_env *env_var)
 	{
 		tmp = env_var->next;
 		free(env_var->key);
-		free(env_var->value);	
+		free(env_var->value);
 		free(env_var);
 		env_var = tmp;
 	}

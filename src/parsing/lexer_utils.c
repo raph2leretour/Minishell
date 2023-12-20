@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 07:52:49 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/20 11:57:45 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:59:39 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "lexer.h"
 
 int	is_space(char c)

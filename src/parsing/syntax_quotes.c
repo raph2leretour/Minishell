@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 12:01:05 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/20 16:37:00 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/20 17:28:20 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../libft/include/libft.h"
+
 #include "lexer.h"
 
 int	check_double(t_command *cmd_struct, char *word, int i)

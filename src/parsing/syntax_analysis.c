@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_analysis.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 18:25:26 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/19 12:32:59 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:39:34 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../libft/include/libft.h"
+
 #include "lexer.h"
-#include <stdio.h>
+
 
 int	check_types(t_command *cmd_struct)
 {

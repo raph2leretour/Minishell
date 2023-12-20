@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/20 16:36:37 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/20 17:26:55 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <stdlib.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include "../libft/include/libft.h"
-#include "lexer.h"
+
+#include "minishell.h"
 
 void	print_command(t_token *first_token)
 {
@@ -56,8 +52,10 @@ void	print_env(t_env *env_var)
 int	main(int argc, char **argv, char **envp)
 {
 	char	*str;
+
 	//char	**tokens;
 	//int	i;
+
 	t_command	*cmd;
 
 	(void)argc;
@@ -67,10 +65,10 @@ int	main(int argc, char **argv, char **envp)
 	{
 		printf("%s\n", envp[i]);
 		i++;
-	}*/	
+	}*/
 
 	while (1)
-	{	
+	{
 		str = readline("minishell$ ");
 		//add_history(str);
 		cmd = tokenize(str);

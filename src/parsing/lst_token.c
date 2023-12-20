@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   lst_token.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 22:39:37 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/19 21:50:39 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:59:22 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "lexer.h"
 
 //return the last token in the list

@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   delete_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:26:34 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/19 14:27:03 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/20 16:00:24 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../libft/include/libft.h"
+
 #include "lexer.h"
 
 

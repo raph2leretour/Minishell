@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:16 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/19 21:58:39 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:59:30 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../libft/include/libft.h"
+
 #include "lexer.h"
-#include <stdio.h>
 
 //initialize token
 t_token	*init_token(char *value, int type)
@@ -43,7 +42,7 @@ t_command	*init_command(char *value)
 	return (new_command);
 }
 
-/*Get the input and create tokens out of the strings, and add them to 
+/*Get the input and create tokens out of the strings, and add them to
 the command structure as a doubly linked list*/
 t_command	*tokenize(char *input_cmd)
 {

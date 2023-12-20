@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_simple_cmds.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:26 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/20 14:28:35 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:59:53 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../libft/include/libft.h"
+
 #include "lexer.h"
-#include <stdio.h>
 
 t_simple_cmd	*init_simple_cmd(t_token *head_tkn, t_command *cmd_struct)
 {
