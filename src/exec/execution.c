@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/20 18:18:38 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/20 19:53:26 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ void	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token)
 	else if (ft_strncmp(token->str, "env", 3))
 		return (ft_env(t_cmd->lst_env));
 	else if (ft_strncmp(token->str, "exit", 4))
-		return (ft_exit(token->str, t_cmd->lst_env));
+		return (ft_exit(token->str));
 	else if (ft_strncmp(token->str, "export", 6))
-		return (ft_export(cmd));
+		return (ft_export(t_cmd, cmd->first_token));
 	else if (ft_strncmp(token->str, "pwd", 3))
 		return (pwd());
 	else if (ft_strncmp(token->str, "unset", 5))
-		return (unset(cmd));
+		return (unset(t_cmd->lst_env, token->str));
 	else
 	{
-		printf("%s: ", cmd->first_token);
+		printf("%s: ", cmd->first_token->str);
 		ft_error("Command Not Found", -1);
 	}
 }
@@ -43,13 +43,14 @@ void	do_exec(t_simple_cmd *cmd, t_env *s_env)
 	c_env = get_true_env(s_env);
 	if (execve(cmd->full_path, split_cmd(cmd), c_env))
 	{
+		i = 0;
 		while (c_env[i])
 		{
 			free(c_env[i]);
 			i++;
 		}
 		free(c_env);
-		printf("%s: ", cmd->first_token);
+		printf("%s: ", cmd->first_token->str);
 		ft_error("Command Not Found", -1);
 	}
 	i = 0;
@@ -81,4 +82,5 @@ int	execution(t_command *t_cmd, t_simple_cmd *cmd)
 		}
 		cmd = cmd->next;
 	}
+	return (0);
 }

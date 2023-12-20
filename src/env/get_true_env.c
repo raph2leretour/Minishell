@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:18:13 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/20 15:37:04 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/20 19:42:48 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	**malloc_env(t_env *s_env)
 	return c_env;
 }
 
-char	**get_truc_env(t_env *s_env)
+char	**get_true_env(t_env *s_env)
 {
 	int		i;
 	char	**c_env;

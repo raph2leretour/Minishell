@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/20 18:18:06 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/20 19:54:08 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ void	pwd(void);
 void	cd(char *array);
 void	ft_env(t_env *env);
 void	echo(char **array);
-void	unset(t_simple_cmd *cmd);
+void	ft_exit(char *strn);
 void	ft_exec(t_command *t_cmd);
-void	ft_export(t_simple_cmd *cmd);
 void	clear_pipes(t_command *s_cmd);
-void	ft_exit(char *strn, t_env *env);
 void	ft_error(const char *s, int errnum);
+void	unset(t_env *env, char *targeted_token);
+void	ft_export(t_command *s_cmd, t_token *token);
 void	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token);
 
 #endif
