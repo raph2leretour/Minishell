@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/21 21:04:30 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/21 21:19:54 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,32 @@ void	print_env(t_env *env_var)
 int	main(int argc, char **argv, char **envp)
 {
 	char	*str;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+	// char	**tokens;
+=======
+>>>>>>> main
 
 	//char	**tokens;
 	//int	i;
 
+<<<<<<< HEAD
+=======
+>>>>>>> Sara
+>>>>>>> main
 	t_command	*cmd;
 
 	(void)argc;
 	(void)argv;
+<<<<<<< HEAD
 	//i = 0;
+=======
+<<<<<<< HEAD
+=======
+	//i = 0;
+>>>>>>> Sara
+>>>>>>> main
 	/*while (envp[i])
 	{
 		printf("%s\n", envp[i]);

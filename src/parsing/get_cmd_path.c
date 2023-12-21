@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 10:29:02 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/20 16:21:42 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/20 17:36:22 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ char	*get_cmd_path(char *cmd, t_command *cmd_struct)
 	char	**full_path_split;
 	char	*path;
 
+	path = NULL;
 	full_path_split = get_path(cmd_struct->lst_env);
 	if (!is_builtin(cmd))
 	{
