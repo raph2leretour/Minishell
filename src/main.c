@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/21 15:29:59 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/21 18:02:11 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,13 @@ int	main(int argc, char **argv, char **envp)
 		check_syntax(cmd);
 		//expand(cmd);
 		set_simple_commands(cmd);
-		// //printf("\n-----------Tokenization:----------\n");
-		// //print_command(cmd->first_token);
-		// printf("\n-----------Simple commands:----------\n");
-		// print_simple_commands(cmd->first_cmd);
-		// //printf("\n-----------Environment variables:----------\n");
-		// //print_env(cmd->lst_env);
-		// printf("\n\n\n");
+		printf("\n-----------Tokenization:----------\n");
+		print_command(cmd->first_token);
+		printf("\n-----------Simple commands:----------\n");
+		print_simple_commands(cmd->first_cmd);
+		// printf("\n-----------Environment variables:----------\n");
+		// print_env(cmd->lst_env);
+		printf("\n----------------------------------\n\n");
 		ft_exec(cmd);
 		free_cmd(cmd);
 		free(str);
