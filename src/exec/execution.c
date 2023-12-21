@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/20 19:53:26 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/21 15:56:38 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token)
 {
-	if (ft_strncmp(token->str, "cd", 2))
+	if (!ft_strncmp(token->str, "cd", 2))
 		return (cd(token->next->str));
-	else if (ft_strncmp(token->str, "echo", 4))
+	else if (!ft_strncmp(token->str, "echo", 4))
 		return (echo(split_cmd(cmd)));
-	else if (ft_strncmp(token->str, "env", 3))
+	else if (!ft_strncmp(token->str, "env", 3))
 		return (ft_env(t_cmd->lst_env));
-	else if (ft_strncmp(token->str, "exit", 4))
-		return (ft_exit(token->str));
-	else if (ft_strncmp(token->str, "export", 6))
+	else if (!ft_strncmp(token->str, "exit", 4))
+		return (ft_exit(t_cmd, token));
+	else if (!ft_strncmp(token->str, "export", 6))
 		return (ft_export(t_cmd, cmd->first_token));
-	else if (ft_strncmp(token->str, "pwd", 3))
+	else if (!ft_strncmp(token->str, "pwd", 3))
 		return (pwd());
-	else if (ft_strncmp(token->str, "unset", 5))
+	else if (!ft_strncmp(token->str, "unset", 5))
 		return (unset(t_cmd->lst_env, token->str));
 	else
 	{

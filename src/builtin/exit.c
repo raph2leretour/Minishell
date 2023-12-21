@@ -6,17 +6,21 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:43:09 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/20 18:48:35 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/21 16:01:48 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
- * Ne pas oublier de tout free
- * Les signals...
- */
-void	ft_exit(char *strn)
+int	is_pipe(t_command *cmd)
+{
+}
+
+int	is_exit(t_command *cmd)
+{
+}
+
+void	ft_exit(t_command *cmd, t_token *token)
 {
 	int	i;
 
