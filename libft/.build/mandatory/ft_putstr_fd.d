@@ -1,0 +1,3 @@
+.build/mandatory/ft_putstr_fd.o: src/mandatory/ft_putstr_fd.c \
+ src/mandatory/../../include/libft.h
+src/mandatory/../../include/libft.h:

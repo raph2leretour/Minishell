@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/20 17:26:55 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/21 21:04:30 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	print_simple_commands(t_simple_cmd *simple_cmd)
 	i = 0;
 	while (simple_cmd)
 	{
-		printf("Simple cmd %d:\n\n", i++);
+		printf("\nSimple cmd %d:\n\n", i++);
 		printf("Full path:%s\n", simple_cmd->full_path);
 		printf("Infile:%d\n", simple_cmd->infile);
 		printf("Outfile:%d\n", simple_cmd->outfile);
@@ -79,6 +79,7 @@ int	main(int argc, char **argv, char **envp)
 		//printf("\n-----------Tokenization:----------\n");
 		//print_command(cmd->first_token);
 		printf("\n-----------Simple commands:----------\n");
+		handle_redirections(cmd);
 		print_simple_commands(cmd->first_cmd);
 		//printf("\n-----------Environment variables:----------\n");
 		//print_env(cmd->lst_env);
