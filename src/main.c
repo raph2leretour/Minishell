@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/21 18:02:11 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/22 18:41:09 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	print_simple_commands(t_simple_cmd *simple_cmd)
 	i = 0;
 	while (simple_cmd)
 	{
-		printf("Simple cmd %d:\n\n", i++);
+		printf("\nSimple cmd %d:\n\n", i++);
 		printf("Full path:%s\n", simple_cmd->full_path);
 		printf("Infile:%d\n", simple_cmd->infile);
 		printf("Outfile:%d\n", simple_cmd->outfile);
@@ -52,11 +52,22 @@ void	print_env(t_env *env_var)
 int	main(int argc, char **argv, char **envp)
 {
 	char	*str;
+<<<<<<< HEAD
 	// char	**tokens;
+=======
+
+	//char	**tokens;
+	//int	i;
+
+>>>>>>> Sara
 	t_command	*cmd;
 
 	(void)argc;
 	(void)argv;
+<<<<<<< HEAD
+=======
+	//i = 0;
+>>>>>>> Sara
 	/*while (envp[i])
 	{
 		printf("%s\n", envp[i]);
@@ -75,6 +86,7 @@ int	main(int argc, char **argv, char **envp)
 		printf("\n-----------Tokenization:----------\n");
 		print_command(cmd->first_token);
 		printf("\n-----------Simple commands:----------\n");
+		handle_redirections(cmd);
 		print_simple_commands(cmd->first_cmd);
 		// printf("\n-----------Environment variables:----------\n");
 		// print_env(cmd->lst_env);
