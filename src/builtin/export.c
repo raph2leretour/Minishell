@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:20:07 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/20 19:38:54 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/23 07:39:03 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,19 +76,18 @@ void	no_arg(t_env *env)
 
 void	ft_export(t_command *s_cmd, t_token *token)
 {
+	char	*key;
+	char	*value;
+	t_env	*new_env_var;
+
 	if (token && token->str)
 	{
 		if (is_non_valid(token->str))
 			return ;
-		get_env_vars(s_cmd, &token->str);
-		// while (env && env->next)
-		// 	env = env->next;
-		// env->next = malloc(sizeof(t_env *));
-		// env = env->next;
-		// env->value = malloc(sizeof(char) * (ft_strlen(value) + 1));
-		// ft_strlcpy(env->value, value, ft_strlen(value) + 1);
-		// env->e = true;
-		// env->next = NULL;
+		key = get_key(token->str);
+		value = get_value(token->str);
+		new_env_var = init_env_var(key, value);
+		add_env_var(&s_cmd->lst_env, new_env_var);
 	}
 	else
 	{

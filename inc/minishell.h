@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/21 15:56:16 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/23 07:23:16 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@
 /******************************************************************************/
 int		create_pipe(t_command *s_cmd);
 int		execution(t_command *s_cmd, t_simple_cmd *cmd);
+char	*get_key(char *env_var);
+char	*get_value(char *env_var);
 char	**get_true_env(t_env *s_env);
 char	**split_cmd(t_simple_cmd *cmd);
 void	pwd(void);
@@ -53,5 +55,6 @@ void	ft_error(const char *s, int errnum);
 void	unset(t_env *env, char *targeted_token);
 void	ft_export(t_command *s_cmd, t_token *token);
 void	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token);
+t_env	*init_env_var(char *key, char *value);
 
 #endif

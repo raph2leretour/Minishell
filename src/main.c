@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/22 18:41:09 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/23 07:44:36 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,28 +52,10 @@ void	print_env(t_env *env_var)
 int	main(int argc, char **argv, char **envp)
 {
 	char	*str;
-<<<<<<< HEAD
-	// char	**tokens;
-=======
-
-	//char	**tokens;
-	//int	i;
-
->>>>>>> Sara
 	t_command	*cmd;
 
 	(void)argc;
 	(void)argv;
-<<<<<<< HEAD
-=======
-	//i = 0;
->>>>>>> Sara
-	/*while (envp[i])
-	{
-		printf("%s\n", envp[i]);
-		i++;
-	}*/
-
 	while (1)
 	{
 		str = readline("minishell$ ");
@@ -92,6 +74,7 @@ int	main(int argc, char **argv, char **envp)
 		// print_env(cmd->lst_env);
 		printf("\n----------------------------------\n\n");
 		ft_exec(cmd);
+		// ft_export(cmd, NULL);
 		free_cmd(cmd);
 		free(str);
 	}
