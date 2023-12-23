@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/23 11:53:47 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/23 12:40:08 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token)
 			return (cd(NULL, t_cmd->lst_env));
 	}
 	else if (!ft_strncmp(token->str, "echo", 4))
-		return (echo(split_cmd(cmd)));
+		return (echo(split_cmd(cmd, 1)));
 	else if (!ft_strncmp(token->str, "env", 3))
 		return (ft_env(t_cmd->lst_env));
 	else if (!ft_strncmp(token->str, "exit", 4))
@@ -46,7 +46,7 @@ void	do_exec(t_simple_cmd *cmd, t_env *s_env)
 	char	**c_env;
 
 	c_env = get_true_env(s_env);
-	if (execve(cmd->full_path, split_cmd(cmd), c_env))
+	if (execve(cmd->full_path, split_cmd(cmd, 0), c_env))
 	{
 		i = 0;
 		while (c_env[i])
