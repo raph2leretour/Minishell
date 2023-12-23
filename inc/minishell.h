@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/23 07:23:16 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/23 08:44:23 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*get_value(char *env_var);
 char	**get_true_env(t_env *s_env);
 char	**split_cmd(t_simple_cmd *cmd);
 void	pwd(void);
-void	cd(char *array);
+void	cd(char *array, t_env *env);
 void	ft_env(t_env *env);
 void	echo(char **array);
 void	ft_exit(t_command *cmd, t_token *token);
