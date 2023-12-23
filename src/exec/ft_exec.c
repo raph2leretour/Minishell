@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:35:17 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/21 15:36:36 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/23 15:02:14 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	ft_exec(t_command *t_cmd)
 		clear_pipes(t_cmd);
 	}
 }
-
 /*
 --> ls -la file1 blablabla
 

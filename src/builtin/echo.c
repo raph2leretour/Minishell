@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:05:14 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/23 13:16:41 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/23 15:18:20 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ void	printpars(char *word, t_env *env)
 	{
 		if (word[i] == '$')
 		{
-			var = ft_getenv(word + i, env);
+			var = ft_getenv(word + i + 1, env);
 			ft_putstr_fd(var, 1);
+			return ;
 		}
 		else
 			ft_putchar_fd(word[i], 1);
