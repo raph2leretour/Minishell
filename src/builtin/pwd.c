@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:58:45 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/16 16:14:30 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/23 11:11:53 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	pwd(void)
 		free(pwd);
 		perror("pwd");
 	}
-	printf("%s\n", pwd);
+	ft_putstr_fd(pwd, 1);
+	ft_putchar_fd('\n', 1);
 	free(pwd);
 }
