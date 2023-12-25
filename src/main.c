@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/25 22:43:36 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/25 23:21:55 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,15 @@ t_command	*process_input(char *str, t_command *cmd, t_env *env)
 	return (cmd);
 }
 
-int	end_minishell(t_command* cmd, t_env *env)
+/*int	end_minishell(t_command* cmd, t_env *env)
 {
 	clear_history();
 	if (cmd)
 		free(cmd);
 	free_env(env);
 	return (0);
-}
+}*/
+
 int	main(int argc, char **argv, char **envp)
 {
 	char	*str;
