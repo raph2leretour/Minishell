@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:35:17 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/23 15:02:14 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/25 19:50:50 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@ void	ft_exec(t_command *t_cmd)
 	int	status;
 	int	return_value;
 
+	if (!t_cmd || !t_cmd->first_cmd)
+		return ;
 	if (!t_cmd->first_cmd->full_path && !t_cmd->first_cmd->next)
 	{
 		do_builtin(t_cmd, t_cmd->first_cmd, t_cmd->first_token);
 	}
 	else
 	{
-		create_pipe(t_cmd);
+		if (create_pipe(t_cmd))
+			return ;
 		execution(t_cmd, t_cmd->first_cmd);
 		while (waitpid(-1, &status, 0) == -1)
 		{

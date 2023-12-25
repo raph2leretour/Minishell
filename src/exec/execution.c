@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/24 18:32:36 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/25 19:34:46 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,19 +75,18 @@ int	execution(t_command *t_cmd, t_simple_cmd *cmd)
 	{
 		pid = fork();
 		if (pid == -1)
+		{
+			close_fds(t_cmd->first_cmd);
+			// close_pipe(t_cmd);
 			perror("Fork:");
+			return (-1);
+		}
 		else if (pid == 0)
 		{
-			if (dup2(cmd->infile, STDIN_FILENO) < 0)
-				return (perror("minishell: in"), -1);
-			if (dup2(cmd->outfile, STDOUT_FILENO) < 0)
-				return (perror("minishell: out"), -1);
-			close_pipe(t_cmd->first_cmd);
-			if (is_builtin(cmd->full_path))
-				do_builtin(t_cmd, cmd, cmd->first_token);
-			else
-				do_exec(cmd, t_cmd->lst_env);
+			child_process(t_cmd, cmd);
 		}
+		close(cmd->infile);
+		close(cmd->outfile);
 		cmd = cmd->next;
 	}
 	return (0);

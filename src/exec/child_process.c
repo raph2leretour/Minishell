@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipes.c                                            :+:      :+:    :+:   */
+/*   child_process.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/14 21:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/24 15:11:11 by rtissera         ###   ########.fr       */
+/*   Created: 2023/12/25 17:00:10 by rtissera          #+#    #+#             */
+/*   Updated: 2023/12/25 19:37:34 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	create_pipe(t_command *t_cmd)
+void	child_process(t_command *t_cmd, t_simple_cmd *cmd)
 {
-	int				pip[2];
-	t_simple_cmd	*cmd;
-
-	cmd = t_cmd->first_cmd;
-	while (cmd)
+	if (dup2(cmd->infile, STDIN_FILENO) < 0)
 	{
-		if (cmd->next)
-		{
-			if (pipe(pip))
-			{
-				perror("Pipe:");
-				clear_pipes(t_cmd);
-				return (-1);
-			}
-			cmd->outfile = pip[1];
-			cmd->infile = pip[0];
-		}
-		cmd = cmd->next;
+		perror("minishell: in");
+		return ;
 	}
-	return (0);
+	if (dup2(cmd->outfile, STDOUT_FILENO) < 0)
+	{
+		perror("minishell: out");
+		return ;
+	}
+	close_fds(t_cmd->first_cmd);
+	if (is_builtin(cmd->full_path))
+		do_builtin(t_cmd, cmd, cmd->first_token);
+	else
+		do_exec(cmd, t_cmd->lst_env);
 }

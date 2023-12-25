@@ -21,10 +21,13 @@ SRCS		:=					\
 	env/get_true_env.c			\
 	utils/ft_error.c			\
 	utils/split_cmd.c			\
-	exec/pipes.c				\
+	exec/create_pipes.c				\
 	exec/ft_exec.c				\
 	exec/execution.c			\
 	exec/clear_pipes.c			\
+	exec/dupificator.c	\
+	exec/child_process.c	\
+	exec/close_fds.c	\
 	parsing/error_handling/free.c			\
 	parsing/tokenization/lexer.c			\
 	parsing/tokenization/lst_token.c		\
