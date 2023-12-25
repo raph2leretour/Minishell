@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:11:42 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/20 16:00:17 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/25 22:50:48 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "lexer.h"
 
 void	free_split(char **str)
@@ -74,7 +73,7 @@ void	free_env_vars(t_env *env_var)
 	{
 		tmp = env_var->next;
 		free(env_var->key);
-		free(env_var->value);
+		free(env_var->value);	
 		free(env_var);
 		env_var = tmp;
 	}
@@ -83,13 +82,9 @@ void	free_env_vars(t_env *env_var)
 
 void	free_cmd(t_command *cmd)
 {
-	//if (cmd->string)
-	//	free(cmd->string);
 	if (cmd->first_token)
 		free_tokens(cmd->first_token);
 	if (cmd->first_cmd)
 		free_simple_cmds(cmd->first_cmd);
-	if (cmd->lst_env)
-		free_env_vars(cmd->lst_env);
 	free(cmd);
 }

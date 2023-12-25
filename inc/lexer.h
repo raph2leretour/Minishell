@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:57:10 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/21 21:04:03 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/25 23:16:11 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,24 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-# define WORD 1
 # define REDIRECTION 2
 # define PARENTHESIS 3
-# define PIPE 4
 # define AND 5
 # define SEMI 6
 
-//# define COMMAND 0
+# define COMMAND 1
+# define ARGUMENT 13
 //# define OPTION 1
-//# define ARGUMENT 2
 //# define HEREDOC 3
 //# define OUTFILE 4
 //# define APPEND 5
 //# define INFILE 6
-//# define PIPE 7
+# define PIPE 7
+
 typedef struct			s_token
 {
 	char		*str;
 	int		type;
-	//bool		expanded;
 	struct s_token		*prev;
 	struct s_token		*next;
 }				t_token;
@@ -61,31 +59,29 @@ typedef struct s_env
 
 typedef	struct				s_command
 {
+	int	flag_s;
+	int	flag_d;
 	char			*string;
-	//char			**envp;
-	//char			**argv;
 	struct s_token			*first_token;
 	struct s_simple_cmd		*first_cmd;
 	struct s_env			*lst_env;
 }					t_command;
 
-t_command	*tokenize(char *command);
-t_command	*set_simple_commands(t_command *cmd_struct);
+t_command	*tokenize(char *command, t_env *env);
 
 t_token	*init_token(char *value, int type);
 t_token	*token_last(t_token *lst);
 
 t_simple_cmd	*cmd_last(t_simple_cmd *lst);
 
-t_command	*get_env_vars(t_command *cmd_struct, char **envp);
+t_env	*get_env_vars(char **envp);
 
 void	add_token(t_token **lst, t_token *new_token);
 void	add_simple_cmd(t_simple_cmd **lst, t_simple_cmd *new_cmd);
 void	add_env_var(t_env **lst, t_env *new_env);
 void	free_cmd(t_command *cmd);
-void	check_syntax(t_command *cmd_struct);
 void	free_split(char **str);
-void	handle_redirections(t_command *cmd_struct);
+void	free_env_vars(t_env *env_var);
 
 int	add_token_word(t_command *cmd_struct, int i);
 int	add_token_redirection(t_command *cmd_struct, int i);
@@ -98,16 +94,21 @@ int	is_parenthesis(char c);
 int	is_redirection(char c);
 int	is_word(char c);
 int	is_builtin(char *str);
-
 int	redirect_output(char *file, int old_fd, t_command *cmd_struct);
 int	redirect_input(char *file, int old_fd, t_command *cmd_struct);
 int	redirect_append(char *file, int old_fd, t_command *cmd_struct);
 
-int	check_types(t_command *cmd_struct);
+void	var_not_double_quoted(char *str);
+void	check_if_builtin(t_command *cmd_struct);
+
 int	check_quotes(t_command *cmd_struct);
 int	check_redirections(t_command *cmd_struct);
 int	check_between_pipes(t_command *cmd_struct);
-
+int	check_syntax(t_command *cmd_struct);
+int	expanding(t_command *cmd_struct);
+int	handle_redirections(t_command *cmd_struct);
+int	set_simple_commands(t_command *cmd_struct);
 char	*get_cmd_path(char *cmd, t_command *cmd_struct);
+void	go_through_simple_cmds(t_simple_cmd *simple_cmd);
 
 #endif
