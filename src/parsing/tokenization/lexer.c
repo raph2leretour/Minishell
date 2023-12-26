@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:16 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/25 22:28:21 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/26 13:16:18 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../libft/include/libft.h"
@@ -70,12 +70,11 @@ t_command	*tokenize(char *input_cmd, t_env *env)
 			i = add_token_parenthesis(cmd_struct, i);*/
 		if (cmd_struct->string[i] == '|')
 			i = add_token_pipe(cmd_struct, i);
-		/*if (cmd_struct->string[i] == '&')
-			i = add_token_and(cmd_struct, i);*/
+		if (cmd_struct->string[i] == '&')
+			i = add_token_and(cmd_struct, i);
 		if (cmd_struct->string[i] == ';')
 			i = add_token_semi(cmd_struct, i);
 	}
-	//check_if_builtin(cmd_struct);
 	free(input_cmd);
 	return (cmd_struct);
 }

@@ -6,10 +6,17 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:26 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/25 23:05:38 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/26 11:58:22 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
+
+int	is_absolute_path(char *cmd)
+{
+	if (access(cmd, F_OK) == 0)
+		return (1);
+	return (0);
+}
 
 int	cmd_contains_builtin(t_simple_cmd *simple_cmd)
 {
@@ -19,7 +26,10 @@ int	cmd_contains_builtin(t_simple_cmd *simple_cmd)
 	while (token)
 	{
 		if (is_builtin(token->str))
+		{
+			token->type = COMMAND;
 			return (1);
+		}
 		token = token->next;
 	}
 	return (0);
@@ -31,12 +41,21 @@ int	set_command_path(t_command *cmd_struct)
 	t_token	*token;
 	char	*path;
 
+	path = NULL;
+
 	simple_cmd = cmd_struct->first_cmd;
 	while (simple_cmd)
 	{
 		token = simple_cmd->first_token;
 		while (token)
 		{
+			if (is_absolute_path(token->str))
+			{
+				token->type = COMMAND;
+				path = strdup(token->str);
+				simple_cmd->full_path = path;
+				break;
+			}
 			if (is_builtin(token->str))
 			{
 				break ;

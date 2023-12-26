@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:57:10 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/25 23:16:11 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/26 13:15:12 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,13 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-# define REDIRECTION 2
-# define PARENTHESIS 3
-# define AND 5
-# define SEMI 6
-
 # define COMMAND 1
-# define ARGUMENT 13
-//# define OPTION 1
-//# define HEREDOC 3
-//# define OUTFILE 4
-//# define APPEND 5
-//# define INFILE 6
-# define PIPE 7
+# define ARGUMENT 2
+# define REDIRECTION 3
+# define PIPE 4
+# define PARENTHESIS 5
+# define SEMI 6
+# define AND 7
 
 typedef struct			s_token
 {
@@ -97,6 +91,7 @@ int	is_builtin(char *str);
 int	redirect_output(char *file, int old_fd, t_command *cmd_struct);
 int	redirect_input(char *file, int old_fd, t_command *cmd_struct);
 int	redirect_append(char *file, int old_fd, t_command *cmd_struct);
+int	check_options(t_command *cmd_struct);
 
 void	var_not_double_quoted(char *str);
 void	check_if_builtin(t_command *cmd_struct);

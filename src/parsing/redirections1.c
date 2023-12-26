@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 20:56:37 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/25 23:05:04 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/26 12:13:45 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -34,7 +34,7 @@ void	check_redirection(t_simple_cmd *simple_cmd, t_command *cmd_struct)
 	{
 		if (!token->next)
 			break ;
-		if (token->type == REDIRECTION && token->next->type == ARGUMENT)
+		if (token->type == REDIRECTION && token->next)
 		{
 			set_redirection(token->str, token->next->str,
 				simple_cmd, cmd_struct);

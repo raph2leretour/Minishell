@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 18:25:26 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/25 22:38:22 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/26 13:13:33 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../libft/include/libft.h"
@@ -27,7 +27,7 @@ int	check_types(t_command *cmd_struct)
 				&& ft_strlen(token->str) > 2))
 		{
 			c = token->str[0];
-			printf("blablaSyntax error near unexpected token `%c'\n", c);
+			printf("Syntax error near unexpected token `%c'\n", c);
 			return (0);
 		}
 		token = token->next;
@@ -58,4 +58,27 @@ int	check_syntax(t_command *cmd_struct)
 			return (1);
 	}
 	return (0);
+}
+
+int	check_option_token(t_token *token)
+{
+	if (token->str[0] == '-' && (token->prev == NULL || token->prev->type == PIPE))
+	{
+		printf("minishell: %s: command not found\n", token->str);
+		return (0);
+	}
+	return (1);
+}
+int	check_options(t_command *cmd_struct)
+{
+	t_token	*token;
+
+	token = cmd_struct->first_token;
+	while (token)
+	{
+		if (!check_option_token(token))
+			return (0);
+		token = token->next;
+	}
+	return (1);
 }
