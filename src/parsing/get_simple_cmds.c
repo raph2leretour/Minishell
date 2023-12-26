@@ -6,13 +6,26 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:26 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/26 11:58:22 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/26 20:30:23 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
 
 int	is_absolute_path(char *cmd)
 {
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (cmd[i])
+	{
+		if (cmd[i] == '/')
+			j++;
+		i++;
+	}
+	if (j == 1 || j == 0)
+		return (0);
 	if (access(cmd, F_OK) == 0)
 		return (1);
 	return (0);
@@ -54,17 +67,21 @@ int	set_command_path(t_command *cmd_struct)
 				token->type = COMMAND;
 				path = strdup(token->str);
 				simple_cmd->full_path = path;
-				break;
+				if (!simple_cmd->next)
+					return (1);
+				simple_cmd = simple_cmd->next;
 			}
 			if (is_builtin(token->str))
 			{
 				break ;
 			}
 			path = get_cmd_path(token->str, cmd_struct);
-			if (path)
+			if (!simple_cmd->full_path && path)
 			{
 				simple_cmd->full_path = path;
 				token->type = COMMAND;
+				if (!simple_cmd->next)
+					return (1);
 			}
 			token = token->next;	
 		}

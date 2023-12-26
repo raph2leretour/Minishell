@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 10:29:02 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/26 11:41:51 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/26 20:25:02 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lexer.h"
@@ -32,6 +32,12 @@ char	**get_path(t_env *env_vars)
 		env_vars = env_vars->next;
 	}
 	full_path_split = ft_split(full_path, ':');
+	int i = 0;
+	while (full_path_split[i])
+	{
+		printf("%s\n", full_path_split[i]);
+		i++;
+	}
 	free(full_path);
 	return (full_path_split);
 }
