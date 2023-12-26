@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipes.c                                            :+:      :+:    :+:   */
+/*   create_pipes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/25 17:01:06 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/26 16:01:45 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ int	create_pipe(t_command *t_cmd)
 			if (pipe(pipefd))
 			{
 				perror("Pipe:");
-				clear_pipes(t_cmd);
+				close_fds(t_cmd->first_cmd);
 				return (-1);
 			}
 			cmd->outfile = pipefd[1];
-			cmd->infile = pipefd[0];
+			cmd->next->infile = pipefd[0];
 		}
 		cmd = cmd->next;
 	}

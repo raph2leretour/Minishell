@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/25 22:03:50 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/26 17:50:27 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token)
 	else if (!ft_strncmp(token->str, "pwd", 3))
 		return (pwd());
 	else if (!ft_strncmp(token->str, "unset", 5))
-		return (unset(t_cmd->lst_env, token->str));
+		return (unset(t_cmd->lst_env, token->next->str));
 	else
 	{
 		printf("%s: ", cmd->first_token->str);
@@ -77,7 +77,6 @@ int	execution(t_command *t_cmd, t_simple_cmd *cmd)
 		if (pid == -1)
 		{
 			close_fds(t_cmd->first_cmd);
-			// close_pipe(t_cmd);
 			perror("Fork:");
 			return (-1);
 		}
@@ -85,8 +84,10 @@ int	execution(t_command *t_cmd, t_simple_cmd *cmd)
 		{
 			child_process(t_cmd, cmd);
 		}
-		close(cmd->infile);
-		close(cmd->outfile);
+		if (cmd-> infile && cmd->infile > 2)
+			close(cmd->infile);
+		if (cmd->outfile && cmd->outfile > 2)
+			close(cmd->outfile);
 		cmd = cmd->next;
 	}
 	return (0);

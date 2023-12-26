@@ -24,7 +24,6 @@ SRCS		:=					\
 	exec/create_pipes.c				\
 	exec/ft_exec.c				\
 	exec/execution.c			\
-	exec/clear_pipes.c			\
 	exec/dupificator.c	\
 	exec/child_process.c	\
 	exec/close_fds.c	\

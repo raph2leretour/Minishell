@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/26 14:18:00 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/26 17:20:24 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,13 @@ t_command	*process_input(char *str, t_command *cmd, t_env *env)
 {
 	cmd = tokenize(str, env);
 	add_history(str);
-	if (check_syntax(cmd) && expanding(cmd)
+	if (check_syntax(cmd)/*  && expanding(cmd) */
 		&& set_simple_commands(cmd)
 		&& handle_redirections(cmd)
 		&& check_options(cmd))
 	{
-		//exec(cmd);
-		print_simple_commands(cmd->first_cmd);
+		ft_exec(cmd);
+		// print_simple_commands(cmd->first_cmd);
 	}
 	return (cmd);
 }
@@ -99,6 +99,7 @@ int	main(int argc, char **argv, char **envp)
 	env = get_env_vars(envp);
 	while (1)
 	{
+		cmd = NULL;
 		str = readline("minishell$ ");
 		cmd = process_input(str, cmd, env);
 		if (cmd)

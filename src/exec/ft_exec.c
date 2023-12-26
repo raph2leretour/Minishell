@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:35:17 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/25 19:50:50 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/26 14:53:01 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_exec(t_command *t_cmd)
 				return_value = status;
 			}
 		}
-		clear_pipes(t_cmd);
+		// close_fds(t_cmd->first_cmd);
 	}
 }
 /*

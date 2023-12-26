@@ -3,17 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_analysis.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 18:25:26 by smilosav          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/12/21 14:59:05 by rtissera         ###   ########.fr       */
-=======
-/*   Updated: 2023/12/26 13:13:33 by smilosav         ###   ########.fr       */
->>>>>>> main
+/*   Updated: 2023/12/26 14:21:55 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../libft/include/libft.h"
+
 #include "lexer.h"
 #include <stdio.h>
 

@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/25 19:39:00 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/26 18:35:26 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	close_fds(t_simple_cmd *cmd);
 void	clear_pipes(t_command *s_cmd);
 void	echo(char **array, t_env *env);
 void	close_pipe(t_simple_cmd *t_cmd);
-void	ft_error(const char *s, int errnum);
+void	ft_error(char *s, int errnum);
 void	unset(t_env *env, char *targeted_token);
 void	ft_exit(t_command *cmd, t_token *token);
 void	do_exec(t_simple_cmd *cmd, t_env *s_env);

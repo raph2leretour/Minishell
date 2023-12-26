@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   expanding.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:34:12 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/25 22:53:29 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/26 17:19:58 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "lexer.h"
+
 
 /*void	expanding(t_command *cmd_struct)
 {
@@ -17,7 +17,7 @@
 
 	token = cmd_struct->first_token;
 }*/
-void	check_if_variable_valid(char *token, t_env *env_var)
+/* void	check_if_variable_valid(char *token, t_env *env_var)
 {
 	//int		variable_len;
 	char	*sub_str;
@@ -32,7 +32,7 @@ void	check_if_variable_valid(char *token, t_env *env_var)
 		if (sub_str != NULL)
 		{
 			printf("Ima validna varijabla :%s\n", sub_str);
-			//variable_len = ft_strlcpy(variable_value, 
+			//variable_len = ft_strlcpy(variable_value,
 					//env_var->key, ft_strlen(env_var->key));
 			//printf("Pronadjena var velicine: %d\n", variable_len);
 		}
@@ -52,5 +52,6 @@ int	expanding(t_command *cmd_struct)
 		check_if_variable_valid(token->str, env_struct);
 		token = token->next;
 	}
-	return (1);	
+	return (1);
 }
+ */
