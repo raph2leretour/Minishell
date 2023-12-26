@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:16 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/20 15:59:30 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/26 13:16:18 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "../libft/include/libft.h"
 #include "lexer.h"
+#include <stdio.h>
 
 //initialize token
 t_token	*init_token(char *value, int type)
@@ -28,30 +29,32 @@ t_token	*init_token(char *value, int type)
 }
 
 //initialize command
-t_command	*init_command(char *value)
+t_command	*init_command(char *value, t_env *env)
 {
 	t_command	*new_command;
 
 	new_command = (t_command *)malloc(sizeof(t_command));
 	if (!new_command)
 		return (NULL);
+	new_command->flag_s = 0;
+	new_command->flag_d = 0;
 	new_command->string = value;
 	new_command->first_token = NULL;
 	new_command->first_cmd = NULL;
-	new_command->lst_env = NULL;
+	new_command->lst_env = env;
 	return (new_command);
 }
 
-/*Get the input and create tokens out of the strings, and add them to
+/*Get the input and create tokens out of the strings, and add them to 
 the command structure as a doubly linked list*/
-t_command	*tokenize(char *input_cmd)
+t_command	*tokenize(char *input_cmd, t_env *env)
 {
 	int		i;
 	int		len;
 	t_command	*cmd_struct;
 
 	input_cmd = ft_strtrim(input_cmd, " ");
-	cmd_struct = init_command(input_cmd);
+	cmd_struct = init_command(input_cmd, env);
 	printf("\nInput command: %s\n\n", cmd_struct->string);
 	i = 0;
 	len = ft_strlen(cmd_struct->string);
@@ -63,8 +66,8 @@ t_command	*tokenize(char *input_cmd)
 			i = add_token_word(cmd_struct, i);
 		if (is_redirection(cmd_struct->string[i]))
 			i = add_token_redirection(cmd_struct, i);
-		if (is_parenthesis(cmd_struct->string[i]))
-			i = add_token_parenthesis(cmd_struct, i);
+		/*if (is_parenthesis(cmd_struct->string[i]))
+			i = add_token_parenthesis(cmd_struct, i);*/
 		if (cmd_struct->string[i] == '|')
 			i = add_token_pipe(cmd_struct, i);
 		if (cmd_struct->string[i] == '&')

@@ -6,11 +6,17 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 10:29:02 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/20 17:36:22 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/26 11:41:51 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "lexer.h"
+
+/*int	is_absolute_path(char *cmd)
+{
+	if (access(cmd, F_OK) == 0)
+		return (1);
+	return (0);
+}*/
 
 char	**get_path(t_env *env_vars)
 {
@@ -66,6 +72,10 @@ char	*get_cmd_path(char *cmd, t_command *cmd_struct)
 
 	path = NULL;
 	full_path_split = get_path(cmd_struct->lst_env);
+	/*if (is_absolute_path(cmd))
+	{
+		return(cmd);
+	}*/
 	if (!is_builtin(cmd))
 	{
 		path = find_cmd_path(full_path_split, cmd);

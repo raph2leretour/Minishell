@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   add_tokens.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 15:32:38 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/20 16:00:28 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/25 21:56:18 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "../libft/include/libft.h"
 #include "lexer.h"
 
 int	add_token_redirection(t_command *cmd_struct, int i)
@@ -110,4 +110,17 @@ int	add_token_semi(t_command *cmd_struct, int i)
 	new_token = init_token(cmd, SEMI);
 	add_token(&cmd_struct->first_token, new_token);
 	return (i);
+}
+
+void	check_if_builtin(t_command *cmd_struct)
+{
+	t_token	*token;
+
+	token = cmd_struct->first_token;
+	while (token)
+	{
+		if (is_builtin(token->str))
+			token->type = COMMAND;
+		token = token->next;
+	}
 }

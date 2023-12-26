@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 12:01:05 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/21 21:15:16 by smilosav         ###   ########.fr       */
+/*   Updated: 2023/12/25 22:16:23 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "../libft/include/libft.h"
 #include "lexer.h"
 
 int	check_double(t_command *cmd_struct, char *word, int i)
 {
-	int quotes_open;
+	int	quotes_open;
+
 	while (word[i])
 	{
 		if (word[i] == '"')
@@ -47,7 +48,8 @@ int	check_double(t_command *cmd_struct, char *word, int i)
 
 int	check_single(t_command *cmd_struct, char *word, int i)
 {
-	int quotes_open;
+	int	quotes_open;
+
 	while (word[i])
 	{
 		if (word[i] == '\'')
@@ -82,7 +84,6 @@ void	check_if_all_quotes_closed(t_command *cmd_struct, char *word)
 {
 	int	i;
 	//int	len;
-
 	i = 0;
 	//len = ft_strlen(word);
 	while (word[i])
@@ -103,11 +104,11 @@ int	check_quotes(t_command *cmd_struct)
 	token = cmd_struct->first_token;
 	while (token)
 	{
-		if (token->type == WORD)
+		if (token->type == ARGUMENT)
 		{
 			check_if_all_quotes_closed(cmd_struct, token->str);
 		}
 		token = token->next;
 	}
-	return (0);
+	return (1);
 }

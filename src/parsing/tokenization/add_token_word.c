@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   add_token_word.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 09:44:34 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/20 16:00:35 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/25 22:38:30 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "../libft/include/libft.h"
 #include "lexer.h"
+#include <stdio.h>
 
 //get the length of the word
 //skip the quotes
@@ -52,9 +53,8 @@ int	add_token_word(t_command *cmd_struct, int i)
 	t_token		*new_token;
 
 	len = word_len(cmd_struct->string, i);
-	//printf("len: %d\n", len);
 	cmd = ft_substr(cmd_struct->string, i, len);
-	new_token = init_token(cmd, WORD);
+	new_token = init_token(cmd, ARGUMENT);
 	//printf("i: %d\n", i);
 	i += len;
 	//printf("i: %d\n", i);
