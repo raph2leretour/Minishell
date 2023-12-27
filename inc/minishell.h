@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/26 18:35:26 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/27 16:27:21 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <sys/wait.h>
 # include <sys/stat.h>
 # include <sys/types.h>
+# include <signal.h>
 # include "lexer.h"
 # include "../libft/include/libft.h"
 
@@ -48,6 +49,7 @@ char	*ft_getenv(char *s, t_env *env);
 char	**split_cmd(t_simple_cmd *cmd, bool skip);
 void	pwd(void);
 void	ft_env(t_env *env);
+void	free_array(char **a);
 void	ft_exec(t_command *t_cmd);
 void	cd(char *path, t_env *env);
 void	close_fds(t_simple_cmd *cmd);
@@ -60,7 +62,7 @@ void	ft_exit(t_command *cmd, t_token *token);
 void	do_exec(t_simple_cmd *cmd, t_env *s_env);
 void	ft_export(t_command *s_cmd, t_token *token);
 void	child_process(t_command *t_cmd, t_simple_cmd *cmd);
-void	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token);
+void	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token, int b);
 t_env	*init_env_var(char *key, char *value);
 
 #endif

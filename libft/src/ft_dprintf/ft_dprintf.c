@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphael <raphael@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:03:07 by rtissera          #+#    #+#             */
-/*   Updated: 2023/06/29 16:21:04 by raphael          ###   ########.fr       */
+/*   Updated: 2023/12/27 15:16:54 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	condition(int c, int j, va_list arg, int fd)
 	return (j);
 }
 
-int	ft_printf_fd(int fd, char const *str, ...)
+int	ft_dprintf(int fd, char const *str, ...)
 {
 	int		i;
 	int		j;

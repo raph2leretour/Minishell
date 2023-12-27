@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:20:07 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/23 07:39:03 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/27 15:28:13 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,11 @@ void	no_arg(t_env *env)
 	{
 		if (env->value)
 		{
-			ft_putstr_fd("export ", 1);
-			ft_putstr_fd(env->key, 1);
-			ft_putstr_fd("=\"", 1);
-			ft_putstr_fd(env->value, 1);
-			ft_putstr_fd("\"\n", 1);
+			ft_dprintf(1, "export %s=\"%s\"\n", env->key, env->value);
 		}
 		else
 		{
-			ft_putstr_fd("export ", 1);
-			ft_putstr_fd(env->key, 1);
-			ft_putchar_fd('\n', 1);
+			ft_dprintf(1, "export %s\n", env->key);
 		}
 		env = env->next;
 	}

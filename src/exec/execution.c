@@ -6,65 +6,60 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/26 17:50:27 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/27 16:29:43 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token)
+void	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token, int b)
 {
 	if (!ft_strncmp(token->str, "cd", 2))
 	{
 		if (token->next)
-			return (cd(token->next->str, t_cmd->lst_env));
+			cd(token->next->str, t_cmd->lst_env);
 		else
-			return (cd(NULL, t_cmd->lst_env));
+			cd(NULL, t_cmd->lst_env);
 	}
 	else if (!ft_strncmp(token->str, "echo", 4))
-		return (echo(split_cmd(cmd, 1), t_cmd->lst_env));
+		echo(split_cmd(cmd, 1), t_cmd->lst_env);
 	else if (!ft_strncmp(token->str, "env", 3))
-		return (ft_env(t_cmd->lst_env));
+		ft_env(t_cmd->lst_env);
 	else if (!ft_strncmp(token->str, "exit", 4))
-		return (ft_exit(t_cmd, cmd->first_token->next));
+		ft_exit(t_cmd, cmd->first_token->next);
 	else if (!ft_strncmp(token->str, "export", 6))
-		return (ft_export(t_cmd, cmd->first_token->next));
+		ft_export(t_cmd, cmd->first_token->next);
 	else if (!ft_strncmp(token->str, "pwd", 3))
-		return (pwd());
+		pwd();
 	else if (!ft_strncmp(token->str, "unset", 5))
-		return (unset(t_cmd->lst_env, token->next->str));
+		unset(t_cmd->lst_env, token->next->str);
 	else
 	{
-		printf("%s: ", cmd->first_token->str);
+		ft_dprintf(2, "%s: ", cmd->first_token->str);
 		ft_error("Command Not Found", -1);
 	}
+	if (b)
+		exit(EXIT_SUCCESS);
 }
 
 void	do_exec(t_simple_cmd *cmd, t_env *s_env)
 {
 	int		i;
 	char	**c_env;
+	char	**s_cmd;
 
 	c_env = get_true_env(s_env);
+	s_cmd = split_cmd(cmd, 0);
 	if (execve(cmd->full_path, split_cmd(cmd, 0), c_env))
 	{
 		i = 0;
-		while (c_env[i])
-		{
-			free(c_env[i]);
-			i++;
-		}
-		free(c_env);
-		printf("%s: ", cmd->first_token->str);
+		free_array(c_env);
+		free_array(s_cmd);
+		ft_dprintf(2, "%s: ", cmd->first_token->str);
 		ft_error("Command Not Found", -1);
 	}
 	i = 0;
-	while (c_env[i])
-	{
-		free(c_env[i]);
-		i++;
-	}
-	free(c_env);
+	free_array(c_env);
 }
 
 int	execution(t_command *t_cmd, t_simple_cmd *cmd)

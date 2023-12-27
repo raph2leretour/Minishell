@@ -21,6 +21,7 @@ SRCS		:=					\
 	env/get_true_env.c			\
 	utils/ft_error.c			\
 	utils/split_cmd.c			\
+	utils/free_array.c	\
 	exec/create_pipes.c				\
 	exec/ft_exec.c				\
 	exec/execution.c			\

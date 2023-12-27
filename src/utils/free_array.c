@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   free_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 16:55:39 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/27 15:25:35 by rtissera         ###   ########.fr       */
+/*   Created: 2023/12/27 14:23:47 by rtissera          #+#    #+#             */
+/*   Updated: 2023/12/27 15:39:36 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../inc/minishell.h"
 
-void	ft_env(t_env *env)
+void	free_array(char **a)
 {
-	while (env)
+	/* if (*a)
 	{
-		if (env->value)
-		{
-			ft_dprintf(1, "%s=%s\n", env->key, env->value);
-		}
-		env = env->next;
+		free(*a);
+		return (free_array(a++));
 	}
+	else
+	{
+		free(a);
+		return ;
+	} */
+	int	i;
+
+	i = 0;
+	while (a[i])
+	{
+		free(a[i]);
+		i++;
+	}
+	free(a);
 }
