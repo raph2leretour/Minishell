@@ -6,11 +6,15 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/27 16:29:43 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/29 17:41:57 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	do_one_builtin()
+{
+}
 
 void	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token, int b)
 {

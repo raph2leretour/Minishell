@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/27 16:27:21 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/29 17:25:31 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	ft_exec(t_command *t_cmd);
 void	cd(char *path, t_env *env);
 void	close_fds(t_simple_cmd *cmd);
 void	clear_pipes(t_command *s_cmd);
+// void	do_one_builtin(t_command *cmd);
 void	echo(char **array, t_env *env);
 void	close_pipe(t_simple_cmd *t_cmd);
 void	ft_error(char *s, int errnum);
