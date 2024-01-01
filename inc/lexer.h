@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:57:10 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/26 13:15:12 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/01 15:49:10 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int	check_syntax(t_command *cmd_struct);
 int	expanding(t_command *cmd_struct);
 int	handle_redirections(t_command *cmd_struct);
 int	set_simple_commands(t_command *cmd_struct);
+int	delete_quotes(t_command *cmd);
 char	*get_cmd_path(char *cmd, t_command *cmd_struct);
 void	go_through_simple_cmds(t_simple_cmd *simple_cmd);
 
