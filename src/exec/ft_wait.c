@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exec.c                                          :+:      :+:    :+:   */
+/*   ft_wait.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/18 14:35:17 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/01 19:01:26 by rtissera         ###   ########.fr       */
+/*   Created: 2024/01/01 18:53:20 by rtissera          #+#    #+#             */
+/*   Updated: 2024/01/01 18:55:23 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_exec(t_command *t_cmd)
+int	ft_wait(pid_t last_pid)
 {
-	int	status;
-	int	return_value;
+	int		status;
+	int		return_value;
+	pid_t	pid;
 
-	if (!t_cmd || !t_cmd->first_cmd)
-		return ;
-	if (!t_cmd->first_cmd->full_path && !t_cmd->first_cmd->next)
+	while (true)
 	{
-		if (dupificator(t_cmd->first_cmd))
-			return ;
-		do_builtin(t_cmd, t_cmd->first_cmd, t_cmd->first_token, 0);
-	}
-	else
-	{
-		if (create_pipe(t_cmd))
-			return ;
-		execution(t_cmd, t_cmd->first_cmd);
-		while (waitpid(-1, &status, 0) == -1)
+		pid = wait(&status);
+		if (pid < 0)
+			break ;
+		if (pid == last_pid)
 		{
 			if (WIFEXITED(status))
-			{
-				return_value = status;
-			}
+				return_value = WEXITSTATUS(status);
+			else
+				return_value = 128 + WTERMSIG(status);
 		}
 	}
+	return (return_value);
 }
