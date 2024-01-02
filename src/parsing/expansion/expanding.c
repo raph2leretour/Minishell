@@ -6,10 +6,11 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:34:12 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/01 18:22:14 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/01 18:25:25 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 
 int 	is_name(char c)
 {
@@ -416,4 +417,3 @@ int	expanding(t_command *cmd_struct)
 	}
 	return (1);
 }
- */
