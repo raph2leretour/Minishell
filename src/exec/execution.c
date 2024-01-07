@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/04 10:14:35 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/07 14:42:35 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token, int b)
 	}
 	if (b)
 		exit(EXIT_SUCCESS);
+	if (is_any_redirection(cmd))
+		redirect_end(cmd);
 }
 
 void	do_exec(t_simple_cmd *cmd, t_env *s_env)

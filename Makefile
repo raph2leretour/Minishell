@@ -29,6 +29,7 @@ SRCS		:=					\
 	exec/child_process.c	\
 	exec/close_fds.c	\
 	exec/ft_wait.c	\
+	exec/redirections.c	\
 	parsing/error_handling/free.c			\
 	parsing/tokenization/lexer.c			\
 	parsing/tokenization/lst_token.c		\

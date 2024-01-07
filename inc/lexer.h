@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:57:10 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/01 15:49:10 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/07 14:29:59 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct			s_token
 typedef struct			s_simple_cmd
 {
 	char		*full_path;
+	int		in;
+	int		out;
 	int		infile;
 	int		outfile;
 	struct s_token		*first_token;

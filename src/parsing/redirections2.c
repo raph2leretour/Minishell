@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   redirections2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 20:56:47 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/25 23:05:16 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/07 11:56:31 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "minishell.h"
 
 int	redirect_output(char *file, int old_fd, t_command *cmd_struct)
