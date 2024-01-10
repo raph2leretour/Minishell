@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:43:09 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/21 18:05:23 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:42:13 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	is_pipe(t_command *cmd)
 	return (0);
 }
 
-void	is_arg_good(t_token *token)
+void	is_arg_good(t_token *token, t_command *cmd)
 {
 	int	i;
 
@@ -29,6 +29,7 @@ void	is_arg_good(t_token *token)
 		if (!ft_isdigit(token->str[i]))
 		{
 			printf("exit\nbash: exit: %s: numeric argument required\n", token->str);
+			free_cmd(cmd);
 			exit(2);
 		}
 		i++;
@@ -41,7 +42,7 @@ void	ft_exit(t_command *cmd, t_token *token)
 		return ;
 	if (token && token->str)
 	{
-		is_arg_good(token);
+		is_arg_good(token, cmd);
 		if (token->next && token->next->str)
 		{
 			printf("exit\nbash: exit: too many arguments\n");
@@ -49,11 +50,13 @@ void	ft_exit(t_command *cmd, t_token *token)
 		}
 		errno = ft_atoi(token->str);
 		printf("exit\n");
+		free_cmd(cmd);
 		exit(errno);
 	}
 	else
 	{
 		printf("exit\n");
+		free_cmd(cmd);
 		exit(0);
 	}
 }
