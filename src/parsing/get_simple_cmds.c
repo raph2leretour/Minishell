@@ -6,90 +6,65 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:26 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/26 20:30:23 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/04 13:45:55 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
 
-int	is_absolute_path(char *cmd)
+int	check_token(t_token *token, t_simple_cmd *simple_cmd, char *path,
+		t_command *cmd_struct)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (cmd[i])
+	if (is_absolute_path(token->str))
 	{
-		if (cmd[i] == '/')
-			j++;
-		i++;
+		token->type = COMMAND;
+		path = strdup(token->str);
+		simple_cmd->full_path = path;
+		if (!simple_cmd->next)
+			return (1);
+		simple_cmd = simple_cmd->next;
 	}
-	if (j == 1 || j == 0)
-		return (0);
-	if (access(cmd, F_OK) == 0)
-		return (1);
+	path = get_cmd_path(token->str, cmd_struct);
+	if (!simple_cmd->full_path && path)
+	{
+		simple_cmd->full_path = path;
+		token->type = COMMAND;
+		if (!simple_cmd->next)
+			return (1);
+	}
 	return (0);
 }
 
-int	cmd_contains_builtin(t_simple_cmd *simple_cmd)
+int	contains_cmd(t_simple_cmd *simple_cmd)
 {
-	t_token	*token;
-
-	token = simple_cmd->first_token;
-	while (token)
+	if (!simple_cmd->full_path && !cmd_contains_builtin(simple_cmd)
+		&& !simple_cmd->prev)
 	{
-		if (is_builtin(token->str))
-		{
-			token->type = COMMAND;
-			return (1);
-		}
-		token = token->next;
+		printf("minishell: %s: command not found\n",
+			simple_cmd->first_token->str);
+		return (0);
 	}
-	return (0);
+	return (1);
 }
 
 int	set_command_path(t_command *cmd_struct)
 {
 	t_simple_cmd	*simple_cmd;
-	t_token	*token;
-	char	*path;
+	t_token			*token;
+	char			*path;
 
 	path = NULL;
-
 	simple_cmd = cmd_struct->first_cmd;
 	while (simple_cmd)
 	{
 		token = simple_cmd->first_token;
 		while (token)
 		{
-			if (is_absolute_path(token->str))
-			{
-				token->type = COMMAND;
-				path = strdup(token->str);
-				simple_cmd->full_path = path;
-				if (!simple_cmd->next)
-					return (1);
-				simple_cmd = simple_cmd->next;
-			}
-			if (is_builtin(token->str))
-			{
-				break ;
-			}
-			path = get_cmd_path(token->str, cmd_struct);
-			if (!simple_cmd->full_path && path)
-			{
-				simple_cmd->full_path = path;
-				token->type = COMMAND;
-				if (!simple_cmd->next)
-					return (1);
-			}
-			token = token->next;	
+			if (check_token(token, simple_cmd, path, cmd_struct))
+				return (1);
+			token = token->next;
 		}
-		if (!simple_cmd->full_path && !cmd_contains_builtin(simple_cmd) && !simple_cmd->prev)
-		{
-			printf("minishell: %s: command not found\n", simple_cmd->first_token->str);
+		if (!contains_cmd(simple_cmd))
 			return (0);
-		}
 		simple_cmd = simple_cmd->next;
 	}
 	return (1);

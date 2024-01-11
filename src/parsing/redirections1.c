@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 20:56:37 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/26 12:13:45 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/04 13:22:43 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -52,8 +52,6 @@ int	check_last_token(t_simple_cmd *simple_cmd)
 	if (token_last(token)->type == REDIRECTION)
 	{
 		printf("Syntax error near unexpected token `newline'\n");
-		//free_cmd(cmd_struct);
-		//exit(EXIT_FAILURE);
 		return (0);
 	}
 	return (1);
@@ -66,7 +64,6 @@ int	handle_redirections(t_command *cmd_struct)
 	simple_cmd = cmd_struct->first_cmd;
 	while (simple_cmd)
 	{
-		//check_last_token(simple_cmd, cmd_struct);
 		if (!check_last_token(simple_cmd))
 			return (0);
 		check_redirection(simple_cmd, cmd_struct);

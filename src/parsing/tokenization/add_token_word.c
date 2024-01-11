@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 09:44:34 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/25 22:38:30 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/04 13:36:37 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../libft/include/libft.h"
@@ -55,9 +55,7 @@ int	add_token_word(t_command *cmd_struct, int i)
 	len = word_len(cmd_struct->string, i);
 	cmd = ft_substr(cmd_struct->string, i, len);
 	new_token = init_token(cmd, ARGUMENT);
-	//printf("i: %d\n", i);
 	i += len;
-	//printf("i: %d\n", i);
 	add_token(&cmd_struct->first_token, new_token);
 	return (i);
 }

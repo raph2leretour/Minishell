@@ -1,25 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax_redirection.c                               :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/16 21:26:07 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/04 13:32:37 by smilosav         ###   ########.fr       */
+/*   Created: 2024/01/04 13:45:12 by smilosav          #+#    #+#             */
+/*   Updated: 2024/01/04 13:45:35 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lexer.h"
 
-int	check_redirections(t_command *cmd_struct)
+int	is_absolute_path(char *cmd)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (cmd[i])
+	{
+		if (cmd[i] == '/')
+			j++;
+		i++;
+	}
+	if (j == 1 || j == 0)
+		return (0);
+	if (access(cmd, F_OK) == 0)
+		return (1);
+	return (0);
+}
+
+int	cmd_contains_builtin(t_simple_cmd *simple_cmd)
 {
 	t_token	*token;
 
-	token = cmd_struct->first_token;
-	if (token_last(token)->type == REDIRECTION)
+	token = simple_cmd->first_token;
+	while (token)
 	{
-		printf("Syntax error near unexpected token `newline'\n");
-		return (0);
+		if (is_builtin(token->str))
+		{
+			token->type = COMMAND;
+			return (1);
+		}
+		token = token->next;
 	}
-	return (1);
+	return (0);
 }
