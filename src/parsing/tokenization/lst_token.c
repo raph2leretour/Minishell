@@ -6,24 +6,11 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 22:39:37 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/20 15:59:22 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/04 13:49:46 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
-
-//return the last token in the list
-t_token	*token_last(t_token *lst)
-{
-	t_token	*aux;
-
-	if (lst == NULL)
-		return (lst);
-	aux = lst;
-	while (aux->next != NULL)
-		aux = aux->next;
-	return (aux);
-}
 
 //return the last cmd in the list
 t_simple_cmd	*cmd_last(t_simple_cmd *lst)
@@ -50,6 +37,7 @@ t_env	*env_last(t_env *lst)
 		aux = aux->next;
 	return (aux);
 }
+
 //add token to the back of the list
 void	add_token(t_token **lst, t_token *new_token)
 {

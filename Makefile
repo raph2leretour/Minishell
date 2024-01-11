@@ -1,4 +1,4 @@
-#------------------------------------------------#
+#-----------------------------------------------#
 #   NAME                                         #
 #------------------------------------------------#
 NAME		:= minishell
@@ -31,8 +31,10 @@ SRCS		:=					\
 	exec/ft_wait.c	\
 	exec/redirections.c	\
 	parsing/error_handling/free.c			\
+	parsing/error_handling/free_split.c		\
 	parsing/tokenization/lexer.c			\
 	parsing/tokenization/lst_token.c		\
+	parsing/tokenization/lst_utils.c		\
 	parsing/tokenization/add_tokens.c		\
 	parsing/tokenization/syntax_pipe.c		\
 	parsing/tokenization/lexer_utils.c		\
@@ -41,14 +43,18 @@ SRCS		:=					\
 	parsing/tokenization/syntax_analysis.c		\
 	parsing/tokenization/syntax_redirection.c	\
 	parsing/expansion/expanding.c			\
-	parsing/expansion/handle_quotes.c		\
+	parsing/expansion/expanding_utils.c		\
+	parsing/expansion/expanding_utils1.c		\
+	parsing/expansion/expanding_utils2.c		\
 	parsing/expansion/delete_quotes.c		\
+	parsing/expansion/delete_quotes_utils.c		\
 	parsing/parser.c				\
 	parsing/get_env.c				\
 	parsing/get_cmd_path.c				\
 	parsing/get_simple_cmds.c			\
 	parsing/redirections1.c				\
-	parsing/redirections2.c
+	parsing/redirections2.c				\
+	parsing/utils.c
 SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
 OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 LIBFT		:= $(LIBFT_DIR)/libft.a

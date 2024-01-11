@@ -6,23 +6,10 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:11:42 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/26 11:57:49 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/04 13:59:52 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lexer.h"
-
-void	free_split(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
-}
 
 void	free_tokens(t_token *first_token)
 {
@@ -40,7 +27,7 @@ void	free_tokens(t_token *first_token)
 
 void	free_simple_cmd_tokens(t_token *first_token)
 {
-	t_token *tmp;
+	t_token	*tmp;
 
 	while (first_token)
 	{
@@ -50,6 +37,7 @@ void	free_simple_cmd_tokens(t_token *first_token)
 	}
 	free(first_token);
 }
+
 void	free_simple_cmds(t_simple_cmd *first_cmd)
 {
 	t_simple_cmd	*tmp;
@@ -74,7 +62,7 @@ void	free_env_vars(t_env *env_var)
 	{
 		tmp = env_var->next;
 		free(env_var->key);
-		free(env_var->value);	
+		free(env_var->value);
 		free(env_var);
 		env_var = tmp;
 	}

@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax_redirection.c                               :+:      :+:    :+:   */
+/*   free_split.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/16 21:26:07 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/04 13:32:37 by smilosav         ###   ########.fr       */
+/*   Created: 2024/01/04 13:58:20 by smilosav          #+#    #+#             */
+/*   Updated: 2024/01/04 13:59:32 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lexer.h"
 
-int	check_redirections(t_command *cmd_struct)
+void	free_split(char **str)
 {
-	t_token	*token;
+	int	i;
 
-	token = cmd_struct->first_token;
-	if (token_last(token)->type == REDIRECTION)
+	i = 0;
+	while (str[i])
 	{
-		printf("Syntax error near unexpected token `newline'\n");
-		return (0);
+		free(str[i]);
+		i++;
 	}
-	return (1);
+	free(str);
 }

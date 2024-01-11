@@ -6,79 +6,11 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 12:01:05 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/28 20:40:06 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/05 12:39:38 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../libft/include/libft.h"
 #include "lexer.h"
-
-/*int	check_double(t_command *cmd_struct, char *word, int i)
-{
-	int	quotes_open;
-
-	while (word[i])
-	{
-		if (word[i] == '"')
-		{
-			quotes_open = 1;
-			i++;
-		}
-		while (word[i] && word[i] != '"')
-			i++;
-		if (word[i] == '"')
-		{
-			quotes_open = 0;
-			i++;
-		}
-	}
-	i++;
-	if (quotes_open == 0)
-	{
-		while (word[i - 1] != '"')
-			i--;
-		return (i);
-	}
-	else
-	{
-		printf("Double quotes not closed\n");
-		free_cmd(cmd_struct);
-		exit(EXIT_FAILURE);
-	}
-}
-
-int	check_single(t_command *cmd_struct, char *word, int i)
-{
-	int	quotes_open;
-
-	while (word[i])
-	{
-		if (word[i] == '\'')
-		{
-			quotes_open = 1;
-			i++;
-		}
-		while (word[i] && word[i] != '\'')
-			i++;
-		if (word[i] == '\'')
-		{
-			quotes_open = 0;
-			i++;
-		}
-	}
-	i++;
-	if (quotes_open == 0)
-	{
-		while (word[i - 1] != '\'')
-			i--;
-		return (i);
-	}
-	else
-	{
-		printf("Single quotes not closed\n");
-		free_cmd(cmd_struct);
-		exit(EXIT_FAILURE);
-	}
-}*/
 
 int	change_flag(int flag)
 {
@@ -89,10 +21,10 @@ int	change_flag(int flag)
 	return (0);
 }
 
-int	check_single(t_command *cmd_struct, char *word, int i)
+int	check_single(char *word, int i)
 {
 	int	flag;
-	
+
 	flag = 0;
 	while (word[i])
 	{
@@ -108,16 +40,15 @@ int	check_single(t_command *cmd_struct, char *word, int i)
 	}
 	else
 	{
-		printf("Single quotes not closed\n");
-		free_cmd(cmd_struct);
-		exit(EXIT_FAILURE);
+		printf("minishell: single quotes not closed\n");
+		return (-1);
 	}
 }
 
-int	check_double(t_command *cmd_struct, char *word, int i)
+int	check_double(char *word, int i)
 {
 	int	flag;
-	
+
 	flag = 0;
 	while (word[i])
 	{
@@ -133,28 +64,30 @@ int	check_double(t_command *cmd_struct, char *word, int i)
 	}
 	else
 	{
-		printf("Double quotes not closed\n");
-		free_cmd(cmd_struct);
-		exit(EXIT_FAILURE);
+		printf("minishell: double quotes not closed\n");
+		return (-1);
 	}
 }
 
-
-void	check_if_all_quotes_closed(t_command *cmd_struct, char *word)
+int	check_if_all_quotes_closed(char *word)
 {
 	int	i;
-	//int	len;
+
 	i = 0;
-	//len = ft_strlen(word);
 	while (word[i])
 	{
 		while (word[i] && word[i] != '"' && word[i] != '\'')
 			i++;
 		if (word[i] == '"')
-			i = check_double(cmd_struct, word, i);
+			i = check_double(word, i);
+		if (i == -1)
+			return (0);
 		if (word[i] == '\'')
-			i = check_single(cmd_struct, word, i);
+			i = check_single(word, i);
+		if (i == -1)
+			return (0);
 	}
+	return (1);
 }
 
 int	check_quotes(t_command *cmd_struct)
@@ -166,7 +99,8 @@ int	check_quotes(t_command *cmd_struct)
 	{
 		if (token->type == ARGUMENT)
 		{
-			check_if_all_quotes_closed(cmd_struct, token->str);
+			if (!check_if_all_quotes_closed(token->str))
+				return (0);
 		}
 		token = token->next;
 	}

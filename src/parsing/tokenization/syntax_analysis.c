@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 18:25:26 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/26 14:21:55 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/11 21:42:55 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	check_types(t_command *cmd_struct)
 int	check_pipe_location(t_command *cmd_struct)
 {
 	t_token	*token;
+
 	token = cmd_struct->first_token;
 	if (token->type == PIPE || token_last(token)->type == PIPE)
 	{
@@ -62,13 +63,15 @@ int	check_syntax(t_command *cmd_struct)
 
 int	check_option_token(t_token *token)
 {
-	if (token->str[0] == '-' && (token->prev == NULL || token->prev->type == PIPE))
+	if (token->str[0] == '-' && (token->prev == NULL
+			|| token->prev->type == PIPE))
 	{
 		printf("minishell: %s: command not found\n", token->str);
 		return (0);
 	}
 	return (1);
 }
+
 int	check_options(t_command *cmd_struct)
 {
 	t_token	*token;

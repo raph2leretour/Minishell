@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:16 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/01 18:22:35 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/11 21:42:38 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,12 @@ t_command	*init_command(char *value, t_env *env)
 the command structure as a doubly linked list*/
 t_command	*tokenize(char *input_cmd, t_env *env)
 {
-	int		i;
-	int		len;
+	int			i;
+	int			len;
 	t_command	*cmd_struct;
 
 	input_cmd = ft_strtrim(input_cmd, " ");
 	cmd_struct = init_command(input_cmd, env);
-	// printf("\nInput command: %s\n\n", cmd_struct->string);
 	i = 0;
 	len = ft_strlen(cmd_struct->string);
 	while (i < len && cmd_struct->string[i])
@@ -66,8 +65,6 @@ t_command	*tokenize(char *input_cmd, t_env *env)
 			i = add_token_word(cmd_struct, i);
 		if (is_redirection(cmd_struct->string[i]))
 			i = add_token_redirection(cmd_struct, i);
-		/*if (is_parenthesis(cmd_struct->string[i]))
-			i = add_token_parenthesis(cmd_struct, i);*/
 		if (cmd_struct->string[i] == '|')
 			i = add_token_pipe(cmd_struct, i);
 		if (cmd_struct->string[i] == '&')

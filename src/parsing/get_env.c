@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:34:29 by smilosav          #+#    #+#             */
-/*   Updated: 2023/12/25 23:07:14 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/04 13:25:17 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lexer.h"
@@ -27,23 +27,22 @@ t_env	*init_env_var(char *key, char *value)
 
 char	*get_key(char *env_var)
 {
-	int	i;
+	int		i;
 	char	*key;
-	
+
 	i = 0;
 	while (env_var[i] != '=')
 		i++;
 	key = ft_substr(env_var, 0, i);
 	return (key);
-	
 }
 
 char	*get_value(char *env_var)
 {
-	int	i;
-	int	len;
+	int		i;
+	int		len;
 	char	*value;
-	
+
 	i = 0;
 	while (env_var[i - 1] != '=')
 		i++;
@@ -52,18 +51,18 @@ char	*get_value(char *env_var)
 		len++;
 	value = ft_substr(env_var, i, len);
 	return (value);
-	
 }
 
 t_env	*get_env_vars(char **envp)
 {
-	int	i;
+	int		i;
 	char	*key;
 	char	*value;
 	t_env	*new_env_var;
-	t_env	*env_list = NULL;
+	t_env	*env_list;
 
 	i = 0;
+	env_list = NULL;
 	while (envp[i])
 	{
 		key = get_key(envp[i]);

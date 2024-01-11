@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/01 18:21:08 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/11 21:40:34 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 
 	env = get_env_vars(envp);
+	cmd = NULL;
 	while (1)
 	{
 		cmd = NULL;
