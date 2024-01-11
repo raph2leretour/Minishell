@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:05:14 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/07 14:42:00 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:17:50 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,5 @@ void	echo(char **array, t_env *env)
 	}
 	if (b)
 		ft_putchar_fd('\n', 1);
+	free_array(array);
 }
