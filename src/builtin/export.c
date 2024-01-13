@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:20:07 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/27 15:28:13 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/13 17:58:47 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	no_arg(t_env *env)
 	t_env	*head;
 
 	head = env;
-	while (env)
+	while (env && env->key)
 	{
 		if (env->value)
 		{
