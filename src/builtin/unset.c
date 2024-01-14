@@ -6,13 +6,31 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:39:50 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/13 18:28:45 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/14 17:10:25 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	unset(t_env *env, char *tkey)
+void	unsetor(t_env *prev, t_env *next)
+{
+	if (prev)
+	{
+		if (next)
+			prev->next = next;
+		else
+			prev->next = NULL;
+	}
+	if (next)
+	{
+		if (prev)
+			next->prev = prev;
+		else
+			next->prev = NULL;
+	}
+}
+
+void	unset(t_command *cmd, t_env *env, char *tkey)
 {
 	t_env	*head;
 	t_env	*prev;
@@ -27,21 +45,16 @@ void	unset(t_env *env, char *tkey)
 		{
 			prev = env->prev;
 			next = env->next;
+			if (env == head)
+				head = next;
 			free(env->key);
 			free(env->value);
 			free(env);
-			if (next)
-				prev->next = next;
-			else
-				prev->next = NULL;
-			if (prev)
-				next->prev = prev;
-			else
-				next->prev = NULL;
-			env = head;
+			unsetor(prev, next);
+			cmd->lst_env = head;
 			return ;
 		}
 		env = env->next;
 	}
-	env = head;
+	cmd->lst_env = head;
 }

@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/11 21:40:34 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/14 16:37:49 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ int	main(int argc, char **argv, char **envp)
 		cmd = NULL;
 		str = readline("minishell$ ");
 		cmd = process_input(str, cmd, env);
+		env = cmd->lst_env;
 		if (cmd)
 			free_cmd(cmd);
 		free(str);

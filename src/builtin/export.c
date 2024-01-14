@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:20:07 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/13 17:58:47 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/14 17:35:28 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,17 @@ int	is_non_valid(char *value)
 	while (value[i] && value[i] != '=')
 	{
 		if (!ft_isalnum(value[i]) && value[i] != '_')
+		{
 			return (format_error(value), 1);
+		}
 		i++;
 	}
 	while (value[i])
 	{
 		if (!ft_isprint(value[i]))
+		{
 			return (format_error(value), 1);
+		}
 		i++;
 	}
 	return (0);
@@ -55,7 +59,7 @@ void	no_arg(t_env *env)
 	head = env;
 	while (env && env->key)
 	{
-		if (env->value)
+		if (env->value && env->value[0])
 		{
 			ft_dprintf(1, "export %s=\"%s\"\n", env->key, env->value);
 		}
@@ -66,6 +70,28 @@ void	no_arg(t_env *env)
 		env = env->next;
 	}
 	env = head;
+}
+
+void	ft_reset(t_env *env, char *key, char *value)
+{
+	t_env *head;
+
+	if (value && value[0])
+	{
+		head = env;
+		while (env)
+		{
+			if (!ft_strncmp(env->key, key, ft_strlen(key)))
+			{
+				free(env->value);
+				env->value = ft_substr(value, 0, ft_strlen(value));
+				env = head;
+				return ;
+			}
+			env = env->next;
+		}
+		env = head;
+	}
 }
 
 void	ft_export(t_command *s_cmd, t_token *token)
@@ -80,11 +106,18 @@ void	ft_export(t_command *s_cmd, t_token *token)
 			return ;
 		key = get_key(token->str);
 		value = get_value(token->str);
-		new_env_var = init_env_var(key, value);
-		add_env_var(&s_cmd->lst_env, new_env_var);
+		if (ft_getenv(key, s_cmd->lst_env))
+		{
+			ft_reset(s_cmd->lst_env, key, value);
+			free(key);
+			free(value);
+		}
+		else
+		{
+			new_env_var = init_env_var(key, value);
+			add_env_var(&s_cmd->lst_env, new_env_var);
+		}
 	}
 	else
-	{
 		no_arg(s_cmd->lst_env);
-	}
 }

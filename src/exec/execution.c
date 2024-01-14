@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/07 14:42:35 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/14 16:18:10 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token, int b)
 	else if (!ft_strncmp(token->str, "pwd", 3))
 		pwd();
 	else if (!ft_strncmp(token->str, "unset", 5))
-		unset(t_cmd->lst_env, token->next->str);
+		unset(t_cmd, t_cmd->lst_env, token->next->str);
 	else
 	{
 		ft_dprintf(2, "%s: ", cmd->first_token->str);
