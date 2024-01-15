@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/14 16:17:46 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/14 18:09:40 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,12 @@ void	ft_error(char *s, int errnum);
 void	echo(char **array, t_env *env);
 void	close_pipe(t_simple_cmd *t_cmd);
 void	redirect_end(t_simple_cmd *cmd);
-void	unset(t_command *cmd, t_env *env, char *targeted_token);
 void	ft_exit(t_command *cmd, t_token *token);
 void	do_exec(t_simple_cmd *cmd, t_env *s_env);
 void	ft_export(t_command *s_cmd, t_token *token);
+void	ft_reset(t_env *env, char *key, char *value);
 void	child_process(t_command *t_cmd, t_simple_cmd *cmd);
+void	unset(t_command *cmd, t_env *env, char *targeted_token);
 void	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token, int b);
 t_env	*init_env_var(char *key, char *value);
 
