@@ -19,6 +19,7 @@ SRCS		:=					\
 	builtin/unset.c				\
 	builtin/export.c			\
 	env/get_true_env.c			\
+	env/ft_getenv.c	\
 	utils/ft_error.c			\
 	utils/split_cmd.c			\
 	utils/free_array.c	\
