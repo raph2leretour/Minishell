@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:15:28 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/15 17:38:28 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/16 17:16:43 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,7 @@ void	set_pwd(t_env *env)
 		perror("minishell: cd");
 		return ;
 	}
-	if (!ft_getenv(key, env))
-	{
-		t_pwd = init_env_var(key, v_pwd);
-		add_env_var(&env, t_pwd);
-	}
-	else
+	if (ft_getenv(key, env))
 	{
 		ft_reset(env, key, v_pwd);
 		free(key);
@@ -43,17 +38,15 @@ void	set_oldpwd(t_env *env, char *v_oldpwd)
 	char	*key;
 	t_env	*t_oldpwd;
 
-	key = ft_strdup("OLDPWD");
-	if (!ft_getenv(key, env))
+	if (v_oldpwd && v_oldpwd[0])
 	{
-		t_oldpwd = init_env_var(key, v_oldpwd);
-		add_env_var(&env, t_oldpwd);
-	}
-	else
-	{
-		ft_reset(env, key, v_oldpwd);
-		free(key);
-		free(v_oldpwd);
+		key = ft_strdup("OLDPWD");
+		if (ft_getenv(key, env))
+		{
+			ft_reset(env, key, v_oldpwd);
+			free(key);
+			free(v_oldpwd);
+		}
 	}
 }
 
