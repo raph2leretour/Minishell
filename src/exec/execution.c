@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/17 14:40:49 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/17 20:18:49 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	do_exec(t_simple_cmd *cmd, t_env *s_env)
 	char	**s_cmd;
 
 	c_env = get_true_env(s_env);
+	ft_karl(cmd->first_token);
 	s_cmd = split_cmd(cmd, 0);
 	if (execve(cmd->full_path, split_cmd(cmd, 0), c_env))
 	{
