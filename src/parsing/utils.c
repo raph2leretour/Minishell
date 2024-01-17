@@ -6,10 +6,30 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 13:45:12 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/04 13:45:35 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/17 18:22:54 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lexer.h"
+int	set_option_type(t_simple_cmd *simple_cmd)
+{
+	t_token	*token;
+
+	while (simple_cmd)
+	{
+		if (simple_cmd->full_path != NULL)
+		{
+			token = simple_cmd->first_token;
+			while (token)
+			{
+				if (token->str[0] == '-')
+					token->type = OPTION;
+				token = token->next;
+			}
+		}
+		simple_cmd = simple_cmd->next;
+	}
+	return (1);
+}
 
 int	is_absolute_path(char *cmd)
 {

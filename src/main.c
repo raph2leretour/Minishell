@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/14 16:37:49 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/17 18:38:41 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ t_command	*process_input(char *str, t_command *cmd, t_env *env)
 		&& delete_quotes(cmd)
 		&& set_simple_commands(cmd)
 		&& handle_redirections(cmd)
-		&& check_options(cmd))
+		&& check_options(cmd)
+		&& set_option_type(cmd->first_cmd))
 	{
 		ft_exec(cmd);
 		// print_simple_commands(cmd->first_cmd);
