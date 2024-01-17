@@ -31,6 +31,7 @@ SRCS		:=					\
 	exec/close_fds.c	\
 	exec/ft_wait.c	\
 	exec/redirections.c	\
+	exec/sort_param.c	\
 	parsing/error_handling/free.c			\
 	parsing/error_handling/free_split.c		\
 	parsing/tokenization/lexer.c			\
