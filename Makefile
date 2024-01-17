@@ -45,6 +45,8 @@ SRCS		:=					\
 	parsing/expansion/expanding_utils2.c		\
 	parsing/expansion/delete_quotes.c		\
 	parsing/expansion/delete_quotes_utils.c		\
+	parsing/signals/signals.c			\
+	parsing/heredoc/heredoc.c			\
 	parsing/parser.c				\
 	parsing/get_env.c				\
 	parsing/get_cmd_path.c				\
