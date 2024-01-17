@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:15:28 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/16 17:16:43 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/17 14:05:38 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	set_pwd(t_env *env)
 {
 	char	*key;
 	char	*v_pwd;
-	t_env	*t_pwd;
 
 	key = ft_strdup("PWD");
 	v_pwd = getcwd(NULL, 0);
@@ -36,7 +35,6 @@ void	set_pwd(t_env *env)
 void	set_oldpwd(t_env *env, char *v_oldpwd)
 {
 	char	*key;
-	t_env	*t_oldpwd;
 
 	if (v_oldpwd && v_oldpwd[0])
 	{
