@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:57:10 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/04 14:50:35 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/17 18:21:44 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define PIPE 4
 # define SEMI 5
 # define AND 6
+# define OPTION 7
 
 typedef struct s_token
 {
@@ -121,5 +122,6 @@ int					wrong_var_form(char *token, int i, char *key);
 int					expand_quoted(int i, t_token *token, t_env *env_var);
 int					dollar_quoted(char *token, int i);
 int					no_more_quotes(char *str, int i);
+int					set_option_type(t_simple_cmd *simple_cmd);
 
 #endif
