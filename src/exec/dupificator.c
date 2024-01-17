@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 16:27:53 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/07 17:17:02 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/17 14:42:45 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int	dup_redirection(t_simple_cmd *cmd)
 
 int	dupificator(t_simple_cmd *cmd)
 {
-	if (cmd && cmd->first_token && is_builtin(cmd->first_token->str) && is_any_redirection(cmd))
+	if (cmd && cmd->first_token && is_builtin(cmd->first_token->str)
+		&& is_any_redirection(cmd))
 		return (dup_redirection(cmd));
 	else
 	{

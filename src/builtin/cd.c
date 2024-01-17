@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:15:28 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/17 14:05:38 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/17 14:40:43 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	set_oldpwd(t_env *env, char *v_oldpwd)
 			free(v_oldpwd);
 		}
 	}
+	set_pwd(env);
 }
 
 int	cd_less_symbol(t_env *env)
@@ -90,10 +91,14 @@ int	cd_no_path(t_env *env)
 	return (0);
 }
 
-void	cd(char *path, t_env *env)
+void	cd(t_token *token, t_env *env)
 {
+	char	*path;
 	char	*oldpwd;
 
+	path = NULL;
+	if (token->next && token->next->str)
+		path = token->next->str;
 	oldpwd = getcwd(NULL, 0);
 	if (!path)
 	{
@@ -113,5 +118,4 @@ void	cd(char *path, t_env *env)
 		return ;
 	}
 	set_oldpwd(env, oldpwd);
-	set_pwd(env);
 }

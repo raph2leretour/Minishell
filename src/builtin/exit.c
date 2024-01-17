@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:43:09 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/11 15:15:38 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/17 14:35:11 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	is_arg_good(t_token *token, t_command *cmd)
 	{
 		if (!ft_isdigit(token->str[i]))
 		{
-			printf("exit\nbash: exit: %s: numeric argument required\n", token->str);
+			printf("exit\nbash: exit: %s: numeric argument required\n", \
+				token->str);
 			free_env(cmd->lst_env);
 			free_cmd(cmd);
 			exit(2);

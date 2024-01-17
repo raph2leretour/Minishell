@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:20:07 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/14 17:35:28 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/17 14:36:04 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	no_arg(t_env *env)
 
 void	ft_reset(t_env *env, char *key, char *value)
 {
-	t_env *head;
+	t_env	*head;
 
 	if (value && value[0])
 	{

@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/14 16:18:10 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/17 14:40:49 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,7 @@
 void	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token, int b)
 {
 	if (!ft_strncmp(token->str, "cd", 2))
-	{
-		if (token->next)
-			cd(token->next->str, t_cmd->lst_env);
-		else
-			cd(NULL, t_cmd->lst_env);
-	}
+		cd(token, t_cmd->lst_env);
 	else if (!ft_strncmp(token->str, "echo", 4))
 		echo(split_cmd(cmd, 1), t_cmd->lst_env);
 	else if (!ft_strncmp(token->str, "env", 3))
