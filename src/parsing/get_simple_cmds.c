@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:26 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/17 22:16:58 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/18 21:33:26 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -49,10 +49,24 @@ int	no_heredoc(t_simple_cmd *simple_cmd)
 	return (1);
 }
 
+int	check_exec(t_simple_cmd *simple_cmd)
+{
+	t_token	*token;
+
+	token = simple_cmd->first_token;
+	while (token)
+	{
+		if (token->type == COMMAND && !ft_strncmp(token->str, "./", 2))
+			return (1);
+		token = token->next;
+	}
+	return (0);
+}
+
 int	contains_cmd(t_simple_cmd *simple_cmd)
 {
 	if (!simple_cmd->full_path && !cmd_contains_builtin(simple_cmd)
-		&& !simple_cmd->prev && no_heredoc(simple_cmd))
+		&& !simple_cmd->prev && no_heredoc(simple_cmd) && !check_exec(simple_cmd))
 	{
 		printf("minishell: %s: command not found\n",
 			simple_cmd->first_token->str);

@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:57:10 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/17 22:26:05 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/18 21:16:39 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ int					check_options(t_command *cmd_struct);
 int					is_absolute_path(char *cmd);
 int					cmd_contains_builtin(t_simple_cmd *simple_cmd);
 int					check_quotes(t_command *cmd_struct);
+int					change_flag(int flag);
 int					check_redirections(t_command *cmd_struct);
 int					check_between_pipes(t_command *cmd_struct);
 int					check_syntax(t_command *cmd_struct);
@@ -126,5 +127,7 @@ int					expand_quoted(int i, t_token *token, t_env *env_var);
 int					dollar_quoted(char *token, int i);
 int					no_more_quotes(char *str, int i);
 int					heredoc(t_command *cmd_struct);
+int					handle_backslash(t_command *cmd);
+int					check_executables(t_command *cmd);
 
 #endif

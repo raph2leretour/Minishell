@@ -39,12 +39,14 @@ SRCS		:=					\
 	parsing/tokenization/add_token_word.c		\
 	parsing/tokenization/syntax_analysis.c		\
 	parsing/tokenization/syntax_redirection.c	\
+	parsing/tokenization/check_executables.c	\
 	parsing/expansion/expanding.c			\
 	parsing/expansion/expanding_utils.c		\
 	parsing/expansion/expanding_utils1.c		\
 	parsing/expansion/expanding_utils2.c		\
 	parsing/expansion/delete_quotes.c		\
 	parsing/expansion/delete_quotes_utils.c		\
+	parsing/expansion/delete_backslash.c		\
 	parsing/signals/signals.c			\
 	parsing/heredoc/heredoc.c			\
 	parsing/parser.c				\

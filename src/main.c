@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/17 20:20:33 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/18 21:15:06 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ t_command	*process_input(char *str, t_command *cmd, t_env *env)
 	cmd = tokenize(str, env);
 	add_history(str);
 	if (check_syntax(cmd) && expanding(cmd)
-		&& delete_quotes(cmd)
-		&& heredoc(cmd)
+		&& handle_backslash(cmd) && delete_quotes(cmd)
+		&& check_executables(cmd) && heredoc(cmd)
 		&& set_simple_commands(cmd)
 		&& handle_redirections(cmd)
 		&& check_options(cmd))
