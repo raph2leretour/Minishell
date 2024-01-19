@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   ft_get_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 14:58:45 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/23 11:11:53 by rtissera         ###   ########.fr       */
+/*   Created: 2024/01/15 17:26:22 by rtissera          #+#    #+#             */
+/*   Updated: 2024/01/15 17:26:37 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	pwd(void)
+char	*ft_getenv(char *s, t_env *env)
 {
-	char	*pwd;
+	t_env	*head;
 
-	pwd = getcwd(NULL, 0);
-	if (!pwd)
+	head = env;
+	while (env)
 	{
-		free(pwd);
-		perror("pwd");
+		if (!ft_strncmp(env->key, s, ft_strlen(s)))
+			return (env->value);
+		env = env->next;
 	}
-	ft_putstr_fd(pwd, 1);
-	ft_putchar_fd('\n', 1);
-	free(pwd);
+	env = head;
+	return (NULL);
 }

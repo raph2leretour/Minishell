@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   free_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 14:58:45 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/23 11:11:53 by rtissera         ###   ########.fr       */
+/*   Created: 2023/12/27 14:23:47 by rtissera          #+#    #+#             */
+/*   Updated: 2024/01/17 14:34:33 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../inc/minishell.h"
 
-void	pwd(void)
+void	free_array(char **a)
 {
-	char	*pwd;
+	int	i;
 
-	pwd = getcwd(NULL, 0);
-	if (!pwd)
+	i = 0;
+	while (a[i])
 	{
-		free(pwd);
-		perror("pwd");
+		free(a[i]);
+		i++;
 	}
-	ft_putstr_fd(pwd, 1);
-	ft_putchar_fd('\n', 1);
-	free(pwd);
+	free(a);
 }

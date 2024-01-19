@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_env.c                                        :+:      :+:    :+:   */
+/*   create_pipes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 19:00:46 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/08 14:17:49 by rtissera         ###   ########.fr       */
+/*   Created: 2023/12/14 21:41:30 by rtissera          #+#    #+#             */
+/*   Updated: 2023/12/26 16:01:45 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	clear_env(t_env *env)
+int	create_pipe(t_command *t_cmd)
 {
-	t_env	*next_env;
+	int				pipefd[2];
+	t_simple_cmd	*cmd;
 
-	while (env && env->value)
+	cmd = t_cmd->first_cmd;
+	while (cmd)
 	{
-		next_env = env->next;
-		free(env->value);
-		free(env);
-		env = next_env;
+		if (cmd->next)
+		{
+			if (pipe(pipefd))
+			{
+				perror("Pipe:");
+				close_fds(t_cmd->first_cmd);
+				return (-1);
+			}
+			cmd->outfile = pipefd[1];
+			cmd->next->infile = pipefd[0];
+		}
+		cmd = cmd->next;
 	}
-	free(env);
+	return (0);
 }

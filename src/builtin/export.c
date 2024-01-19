@@ -6,13 +6,13 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:20:07 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/20 15:31:23 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/17 14:36:04 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* void	inid(char *value)
+void	format_error(char *value)
 {
 	char	*errc;
 	char	*errc2;
@@ -26,57 +26,98 @@
 	free(errc);
 }
 
-int	is_valid(char *value)
+int	is_non_valid(char *value)
 {
 	int	i;
 
 	if (ft_isdigit(value[0]))
-		return (inid(value), 1);
+		return (format_error(value), 1);
 	i = 0;
 	while (value[i] && value[i] != '=')
 	{
 		if (!ft_isalnum(value[i]) && value[i] != '_')
-			return (inid(value), 1);
+		{
+			return (format_error(value), 1);
+		}
 		i++;
 	}
 	while (value[i])
 	{
 		if (!ft_isprint(value[i]))
-			return (inid(value), 1);
+		{
+			return (format_error(value), 1);
+		}
 		i++;
 	}
 	return (0);
 }
 
-void	ft_export(char *value, t_env *env)
+void	no_arg(t_env *env)
 {
-	char	**print;
 	t_env	*head;
 
-	if (value)
+	head = env;
+	while (env && env->key)
 	{
-		if (is_valid(value))
-			return ;
-		head = env;
-		while (env && env->next)
-			env = env->next;
-		env->next = malloc(sizeof(t_env *));
+		if (env->value && env->value[0])
+		{
+			ft_dprintf(1, "export %s=\"%s\"\n", env->key, env->value);
+		}
+		else
+		{
+			ft_dprintf(1, "export %s\n", env->key);
+		}
 		env = env->next;
-		env->value = malloc(sizeof(char) * (ft_strlen(value) + 1));
-		ft_strlcpy(env->value, value, ft_strlen(value) + 1);
-		env->e = true;
-		env->next = NULL;
 	}
-	else
+	env = head;
+}
+
+void	ft_reset(t_env *env, char *key, char *value)
+{
+	t_env	*head;
+
+	if (value && value[0])
 	{
 		head = env;
 		while (env)
 		{
-			print = ft_split(env->value, '=');
-			printf("declare -x %s=\"%s\"\n", print[0], print[1]);
+			if (!ft_strncmp(env->key, key, ft_strlen(key)))
+			{
+				free(env->value);
+				env->value = ft_substr(value, 0, ft_strlen(value));
+				env = head;
+				return ;
+			}
 			env = env->next;
 		}
+		env = head;
 	}
-	env = head;
 }
- */
+
+void	ft_export(t_command *s_cmd, t_token *token)
+{
+	char	*key;
+	char	*value;
+	t_env	*new_env_var;
+
+	if (token && token->str)
+	{
+		if (is_non_valid(token->str))
+			return ;
+		key = get_key(token->str);
+		value = get_value(token->str);
+		if (ft_getenv(key, s_cmd->lst_env))
+		{
+			ft_reset(s_cmd->lst_env, key, value);
+			free(key);
+			free(value);
+		}
+		else
+		{
+			new_env_var = init_env_var(key, value);
+			add_env_var(&s_cmd->lst_env, new_env_var);
+		}
+	}
+	else
+		no_arg(s_cmd->lst_env);
+}

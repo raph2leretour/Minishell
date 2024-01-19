@@ -6,10 +6,11 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:34:29 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/04 13:25:17 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/14 17:39:20 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "lexer.h"
+
+#include "minishell.h"
 
 t_env	*init_env_var(char *key, char *value)
 {
@@ -31,7 +32,7 @@ char	*get_key(char *env_var)
 	char	*key;
 
 	i = 0;
-	while (env_var[i] != '=')
+	while (env_var[i] && env_var[i] != '=')
 		i++;
 	key = ft_substr(env_var, 0, i);
 	return (key);
@@ -44,8 +45,9 @@ char	*get_value(char *env_var)
 	char	*value;
 
 	i = 0;
-	while (env_var[i - 1] != '=')
+	while (env_var[i] && env_var[i] != '=')
 		i++;
+	i++;
 	len = i;
 	while (env_var[len])
 		len++;

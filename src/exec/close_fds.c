@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipes.c                                            :+:      :+:    :+:   */
+/*   close_fds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/14 21:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/19 13:28:16 by rtissera         ###   ########.fr       */
+/*   Created: 2023/12/25 18:07:35 by rtissera          #+#    #+#             */
+/*   Updated: 2024/01/05 17:17:16 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	create_pipe(t_command *t_cmd)
+void	close_fds(t_simple_cmd *cmd)
 {
-	int				pip[2];
-	t_simple_cmd	*cmd;
-
-	cmd = t_cmd->first_cmd;
 	while (cmd)
 	{
-		if (cmd->next)
-		{
-			if (pipe(pip))
-			{
-				perror("Pipe:");
-				clear_pipes(t_cmd);
-				return (-1);
-			}
-			cmd->outfile = pip[1];
-			cmd->infile = pip[0];
-		}
+		if (cmd->infile && cmd->infile > 2)
+			close(cmd->infile);
+		if (cmd->outfile && cmd->outfile > 2)
+			close(cmd->outfile);
 		cmd = cmd->next;
 	}
-	return (0);
 }

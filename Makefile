@@ -1,7 +1,7 @@
 #-----------------------------------------------#
 #   NAME                                         #
 #------------------------------------------------#
-NAME		:= Minishell
+NAME		:= minishell
 
 #------------------------------------------------#
 #   INGREDIENTS                                  #
@@ -11,22 +11,27 @@ OBJ_DIR		:= obj
 LIBFT_DIR	:= libft
 SRCS		:=					\
 	main.c						\
-	builtin/cd.c					\
-	builtin/pwd.c					\
-	builtin/env.c					\
-	builtin/exit.c					\
-	builtin/echo.c					\
-	builtin/unset.c					\
-	builtin/export.c				\
-	env/env_init.c					\
-	env/clear_env.c					\
-	env/get_true_env.c				\
-	utils/ft_error.c				\
-	utils/split_cmd.c				\
-	exec/pipes.c					\
-	exec/ft_exec.c					\
-	exec/execution.c				\
-	exec/clear_pipes.c				\
+	builtin/cd.c				\
+	builtin/pwd.c				\
+	builtin/env.c				\
+	builtin/exit.c				\
+	builtin/echo.c				\
+	builtin/unset.c				\
+	builtin/export.c			\
+	env/get_true_env.c			\
+	env/ft_getenv.c	\
+	utils/ft_error.c			\
+	utils/split_cmd.c			\
+	utils/free_array.c	\
+	exec/create_pipes.c				\
+	exec/ft_exec.c				\
+	exec/execution.c			\
+	exec/dupificator.c	\
+	exec/child_process.c	\
+	exec/close_fds.c	\
+	exec/ft_wait.c	\
+	exec/redirections.c	\
+	exec/sort_param.c	\
 	parsing/error_handling/free.c			\
 	parsing/error_handling/free_split.c		\
 	parsing/tokenization/lexer.c			\

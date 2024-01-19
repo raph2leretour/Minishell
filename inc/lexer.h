@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:57:10 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/19 14:14:02 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/19 20:20:40 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct s_simple_cmd
 	char				*full_path;
 	int					infile;
 	int					outfile;
+	int					in;
+	int					out;
 	struct s_token		*first_token;
 	struct s_simple_cmd	*prev;
 	struct s_simple_cmd	*next;

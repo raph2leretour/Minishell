@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expanding.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:34:12 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/05 12:49:24 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/11 21:42:08 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "lexer.h"
+
+#include "minishell.h"
 
 int	contains_valid_var(char *token, int i, t_env *env_var)
 {
@@ -72,7 +73,7 @@ void	delete_invalid_dollar(t_token *token, t_env *env_var)
 
 	i = 0;
 	while (token->str[i])
-	{	
+	{
 		if (token->str[i] == '\'')
 		{
 			i++;
@@ -99,7 +100,7 @@ void	expand(t_token *token, t_env *env_var)
 
 	i = 0;
 	while (token->str && token->str[i])
-	{	
+	{
 		if (token->str[i] == '\'')
 		{
 			i++;

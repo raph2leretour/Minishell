@@ -1,5 +1,13 @@
 {
 	"files.associations": {
-		"libft.h": "c"
-	}
+		"libft.h": "c",
+		"minishell.h": "c"
+	},
+	"makefile.launchConfigurations": [
+		{
+			"cwd": "/mnt/nfs/homes/rtissera/minishell",
+			"binaryPath": "/mnt/nfs/homes/rtissera/minishell/Minishell",
+			"binaryArgs": []
+		}
+	]
 }

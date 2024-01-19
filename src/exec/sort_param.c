@@ -1,28 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   sort_param.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 14:58:45 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/23 11:11:53 by rtissera         ###   ########.fr       */
+/*   Created: 2024/01/17 18:13:18 by rtissera          #+#    #+#             */
+/*   Updated: 2024/01/17 18:15:11 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	pwd(void)
+void	sort_param(t_simple_cmd *cmd)
 {
-	char	*pwd;
-
-	pwd = getcwd(NULL, 0);
-	if (!pwd)
-	{
-		free(pwd);
-		perror("pwd");
-	}
-	ft_putstr_fd(pwd, 1);
-	ft_putchar_fd('\n', 1);
-	free(pwd);
 }

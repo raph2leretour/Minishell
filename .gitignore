@@ -1,0 +1,7 @@
+minishell
+*.o
+*.a
+*.out
+
+obj/
+.build/

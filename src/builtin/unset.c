@@ -6,28 +6,55 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:39:50 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/17 21:00:29 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/14 17:10:25 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	unset(char *name, t_env *env)
+void	unsetor(t_env *prev, t_env *next)
+{
+	if (prev)
+	{
+		if (next)
+			prev->next = next;
+		else
+			prev->next = NULL;
+	}
+	if (next)
+	{
+		if (prev)
+			next->prev = prev;
+		else
+			next->prev = NULL;
+	}
+}
+
+void	unset(t_command *cmd, t_env *env, char *tkey)
 {
 	t_env	*head;
-	t_env	*next;
 	t_env	*prev;
+	t_env	*next;
 
+	if (!env || !tkey)
+		return ;
 	head = env;
-	while (env && env->next && \
-		ft_strncmp(name, env->next->value, ft_strlen(name)))
+	while (env)
+	{
+		if (!ft_strncmp(tkey, env->key, ft_strlen(tkey)))
+		{
+			prev = env->prev;
+			next = env->next;
+			if (env == head)
+				head = next;
+			free(env->key);
+			free(env->value);
+			free(env);
+			unsetor(prev, next);
+			cmd->lst_env = head;
+			return ;
+		}
 		env = env->next;
-	prev = env;
-	env = env->next;
-	next = env->next;
-	free(env->value);
-	free(env);
-	env = prev;
-	env->next = next;
-	env = head;
+	}
+	cmd->lst_env = head;
 }

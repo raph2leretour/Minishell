@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/19 14:12:55 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/19 20:21:45 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ t_command	*process_input(char *str, t_command *cmd, t_env *env)
 		&& check_options(cmd)
 		&& set_option_type(cmd->first_cmd))
 	{
-		//exec(cmd);
-		print_simple_commands(cmd->first_cmd);
+		ft_exec(cmd);
+		// print_simple_commands(cmd->first_cmd);
 	}
 	return (cmd);
 }
@@ -100,7 +100,7 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
-	
+
 	env = get_env_vars(envp);
 	cmd = NULL;
 	while (1)
@@ -115,6 +115,7 @@ int	main(int argc, char **argv, char **envp)
 			exit(g_status);
 		}
 		cmd = process_input(str, cmd, env);
+		env = cmd->lst_env;
 		if (cmd)
 			free_cmd(cmd);
 		free(str);
