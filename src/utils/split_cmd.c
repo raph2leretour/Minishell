@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 15:31:55 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/17 20:16:07 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/19 18:57:22 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	**split_cmd(t_simple_cmd *cmd, bool skip)
 	token = cmd->first_token;
 	i = 0;
 	while (token && token->str && \
-		(token->type == COMMAND || token->type == ARGUMENT
+		(token->type == COMMAND || token->type == ARGUMENT \
 		|| token->type == OPTION))
 	{
 		s_cmd[i] = ft_strdup(token->str);
