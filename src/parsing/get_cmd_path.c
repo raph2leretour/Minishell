@@ -6,10 +6,11 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 10:29:02 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/04 13:21:26 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/19 17:21:00 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "lexer.h"
+
+#include "minishell.h"
 
 char	**get_path(t_env *env_vars)
 {
@@ -18,7 +19,7 @@ char	**get_path(t_env *env_vars)
 
 	while (env_vars)
 	{
-		if (!ft_strncmp("PATH", env_vars->key, 4))
+		if (!ft_strcmp("PATH", env_vars->key))
 		{
 			full_path = ft_strdup(env_vars->value);
 		}

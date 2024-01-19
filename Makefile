@@ -12,6 +12,7 @@ LIBFT_DIR	:= libft
 SRCS		:=					\
 	main.c						\
 	builtin/cd.c				\
+	builtin/cd2.c				\
 	builtin/pwd.c				\
 	builtin/env.c				\
 	builtin/exit.c				\

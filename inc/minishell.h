@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/17 18:15:52 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/19 19:31:36 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,15 @@ void	pwd(void);
 void	ft_env(t_env *env);
 void	free_array(char **a);
 void	free_env(t_env *env);
+void	ft_karl(t_token *token);
 void	ft_exec(t_command *t_cmd);
 void	close_fds(t_simple_cmd *cmd);
 void	ft_error(char *s, int errnum);
-void	sort_param(t_simple_cmd *cmd);
 void	clear_pipes(t_command *s_cmd);
 void	cd(t_token *token, t_env *env);
 void	echo(char **array, t_env *env);
 void	redirect_end(t_simple_cmd *cmd);
+void	cd_arg(t_env *env, char *path, char *oldpwd);
 void	ft_exit(t_command *cmd, t_token *token);
 void	do_exec(t_simple_cmd *cmd, t_env *s_env);
 void	ft_export(t_command *s_cmd, t_token *token);

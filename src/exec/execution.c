@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/17 14:40:49 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/19 17:10:17 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token, int b)
 {
-	if (!ft_strncmp(token->str, "cd", 2))
+	if (!ft_strcmp(token->str, "cd"))
 		cd(token, t_cmd->lst_env);
-	else if (!ft_strncmp(token->str, "echo", 4))
+	else if (!ft_strcmp(token->str, "echo"))
 		echo(split_cmd(cmd, 1), t_cmd->lst_env);
-	else if (!ft_strncmp(token->str, "env", 3))
+	else if (!ft_strcmp(token->str, "env"))
 		ft_env(t_cmd->lst_env);
-	else if (!ft_strncmp(token->str, "exit", 4))
+	else if (!ft_strcmp(token->str, "exit"))
 		ft_exit(t_cmd, cmd->first_token->next);
-	else if (!ft_strncmp(token->str, "export", 6))
+	else if (!ft_strcmp(token->str, "export"))
 		ft_export(t_cmd, cmd->first_token->next);
-	else if (!ft_strncmp(token->str, "pwd", 3))
+	else if (!ft_strcmp(token->str, "pwd"))
 		pwd();
-	else if (!ft_strncmp(token->str, "unset", 5))
+	else if (!ft_strcmp(token->str, "unset"))
 		unset(t_cmd, t_cmd->lst_env, token->next->str);
 	else
 	{
@@ -46,6 +46,7 @@ void	do_exec(t_simple_cmd *cmd, t_env *s_env)
 	char	**s_cmd;
 
 	c_env = get_true_env(s_env);
+	ft_karl(cmd->first_token);
 	s_cmd = split_cmd(cmd, 0);
 	if (execve(cmd->full_path, split_cmd(cmd, 0), c_env))
 	{

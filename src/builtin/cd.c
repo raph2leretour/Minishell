@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:15:28 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/17 14:40:43 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/19 19:31:29 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	set_pwd(t_env *env)
 {
 	char	*key;
 	char	*v_pwd;
+	t_env	*t_pwd;
 
 	key = ft_strdup("PWD");
 	v_pwd = getcwd(NULL, 0);
@@ -30,11 +31,17 @@ void	set_pwd(t_env *env)
 		free(key);
 		free(v_pwd);
 	}
+	else
+	{
+		t_pwd = init_env_var(key, v_pwd);
+		add_env_var(&env, t_pwd);
+	}
 }
 
 void	set_oldpwd(t_env *env, char *v_oldpwd)
 {
 	char	*key;
+	t_env	*t_oldpwd;
 
 	if (v_oldpwd && v_oldpwd[0])
 	{
@@ -44,6 +51,11 @@ void	set_oldpwd(t_env *env, char *v_oldpwd)
 			ft_reset(env, key, v_oldpwd);
 			free(key);
 			free(v_oldpwd);
+		}
+		else
+		{
+			t_oldpwd = init_env_var(key, v_oldpwd);
+			add_env_var(&env, t_oldpwd);
 		}
 	}
 	set_pwd(env);
@@ -105,17 +117,13 @@ void	cd(t_token *token, t_env *env)
 		if (cd_no_path(env) < 0)
 			return ;
 	}
-	else if (!ft_strncmp(path, "-", 1))
+	else if (!ft_strcmp(path, "-"))
 	{
 		if (cd_less_symbol(env) < 0)
 			return ;
 	}
-	else if (chdir(path) < 0)
+	else
 	{
-		perror("minishell: cd");
-		if (oldpwd)
-			free(oldpwd);
-		return ;
+		cd_arg(env, path, oldpwd);
 	}
-	set_oldpwd(env, oldpwd);
 }
