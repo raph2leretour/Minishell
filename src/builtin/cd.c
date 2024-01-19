@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:15:28 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/17 14:40:43 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/19 17:36:15 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,12 @@ int	cd_no_path(t_env *env)
 
 void	cd(t_token *token, t_env *env)
 {
+	char	*tmp;
 	char	*path;
 	char	*oldpwd;
 
 	path = NULL;
+	tmp = NULL;
 	if (token->next && token->next->str)
 		path = token->next->str;
 	oldpwd = getcwd(NULL, 0);
@@ -105,17 +107,26 @@ void	cd(t_token *token, t_env *env)
 		if (cd_no_path(env) < 0)
 			return ;
 	}
-	else if (!ft_strncmp(path, "-", 1))
+	else if (!ft_strcmp(path, "-"))
 	{
 		if (cd_less_symbol(env) < 0)
 			return ;
 	}
-	else if (chdir(path) < 0)
+	else
 	{
-		perror("minishell: cd");
-		if (oldpwd)
-			free(oldpwd);
-		return ;
+		if (!ft_strcmp(path, ".."))
+			tmp = ft_strjoin(path, "/");
+		else
+			tmp = ft_strdup(path);
+		if (chdir(tmp) < 0)
+		{
+			perror("minishell: cd");
+			free(tmp);
+			if (oldpwd)
+				free(oldpwd);
+			return ;
+		}
+		free(tmp);
 	}
 	set_oldpwd(env, oldpwd);
 }

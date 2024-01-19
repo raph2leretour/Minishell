@@ -6,7 +6,7 @@
 #    By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 14:46:30 by rtissera          #+#    #+#              #
-#    Updated: 2023/12/27 15:16:43 by rtissera         ###   ########.fr        #
+#    Updated: 2024/01/19 17:17:39 by rtissera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS		:=							\
 	mandatory/ft_strchr.c				\
 	mandatory/ft_substr.c				\
 	mandatory/ft_strlen.c				\
+	mandatory/ft_strcmp.c				\
 	mandatory/ft_strjoin.c				\
 	mandatory/ft_memmove.c				\
 	mandatory/ft_strlcpy.c				\

@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:39:50 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/14 17:10:25 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/19 17:09:23 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	unset(t_command *cmd, t_env *env, char *tkey)
 	head = env;
 	while (env)
 	{
-		if (!ft_strncmp(tkey, env->key, ft_strlen(tkey)))
+		if (!ft_strcmp(tkey, env->key))
 		{
 			prev = env->prev;
 			next = env->next;

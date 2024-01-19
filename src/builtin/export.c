@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:20:07 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/17 14:36:04 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/19 17:08:32 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_reset(t_env *env, char *key, char *value)
 		head = env;
 		while (env)
 		{
-			if (!ft_strncmp(env->key, key, ft_strlen(key)))
+			if (!ft_strcmp(env->key, key))
 			{
 				free(env->value);
 				env->value = ft_substr(value, 0, ft_strlen(value));

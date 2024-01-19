@@ -3,24 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   redirections1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 20:56:37 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/04 13:22:43 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/19 17:21:11 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "minishell.h"
 
 void	set_redirection(char *redirection, char *file, t_simple_cmd *simple_cmd
 				, t_command *cmd_struct)
 {
-	if (!ft_strncmp(redirection, ">", ft_strlen(redirection)))
+	if (!ft_strcmp(redirection, ">"))
 		simple_cmd->outfile = redirect_output(file,
 				simple_cmd->outfile, cmd_struct);
-	else if (!ft_strncmp(redirection, "<", ft_strlen(redirection)))
+	else if (!ft_strcmp(redirection, "<"))
 		simple_cmd->infile = redirect_input(file,
 				simple_cmd->infile, cmd_struct);
-	else if (!ft_strncmp(redirection, ">>", ft_strlen(redirection)))
+	else if (!ft_strcmp(redirection, ">>"))
 		simple_cmd->outfile = redirect_append(file,
 				simple_cmd->outfile, cmd_struct);
 }
