@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:26 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/18 21:33:26 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/19 14:07:01 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -14,22 +14,22 @@
 int	check_token(t_token *token, t_simple_cmd *simple_cmd, char *path,
 		t_command *cmd_struct)
 {
-	if (is_absolute_path(token->str))
+	if (!is_builtin(simple_cmd->first_token->str))
 	{
-		token->type = COMMAND;
-		path = strdup(token->str);
-		simple_cmd->full_path = path;
-		if (!simple_cmd->next)
+		if (is_absolute_path(token->str))
+		{
+			token->type = COMMAND;
+			path = strdup(token->str);
+			simple_cmd->full_path = path;
 			return (1);
-		simple_cmd = simple_cmd->next;
-	}
-	path = get_cmd_path(token->str, cmd_struct);
-	if (!simple_cmd->full_path && path)
-	{
-		simple_cmd->full_path = path;
-		token->type = COMMAND;
-		if (!simple_cmd->next)
+		}
+		path = get_cmd_path(token->str, cmd_struct);
+		if (!simple_cmd->full_path && path)
+		{
+			simple_cmd->full_path = path;
+			token->type = COMMAND;
 			return (1);
+		}
 	}
 	return (0);
 }

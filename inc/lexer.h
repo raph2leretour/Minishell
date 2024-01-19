@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:57:10 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/18 21:16:39 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/19 14:14:02 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,6 @@ int					no_more_quotes(char *str, int i);
 int					heredoc(t_command *cmd_struct);
 int					handle_backslash(t_command *cmd);
 int					check_executables(t_command *cmd);
+int					set_option_type(t_simple_cmd *simple_cmd);
 
 #endif
