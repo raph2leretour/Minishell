@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/20 11:42:02 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:51:02 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	do_exec(t_simple_cmd *cmd, t_env *s_env)
 	if (!cmd->full_path)
 		cmd->full_path = cmd->first_token->str;
 	s_cmd = split_cmd(cmd, 0);
-	if (execve(cmd->full_path, split_cmd(cmd, 0), c_env) < 0)
+	if (execve(cmd->full_path, s_cmd, c_env) < 0)
 	{
 		i = 0;
 		free_array(c_env);
@@ -60,6 +60,7 @@ void	do_exec(t_simple_cmd *cmd, t_env *s_env)
 	}
 	i = 0;
 	free_array(c_env);
+	free_array(s_cmd);
 }
 
 int	execution(t_command *t_cmd, t_simple_cmd *cmd)
