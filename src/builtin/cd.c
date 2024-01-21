@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:15:28 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/19 19:31:29 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/21 11:31:34 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int	cd_less_symbol(t_env *env)
 		ft_dprintf(2, "minishell: cd: OLDPWD not set\n");
 		return (-1);
 	}
+	set_pwd(env);
 	return (0);
 }
 
@@ -100,14 +101,17 @@ int	cd_no_path(t_env *env)
 		ft_dprintf(2, "minishell: cd: HOME not set\n");
 		return (-1);
 	}
+	set_pwd(env);
 	return (0);
 }
 
-void	cd(t_token *token, t_env *env)
+int	cd(t_command *cmd, t_token *token, t_env *env)
 {
 	char	*path;
 	char	*oldpwd;
 
+	if (is_pipe(cmd))
+		return (1);
 	path = NULL;
 	if (token->next && token->next->str)
 		path = token->next->str;
@@ -115,15 +119,16 @@ void	cd(t_token *token, t_env *env)
 	if (!path)
 	{
 		if (cd_no_path(env) < 0)
-			return ;
+			return (1);
 	}
 	else if (!ft_strcmp(path, "-"))
 	{
 		if (cd_less_symbol(env) < 0)
-			return ;
+			return (1);
 	}
 	else
 	{
 		cd_arg(env, path, oldpwd);
 	}
+	return (0);
 }

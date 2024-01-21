@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:39:50 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/19 17:09:23 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/21 12:55:12 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ void	unsetor(t_env *prev, t_env *next)
 	}
 }
 
-void	unset(t_command *cmd, t_env *env, char *tkey)
+int	unset(t_command *cmd, t_env *env, char *tkey)
 {
 	t_env	*head;
 	t_env	*prev;
 	t_env	*next;
 
 	if (!env || !tkey)
-		return ;
+		return (1);
 	head = env;
 	while (env)
 	{
@@ -52,9 +52,9 @@ void	unset(t_command *cmd, t_env *env, char *tkey)
 			free(env);
 			unsetor(prev, next);
 			cmd->lst_env = head;
-			return ;
+			return (0);
 		}
 		env = env->next;
 	}
-	cmd->lst_env = head;
+	return (cmd->lst_env = head, 1);
 }
