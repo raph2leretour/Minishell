@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 18:13:18 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/17 20:34:27 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:08:35 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	put_on_top(t_token *token)
 void	ft_karl(t_token *token)
 {
 	t_token	*head;
-	t_token	*last_coop;
 
 	head = token;
 	while (token && (token->type == COMMAND || token->type == OPTION)
@@ -44,7 +43,6 @@ void	ft_karl(t_token *token)
 		token = head;
 		return ;
 	}
-	last_coop = token->prev;
 	while (token && token->type != PIPE)
 	{
 		if (token->type == OPTION)
