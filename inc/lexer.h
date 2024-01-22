@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:57:10 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/19 20:20:40 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/22 09:50:56 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void				go_through_simple_cmds(t_simple_cmd *simple_cmd);
 void				delete_invalid_var(t_token *token, int i);
 void				expand_var(t_token *token, int i, t_env *env_var);
 void				signals(void);
+void				expand_exit(t_token *token, int i);
 char				*get_cmd_path(char *cmd, t_command *cmd_struct);
 
 int					add_token_word(t_command *cmd_struct, int i);
@@ -132,5 +133,6 @@ int					heredoc(t_command *cmd_struct);
 int					handle_backslash(t_command *cmd);
 int					check_executables(t_command *cmd);
 int					set_option_type(t_simple_cmd *simple_cmd);
+int					is_dollar_exit(t_token *token, int i);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/19 20:21:45 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/22 14:29:13 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_command	*process_input(char *str, t_command *cmd, t_env *env)
 		&& set_option_type(cmd->first_cmd))
 	{
 		ft_exec(cmd);
-		// print_simple_commands(cmd->first_cmd);
+		//print_simple_commands(cmd->first_cmd);
 	}
 	return (cmd);
 }
@@ -106,6 +106,7 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{	
 		signals();
+		g_status = 0;
 		str = readline("minishell$ ");
 		if (!str)
 		{
