@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/19 17:10:17 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:42:42 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token, int b)
 
 void	do_exec(t_simple_cmd *cmd, t_env *s_env)
 {
-	int		i;
 	char	**c_env;
 	char	**s_cmd;
 
@@ -50,13 +49,11 @@ void	do_exec(t_simple_cmd *cmd, t_env *s_env)
 	s_cmd = split_cmd(cmd, 0);
 	if (execve(cmd->full_path, split_cmd(cmd, 0), c_env))
 	{
-		i = 0;
 		free_array(c_env);
 		free_array(s_cmd);
 		ft_dprintf(2, "%s: ", cmd->first_token->str);
 		ft_error("Command Not Found", -1);
 	}
-	i = 0;
 	free_array(c_env);
 }
 
