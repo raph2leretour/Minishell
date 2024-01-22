@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/22 14:29:13 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/22 15:03:39 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	main(int argc, char **argv, char **envp)
 	env = get_env_vars(envp);
 	cmd = NULL;
 	while (1)
-	{	
+	{
 		signals();
 		g_status = 0;
 		str = readline("minishell$ ");
