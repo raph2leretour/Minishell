@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:49:51 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/21 11:27:01 by rtissera         ###   ########.fr       */
+/*   Updated: 2023/12/27 15:22:08 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	ft_error(char *s, int errnum)
 {
-	ft_dprintf(2, "Error: %s\n", s);
+	ft_dprintf(1, "Error: %s\n", s);
 	errno = errnum;
 }

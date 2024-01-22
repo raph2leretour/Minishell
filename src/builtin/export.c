@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:20:07 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/21 11:37:57 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/19 17:08:32 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	format_error(char *value)
 	char	*errc;
 	char	*errc2;
 
-	errc = ft_strdup("minishell: export: `");
+	errc = ft_strdup("bash: export: `");
 	ft_strlcat(errc, value, ft_strlen(errc) + ft_strlen(value));
 	errc2 = ft_strdup("': not a valid identifier");
 	ft_strlcat(errc, errc2, ft_strlen(errc) + ft_strlen(errc2));
@@ -94,7 +94,7 @@ void	ft_reset(t_env *env, char *key, char *value)
 	}
 }
 
-int	ft_export(t_command *s_cmd, t_token *token)
+void	ft_export(t_command *s_cmd, t_token *token)
 {
 	char	*key;
 	char	*value;
@@ -103,7 +103,7 @@ int	ft_export(t_command *s_cmd, t_token *token)
 	if (token && token->str)
 	{
 		if (is_non_valid(token->str))
-			return (1);
+			return ;
 		key = get_key(token->str);
 		value = get_value(token->str);
 		if (ft_getenv(key, s_cmd->lst_env))
@@ -120,5 +120,4 @@ int	ft_export(t_command *s_cmd, t_token *token)
 	}
 	else
 		no_arg(s_cmd->lst_env);
-	return (0);
 }

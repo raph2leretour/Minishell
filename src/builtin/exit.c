@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:43:09 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/20 13:58:47 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/17 14:35:11 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	is_arg_good(t_token *token, t_command *cmd)
 	{
 		if (!ft_isdigit(token->str[i]))
 		{
-			ft_dprintf(2, "exit\nminishell: exit: %s: \
-				numeric argument required\n", token->str);
+			printf("exit\nbash: exit: %s: numeric argument required\n", \
+				token->str);
 			free_env(cmd->lst_env);
 			free_cmd(cmd);
 			exit(2);
@@ -47,20 +47,20 @@ void	ft_exit(t_command *cmd, t_token *token)
 		is_arg_good(token, cmd);
 		if (token->next && token->next->str)
 		{
-			ft_dprintf(2, "exit\nminishell: exit: too many arguments\n");
+			printf("exit\nbash: exit: too many arguments\n");
 			return ;
 		}
 		errno = ft_atoi(token->str);
-		ft_dprintf(1, "exit\n");
+		printf("exit\n");
 		free_env(cmd->lst_env);
 		free_cmd(cmd);
 		exit(errno);
 	}
 	else
 	{
-		ft_dprintf(1, "exit\n");
+		printf("exit\n");
 		free_env(cmd->lst_env);
 		free_cmd(cmd);
-		exit(g_status);
+		exit(0);
 	}
 }
