@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/22 20:42:42 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:45:46 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	do_exec(t_simple_cmd *cmd, t_env *s_env)
 
 int	execution(t_command *t_cmd, t_simple_cmd *cmd)
 {
-	int		status;
 	pid_t	pid;
 
 	while (cmd)
@@ -81,6 +80,5 @@ int	execution(t_command *t_cmd, t_simple_cmd *cmd)
 			close(cmd->outfile);
 		cmd = cmd->next;
 	}
-	status = ft_wait(pid);
 	return (0);
 }
