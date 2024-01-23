@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 15:31:55 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/19 18:57:22 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/23 13:05:31 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	**freeror(char **s_cmd)
 		i++;
 	}
 	free(s_cmd);
-	return (malloc(0));
+	return (NULL);
 }
 
 char	**split_cmd(t_simple_cmd *cmd, bool skip)
@@ -51,7 +51,7 @@ char	**split_cmd(t_simple_cmd *cmd, bool skip)
 	i = iterator(token);
 	s_cmd = malloc(sizeof(char *) * (i + 2));
 	if (!s_cmd)
-		return (ft_error("Cannot Malloc", -1), NULL);
+		return (ft_dprintf(2, "Error: Cannot Malloc\n"), NULL);
 	token = cmd->first_token;
 	i = 0;
 	while (token && token->str && \
@@ -60,7 +60,7 @@ char	**split_cmd(t_simple_cmd *cmd, bool skip)
 	{
 		s_cmd[i] = ft_strdup(token->str);
 		if (!s_cmd[i])
-			return (ft_error("Cannot Malloc", -1), freeror(s_cmd));
+			return (ft_dprintf(2, "Error: Cannot Malloc\n"), freeror(s_cmd));
 		token = token->next;
 		i++;
 	}

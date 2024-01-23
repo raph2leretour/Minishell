@@ -6,16 +6,15 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 18:53:20 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/01 18:55:23 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/22 22:45:34 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_wait(pid_t last_pid)
+void	ft_wait(pid_t last_pid)
 {
 	int		status;
-	int		return_value;
 	pid_t	pid;
 
 	while (true)
@@ -25,11 +24,17 @@ int	ft_wait(pid_t last_pid)
 			break ;
 		if (pid == last_pid)
 		{
+			ft_dprintf(1, "here\n");
 			if (WIFEXITED(status))
-				return_value = WEXITSTATUS(status);
+			{
+				ft_dprintf(1, "wexitstatus\n");
+				g_status = WEXITSTATUS(status);
+			}
 			else
-				return_value = 128 + WTERMSIG(status);
+			{
+				ft_dprintf(1, "wtermsig\n");
+				g_status = 128 + WTERMSIG(status);
+			}
 		}
 	}
-	return (return_value);
 }
