@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:05:14 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/21 11:46:53 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:29:17 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	nnn(char **array, int i)
 			j = 1;
 			while (array[i][j] && array[i][j] == 'n')
 				j++;
-			if (array[i][j])
+			if (array[i][j] || j == 1)
 				return (i);
 		}
 		else

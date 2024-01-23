@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/22 15:03:39 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/23 15:19:48 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,14 @@ void	print_simple_commands(t_simple_cmd *simple_cmd)
 	i = 0;
 	while (simple_cmd)
 	{
-		printf("Simple cmd %d:\n\n", i++);
+		printf("--------------\n");
+		printf("Simple cmd %d:\n", i++);
 		printf("Full path:%s\n", simple_cmd->full_path);
 		printf("Infile:%d\n", simple_cmd->infile);
 		printf("Outfile:%d\n", simple_cmd->outfile);
 		print_command(simple_cmd->first_token);
-		printf("\n");
+		ft_dprintf(1, "g_status = %d\n", g_status);
+		printf("--------------\n");
 		simple_cmd = simple_cmd->next;
 	}
 }
@@ -73,11 +75,10 @@ t_command	*process_input(char *str, t_command *cmd, t_env *env)
 		&& check_executables(cmd) && heredoc(cmd)
 		&& set_simple_commands(cmd)
 		&& handle_redirections(cmd)
-		&& check_options(cmd)
 		&& set_option_type(cmd->first_cmd))
 	{
 		ft_exec(cmd);
-		//print_simple_commands(cmd->first_cmd);
+		print_simple_commands(cmd->first_cmd);
 	}
 	return (cmd);
 }
@@ -103,10 +104,10 @@ int	main(int argc, char **argv, char **envp)
 
 	env = get_env_vars(envp);
 	cmd = NULL;
+	g_status = 0;
 	while (1)
 	{
 		signals();
-		g_status = 0;
 		str = readline("minishell$ ");
 		if (!str)
 		{

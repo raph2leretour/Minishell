@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:39:50 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/21 12:55:12 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/22 17:38:01 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,41 @@ void	unsetor(t_env *prev, t_env *next)
 	}
 }
 
-int	unset(t_command *cmd, t_env *env, char *tkey)
+void	freetor(t_env *env, t_env *head)
 {
-	t_env	*head;
 	t_env	*prev;
 	t_env	*next;
 
-	if (!env || !tkey)
+	prev = env->prev;
+	next = env->next;
+	if (env == head)
+		head = next;
+	free(env->key);
+	free(env->value);
+	free(env);
+	unsetor(prev, next);
+}
+
+int	unset(t_env *env, t_token *token)
+{
+	t_env	*head;
+
+	if (!env)
 		return (1);
 	head = env;
-	while (env)
+	while (token)
 	{
-		if (!ft_strcmp(tkey, env->key))
+		while (env)
 		{
-			prev = env->prev;
-			next = env->next;
-			if (env == head)
-				head = next;
-			free(env->key);
-			free(env->value);
-			free(env);
-			unsetor(prev, next);
-			cmd->lst_env = head;
-			return (0);
+			if (!ft_strcmp(token->str, env->key))
+			{
+				freetor(env, head);
+				break ;
+			}
+			env = env->next;
 		}
-		env = env->next;
+		env = head;
+		token = token->next;
 	}
-	return (cmd->lst_env = head, 1);
+	return (0);
 }

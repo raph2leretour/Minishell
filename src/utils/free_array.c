@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 14:23:47 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/17 14:34:33 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/23 12:47:36 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@ void	free_array(char **a)
 {
 	int	i;
 
-	i = 0;
-	while (a[i])
+	if (a)
 	{
-		free(a[i]);
-		i++;
+		i = 0;
+		while (a[i])
+		{
+			free(a[i]);
+			i++;
+		}
+		free(a);
 	}
-	free(a);
 }

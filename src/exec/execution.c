@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/21 12:55:42 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:45:10 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token, int b)
 	else if (!ft_strcmp(token->str, "pwd"))
 		status = pwd();
 	else if (!ft_strcmp(token->str, "unset"))
-		status = unset(t_cmd, t_cmd->lst_env, token->next->str);
+		status = unset(t_cmd->lst_env, token->next);
 	else
 		ft_dprintf(2, "minishell: %s: command not found\n", \
 			cmd->first_token->str);
@@ -40,28 +40,43 @@ int	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token, int b)
 	return (status);
 }
 
-void	do_exec(t_simple_cmd *cmd, t_env *s_env)
+void	free_exit(t_command *t_cmd, t_env *s_env, char **c_env, char **s_cmd, \
+	int exit_status)
 {
-	int		i;
+	free_array(c_env);
+	free_array(s_cmd);
+	free_env(s_env);
+	free_cmd(t_cmd);
+	exit(exit_status);
+}
+
+void	do_exec(t_command *t_cmd, t_simple_cmd *t_scmd, t_env *s_env)
+{
 	char	**c_env;
 	char	**s_cmd;
 
-	c_env = get_true_env(s_env);
-	ft_karl(cmd->first_token);
-	if (!cmd->full_path)
-		cmd->full_path = cmd->first_token->str;
-	s_cmd = split_cmd(cmd, 0);
-	if (execve(cmd->full_path, s_cmd, c_env) < 0)
+	ft_karl(t_scmd->first_token);
+	printf("fma : %s ; ftk: %s\n",t_scmd->full_path, t_scmd->first_token->str);
+	if (!t_scmd->full_path)
 	{
-		i = 0;
-		free_array(c_env);
-		free_array(s_cmd);
-		ft_dprintf(2, "%s: ", cmd->first_token->str);
-		ft_error("Command Not Found", -1);
+		if (!ft_strchr(t_scmd->first_token->str, '/'))
+		{
+			ft_dprintf(2, "minishell: %s: Command Not Found\n", \
+				t_scmd->first_token->str);
+			free_exit(t_cmd, s_env, NULL, NULL, 127);
+		}
+		t_scmd->full_path = ft_strdup(t_scmd->first_token->str);
 	}
-	i = 0;
-	free_array(c_env);
-	free_array(s_cmd);
+	c_env = get_true_env(s_env);
+	s_cmd = split_cmd(t_scmd, 0);
+	if (! s_cmd)
+	{
+		free_exit(t_cmd, s_env, c_env, s_cmd, 2);
+	}
+	execve(t_scmd->full_path, s_cmd, c_env);
+	ft_dprintf(2, "minishell: %s: %s\n", \
+		t_scmd->first_token->str, strerror(errno));
+	free_exit(t_cmd, s_env, c_env, s_cmd, 126);
 }
 
 int	execution(t_command *t_cmd, t_simple_cmd *cmd)
@@ -87,6 +102,6 @@ int	execution(t_command *t_cmd, t_simple_cmd *cmd)
 			close(cmd->outfile);
 		cmd = cmd->next;
 	}
-	g_status = ft_wait(pid);
+	ft_wait(pid);
 	return (0);
 }
