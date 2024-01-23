@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:05:14 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/16 16:33:16 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:48:54 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	nnn(char **array, int i)
 			j = 1;
 			while (array[i][j] && array[i][j] == 'n')
 				j++;
-			if (array[i][j])
+			if (array[i][j] || j == 1)
 				return (i);
 		}
 		else
@@ -33,7 +33,7 @@ int	nnn(char **array, int i)
 	return (i);
 }
 
-void	echo(char **array, t_env *env)
+int	echo(char **array, t_env *env)
 {
 	int	i;
 	int	b;
@@ -53,4 +53,5 @@ void	echo(char **array, t_env *env)
 	if (b)
 		ft_putchar_fd('\n', 1);
 	free_array(array);
+	return (0);
 }
