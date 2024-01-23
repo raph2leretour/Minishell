@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:57:10 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/22 09:50:56 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/23 10:10:11 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define SEMI 5
 # define AND 6
 # define OPTION 7
+# define HEREDOC_NAME "/tmp/.minishell_heredoc_"
 
 extern int			g_status;
 
@@ -38,8 +39,10 @@ typedef struct s_token
 typedef struct s_simple_cmd
 {
 	char				*full_path;
+	char				*here_doc;
 	int					infile;
 	int					outfile;
+	int					here_in;
 	int					in;
 	int					out;
 	struct s_token		*first_token;
@@ -129,7 +132,7 @@ int					wrong_var_form(char *token, int i, char *key);
 int					expand_quoted(int i, t_token *token, t_env *env_var);
 int					dollar_quoted(char *token, int i);
 int					no_more_quotes(char *str, int i);
-int					heredoc(t_command *cmd_struct);
+int					heredoc(t_command *cmd);
 int					handle_backslash(t_command *cmd);
 int					check_executables(t_command *cmd);
 int					set_option_type(t_simple_cmd *simple_cmd);

@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:26 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/19 14:07:01 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/23 09:15:43 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -107,9 +107,10 @@ t_simple_cmd	*init_simple_cmd(t_token *head_tkn)
 	if (!new_simple_cmd)
 		return (NULL);
 	new_simple_cmd->full_path = NULL;
-	new_simple_cmd->full_path = NULL;
+	new_simple_cmd->here_doc = NULL;
 	new_simple_cmd->infile = 0;
 	new_simple_cmd->outfile = 1;
+	new_simple_cmd->here_in = -1;
 	new_simple_cmd->first_token = head_tkn;
 	new_simple_cmd->prev = NULL;
 	new_simple_cmd->next = NULL;
