@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/23 15:19:48 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/23 20:31:57 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	print_simple_commands(t_simple_cmd *simple_cmd)
 		printf("--------------\n");
 		printf("Simple cmd %d:\n", i++);
 		printf("Full path:%s\n", simple_cmd->full_path);
+		printf("Heredoc file: %s\n", simple_cmd->here_doc);
+		printf("Heredoc fd: %d\n", simple_cmd->here_in);
 		printf("Infile:%d\n", simple_cmd->infile);
 		printf("Outfile:%d\n", simple_cmd->outfile);
 		print_command(simple_cmd->first_token);
@@ -72,7 +74,7 @@ t_command	*process_input(char *str, t_command *cmd, t_env *env)
 	add_history(str);
 	if (check_syntax(cmd) && expanding(cmd)
 		&& handle_backslash(cmd) && delete_quotes(cmd)
-		&& check_executables(cmd) && heredoc(cmd)
+		&& check_executables(cmd)
 		&& set_simple_commands(cmd)
 		&& handle_redirections(cmd)
 		&& set_option_type(cmd->first_cmd))
