@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:34:29 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/14 17:39:20 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/23 23:47:27 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ char	*get_value(char *env_var)
 	i = 0;
 	while (env_var[i] && env_var[i] != '=')
 		i++;
-	i++;
+	if (env_var[i])
+		i++;
 	len = i;
 	while (env_var[len])
 		len++;
@@ -65,13 +66,16 @@ t_env	*get_env_vars(char **envp)
 
 	i = 0;
 	env_list = NULL;
-	while (envp[i])
+	if (envp)
 	{
-		key = get_key(envp[i]);
-		value = get_value(envp[i]);
-		new_env_var = init_env_var(key, value);
-		add_env_var(&env_list, new_env_var);
-		i++;
+		while (envp[i])
+		{
+			key = get_key(envp[i]);
+			value = get_value(envp[i]);
+			new_env_var = init_env_var(key, value);
+			add_env_var(&env_list, new_env_var);
+			i++;
+		}
 	}
 	return (env_list);
 }

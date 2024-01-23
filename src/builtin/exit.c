@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:43:09 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/23 20:32:09 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/23 22:34:22 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	is_arg_good(t_token *token, t_command *cmd)
 
 void	ft_exit(t_command *cmd, t_token *token)
 {
-	if (is_pipe(cmd))
+	if (cmd && is_pipe(cmd))
 		return ;
 	if (token && token->str)
 	{
@@ -59,7 +59,8 @@ void	ft_exit(t_command *cmd, t_token *token)
 	else
 	{
 		ft_dprintf(1, "exit\n");
-		free_env(cmd->lst_env);
+		if (cmd)
+			free_env(cmd->lst_env);
 		free_cmd(cmd);
 		exit(g_status);
 	}

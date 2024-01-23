@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/23 20:31:45 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/23 22:17:38 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void	do_exec(t_command *t_cmd, t_simple_cmd *t_scmd, t_env *s_env);
 void	cd_arg(t_env *env, char *path, char *oldpwd);
 void	ft_reset(t_env *env, char *key, char *value);
 void	child_process(t_command *t_cmd, t_simple_cmd *cmd);
+void	restore_signal(void);
+void	ignor_signal(void);
 t_env	*init_env_var(char *key, char *value);
 
 #endif

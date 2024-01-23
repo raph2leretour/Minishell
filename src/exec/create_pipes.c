@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2023/12/26 16:01:45 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/23 21:41:40 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,17 @@ int	create_pipe(t_command *t_cmd)
 	{
 		if (cmd->next)
 		{
-			if (pipe(pipefd))
+			if (!is_any_redirection(cmd))
 			{
-				perror("Pipe:");
-				close_fds(t_cmd->first_cmd);
-				return (-1);
+				if (pipe(pipefd))
+				{
+					perror("Pipe:");
+					close_fds(t_cmd->first_cmd);
+					return (-1);
+				}
+				cmd->outfile = pipefd[1];
+				cmd->next->infile = pipefd[0];
 			}
-			cmd->outfile = pipefd[1];
-			cmd->next->infile = pipefd[0];
 		}
 		cmd = cmd->next;
 	}

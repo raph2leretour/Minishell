@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:20:07 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/23 20:32:16 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/23 23:40:07 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	ft_reset(t_env *env, char *key, char *value)
 	}
 }
 
-void	export_var(t_env *env, t_token *token)
+void	export_var(t_command *cmd, t_token *token)
 {
 	char	*key;
 	char	*value;
@@ -91,16 +91,19 @@ void	export_var(t_env *env, t_token *token)
 
 	key = get_key(token->str);
 	value = get_value(token->str);
-	if (ft_getenv(key, env))
+	if (ft_getenv(key, cmd->lst_env))
 	{
-		ft_reset(env, key, value);
+		ft_reset(cmd->lst_env, key, value);
 		free(key);
 		free(value);
 	}
 	else
 	{
 		new_env_var = init_env_var(key, value);
-		add_env_var(&env, new_env_var);
+		if (!cmd->lst_env)
+			cmd->lst_env = new_env_var;
+		else
+			add_env_var(&cmd->lst_env, new_env_var);
 	}
 }
 
@@ -116,7 +119,7 @@ int	ft_export(t_command *s_cmd, t_token *token)
 		if (is_non_valid(token->str))
 			status = 1;
 		else
-			export_var(s_cmd->lst_env, token);
+			export_var(s_cmd, token);
 		token = token->next;
 	}
 	token = head;

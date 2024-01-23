@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:26 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/23 20:33:40 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/23 20:37:35 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,17 +88,14 @@ int	set_command_path(t_command *cmd_struct)
 
 	while (simple_cmd)
 	{
-		// ft_dprintf(1, "BOUM cmd : %s\n", simple_cmd->first_token->str);
 		token = simple_cmd->first_token;
 		while (token)
 		{
 			if (check_token(token, simple_cmd, path, cmd_struct))
-				;// return (1);// le petit conseil de loic : n'arrete pas la boucle!
+				;
 			token = token->next;
 		}
 		cmd_contains_builtin(simple_cmd);
-		// if (!contains_cmd(simple_cmd))
-			// ;// return (0);
 		simple_cmd = simple_cmd->next;
 	}
 	return (1);

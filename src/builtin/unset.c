@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:39:50 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/23 20:32:22 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/23 23:56:50 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ void	freetor(t_env *env, t_env *head)
 
 	prev = env->prev;
 	next = env->next;
-	if (env == head)
+	if (env == head && !env->next)
+		head = NULL;
+	else if (env == head)
 		head = next;
 	free(env->key);
 	free(env->value);
@@ -61,7 +63,8 @@ int	unset(t_env *env, t_token *token)
 				freetor(env, head);
 				break ;
 			}
-			env = env->next;
+			if (env && env->next)
+				env = env->next;
 		}
 		env = head;
 		token = token->next;

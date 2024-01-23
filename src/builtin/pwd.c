@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:58:45 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/23 19:47:12 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/23 23:05:23 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	pwd(void)
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
 	{
-		free(pwd);
 		perror("minishell: pwd");
 		return (1);
 	}

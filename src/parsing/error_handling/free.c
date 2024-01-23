@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:11:42 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/23 10:59:52 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/23 22:33:24 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "lexer.h"
+
+#include "minishell.h"
 
 void	free_tokens(t_token *first_token)
 {
@@ -73,9 +74,12 @@ void	free_env_vars(t_env *env_var)
 
 void	free_cmd(t_command *cmd)
 {
-	if (cmd->first_cmd)
-		free_simple_cmds(cmd->first_cmd);
-	if (cmd->first_token)
-		free_tokens(cmd->first_token);
-	free(cmd);
+	if (cmd)
+	{
+		if (cmd->first_cmd)
+			free_simple_cmds(cmd->first_cmd);
+		if (cmd->first_token)
+			free_tokens(cmd->first_token);
+		free(cmd);
+	}
 }

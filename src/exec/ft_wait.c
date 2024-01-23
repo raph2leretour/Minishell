@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 18:53:20 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/22 22:45:34 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/23 22:24:34 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,15 @@ void	ft_wait(pid_t last_pid)
 			break ;
 		if (pid == last_pid)
 		{
-			ft_dprintf(1, "here\n");
 			if (WIFEXITED(status))
 			{
-				ft_dprintf(1, "wexitstatus\n");
 				g_status = WEXITSTATUS(status);
 			}
 			else
 			{
-				ft_dprintf(1, "wtermsig\n");
 				g_status = 128 + WTERMSIG(status);
+				if (g_status == 131)
+					ft_dprintf(2, "Quit (core dumped)\n");
 			}
 		}
 	}
