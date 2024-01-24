@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:26 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 13:10:58 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/24 19:45:55 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	check_exec(t_simple_cmd *simple_cmd)
 	token = simple_cmd->first_token;
 	while (token)
 	{
+		//TODO --> verifier si OK
 		if (token->type == COMMAND && !ft_strcmp(token->str, "./"))
 			return (1);
 		token = token->next;
@@ -92,6 +93,8 @@ int	set_command_path(t_command *cmd_struct)
 		while (token)
 		{
 			check_token(token, simple_cmd, path, cmd_struct);
+			if (simple_cmd->full_path != NULL)
+				break ;
 			token = token->next;
 		}
 		cmd_contains_builtin(simple_cmd);
@@ -99,6 +102,7 @@ int	set_command_path(t_command *cmd_struct)
 	}
 	return (1);
 }
+
 
 t_simple_cmd	*init_simple_cmd(t_token *head_tkn)
 {

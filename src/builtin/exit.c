@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:43:09 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/23 22:34:22 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:10:56 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,52 @@ void	is_arg_good(t_token *token, t_command *cmd)
 	}
 }
 
-void	ft_exit(t_command *cmd, t_token *token)
+int	atouille(const char *nptr)
+{
+	int	res;
+	int	sig;
+
+	res = 0;
+	sig = 1;
+	while (((*nptr >= 9) && (*nptr <= 13)) || (*nptr == 32))
+		nptr++;
+	if (*nptr == 45)
+	{
+		sig *= -1;
+		nptr++;
+	}
+	else if (*nptr == 43)
+		nptr++;
+	if (!ft_isalpha(*nptr))
+		return (ft_dprintf(2, "exit: %s: numeric argument required\n", nptr), 2);
+	while ((*nptr >= 48) && (*nptr <= 57))
+	{
+		if (!ft_isalpha(*nptr))
+			return (ft_dprintf(2, "exit: %s: numeric argument required\n", \
+			nptr), 2);
+		res = (res * 10) + *nptr - 48;
+		nptr++;
+	}
+	return (res * sig);
+}
+
+int	ft_exit(t_command *cmd, t_token *token)
 {
 	if (cmd && is_pipe(cmd))
-		return ;
+		return (atouille(token->str));
 	if (token && token->str)
 	{
 		is_arg_good(token, cmd);
 		if (token->next && token->next->str)
 		{
 			ft_dprintf(2, "exit\nminishell: exit: too many arguments\n");
-			return ;
+			return (2);
 		}
-		errno = ft_atoi(token->str);
+		g_status = atouille(token->str);
 		ft_dprintf(1, "exit\n");
 		free_env(cmd->lst_env);
 		free_cmd(cmd);
-		exit(errno);
+		exit(g_status);
 	}
 	else
 	{

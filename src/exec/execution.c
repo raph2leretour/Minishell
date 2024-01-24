@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/24 12:47:18 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:20:21 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token, int b)
 	else if (!ft_strcmp(token->str, "env"))
 		status = ft_env(t_cmd->lst_env);
 	else if (!ft_strcmp(token->str, "exit"))
-		ft_exit(t_cmd, cmd->first_token->next);
+		status = ft_exit(t_cmd, cmd->first_token->next);
 	else if (!ft_strcmp(token->str, "export"))
 		status = ft_export(t_cmd, cmd->first_token->next);
 	else if (!ft_strcmp(token->str, "pwd"))
@@ -44,15 +44,6 @@ void	free_exit(t_command *t_cmd, char **c_env, char **s_cmd, int exit_status)
 	free_env(t_cmd->lst_env);
 	free_cmd(t_cmd);
 	exit(exit_status);
-}
-
-void	only_redir(t_command *t_cmd, t_simple_cmd *cmd, t_token *token)
-{
-	if (token->type == REDIRECTION && (token->str[0] == '>'
-			|| cmd->here_in != -1 || !ft_strcmp(token->str, ">>")))
-	{
-		free_exit(t_cmd, NULL, NULL, EXIT_SUCCESS);
-	}
 }
 
 void	do_exec(t_command *t_cmd, t_simple_cmd *t_scmd, t_env *s_env)
@@ -78,8 +69,7 @@ void	do_exec(t_command *t_cmd, t_simple_cmd *t_scmd, t_env *s_env)
 		free_exit(t_cmd, c_env, s_cmd, 2);
 	}
 	execve(t_scmd->full_path, s_cmd, c_env);
-	ft_dprintf(2, "minishell: %s: %s\n", \
-		t_scmd->first_token->str, strerror(errno));
+	ft_dprintf(2, "%s: %s\n", t_scmd->first_token->str, strerror(errno));
 	free_exit(t_cmd, c_env, s_cmd, 126);
 }
 
