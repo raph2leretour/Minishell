@@ -54,6 +54,7 @@ SRCS		:=					\
 	parsing/expansion/delete_quotes_utils.c		\
 	parsing/expansion/delete_backslash.c		\
 	parsing/signals/signals.c			\
+	parsing/signals/signals_hd.c	\
 	parsing/heredoc/heredoc.c			\
 	parsing/heredoc/heredoc_utils1.c		\
 	parsing/heredoc/heredoc_utils2.c		\

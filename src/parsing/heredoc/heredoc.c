@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 21:15:52 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 19:41:22 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 20:26:02 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	fill_heredoc(t_command *cmd, t_token *delimiter, int fd)
 {
 	const int	old_in_fd = dup(STDIN_FILENO);
 	char		*line;
-	int		ret;
+	int			ret;
 
 	if (old_in_fd <= -1)
 		return (3);
@@ -89,7 +89,7 @@ void	create_heredoc_file(t_command *cmd, t_simple_cmd *simple_cmd, \
 	if (simple_cmd->here_doc != NULL)
 	{
 		if (simple_cmd->here_in != -1)
-				close(simple_cmd->here_in);
+			close(simple_cmd->here_in);
 		simple_cmd->here_in = -1;
 		free(simple_cmd->here_doc);
 	}
@@ -104,13 +104,14 @@ int	heredoc(t_command *cmd)
 {
 	t_simple_cmd	*simple_cmd;
 	t_token			*token;
-	int				ret = 0;
+	int				ret;
 
+	ret = 0;
 	simple_cmd = cmd->first_cmd;
-	while (simple_cmd && ret <=1)
+	while (simple_cmd && ret <= 1)
 	{
 		token = simple_cmd->first_token;
-		while (token && ret <=1)
+		while (token && ret <= 1)
 		{
 			if (token->type == REDIRECTION && !ft_strcmp(token->str, "<<"))
 				create_heredoc_file(cmd, simple_cmd, token, &ret);

@@ -1,50 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   signals_hd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/17 16:02:27 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 20:27:31 by rtissera         ###   ########.fr       */
+/*   Created: 2024/01/24 20:26:55 by rtissera          #+#    #+#             */
+/*   Updated: 2024/01/24 20:27:30 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	restore_signal(void)
+void	hd_signal_handler(int sig)
 {
-	struct sigaction	siga;
-
-	siga.sa_handler = SIG_DFL;
-	sigemptyset(&siga.sa_mask);
-	siga.sa_flags = 0;
-	sigaction(SIGINT, &siga, NULL);
-	sigaction(SIGQUIT, &siga, NULL);
-}
-
-void	ignor_signal(void)
-{
-	struct sigaction	siga;
-
-	siga.sa_handler = SIG_IGN;
-	sigemptyset(&siga.sa_mask);
-	siga.sa_flags = 0;
-	sigaction(SIGINT, &siga, NULL);
-	sigaction(SIGQUIT, &siga, NULL);
-}
-
-void	sigint_handler(int sig)
-{
-	ft_dprintf(2, "\n");
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
+	close(STDIN_FILENO);
 	g_status = 128 + sig;
 }
 
-void	signals(void)
+void	hd_signal_mode(void)
 {
-	signal(SIGINT, sigint_handler);
-	signal(SIGQUIT, SIG_IGN);
+	struct sigaction	siga;
+
+	siga.sa_handler = hd_signal_handler;
+	sigemptyset(&siga.sa_mask);
+	siga.sa_flags = 0;
+	sigaction(SIGINT, &siga, NULL);
+	siga.sa_handler = SIG_IGN;
+	sigaction(SIGQUIT, &siga, NULL);
 }
