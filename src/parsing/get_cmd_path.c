@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 10:29:02 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 11:49:37 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/24 20:13:36 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ char	*path_exists(char **full_path_split, char *full_path, int i)
 	}
 	return (full_path);
 }
+
 int	found_path_is_valid(char *full_path, char *cmd)
 {
 	if (access(full_path, F_OK) == 0

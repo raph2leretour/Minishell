@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 19:56:56 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 12:02:13 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/24 20:16:47 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lexer.h"
@@ -35,7 +35,7 @@ void	delete_token_backslash(t_token *token)
 	s_flag = 0;
 	d_flag = 0;
 	while (token->str[i])
-	{	
+	{
 		if (token->str[i] == '\'')
 			s_flag = change_flag(s_flag);
 		if (token->str[i] == '"')

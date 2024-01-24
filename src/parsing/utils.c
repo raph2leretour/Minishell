@@ -6,10 +6,40 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 13:45:12 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/23 18:46:06 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/24 20:14:44 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lexer.h"
+
+int	no_heredoc(t_simple_cmd *simple_cmd)
+{
+	t_token	*token;
+
+	token = simple_cmd->first_token;
+	while (token)
+	{
+		if (token->type == REDIRECTION
+			&& !ft_strcmp(token->str, "<<"))
+			return (0);
+		token = token->next;
+	}
+	return (1);
+}
+
+int	check_exec(t_simple_cmd *simple_cmd)
+{
+	t_token	*token;
+
+	token = simple_cmd->first_token;
+	while (token)
+	{
+		//TODO --> verifier si OK
+		if (token->type == COMMAND && !ft_strcmp(token->str, "./"))
+			return (1);
+		token = token->next;
+	}
+	return (0);
+}
 
 int	set_option_type(t_simple_cmd *simple_cmd)
 {
