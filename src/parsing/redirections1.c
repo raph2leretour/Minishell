@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 20:56:37 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/19 17:21:11 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/23 21:00:11 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ int	check_last_token(t_simple_cmd *simple_cmd)
 	token = simple_cmd->first_token;
 	if (token_last(token)->type == REDIRECTION)
 	{
-		printf("Syntax error near unexpected token `newline'\n");
+		g_status = 2;
+		ft_dprintf(2, "minishell: ");
+		ft_dprintf(2, "Syntax error near unexpected token `newline'\n");
 		return (0);
 	}
 	return (1);

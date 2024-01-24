@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:11:15 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 08:24:00 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 09:54:45 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void	expand_var(t_token *token, int i, t_env *env_var)
 	char	*substr;
 	char	*d_token;
 
-
 	j = get_len(token->str, i);
 	substr = NULL;
 	d_token = ft_substr(token->str, i, j);
@@ -106,10 +105,7 @@ int	expand_quoted(int i, t_token *token, t_env *env_var)
 		if (token->str[i] == '$')
 		{
 			if (is_dollar_exit(token, i))
-			{
 				expand_exit(token, i);
-				//i--;
-			}
 			if (contains_valid_var(token->str, i, env_var))
 			{
 				expand_var(token, i, env_var);

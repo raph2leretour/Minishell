@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 18:25:26 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/22 22:15:40 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 09:56:36 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int	check_types(t_command *cmd_struct)
 				&& ft_strlen(token->str) > 2))
 		{
 			c = token->str[0];
-			printf("Syntax error near unexpected token `%c'\n", c);
+			g_status = 2;
+			ft_dprintf(2, "Syntax error near unexpected token `%c'\n", c);
 			return (0);
 		}
 		token = token->next;
@@ -42,7 +43,8 @@ int	check_pipe_location(t_command *cmd_struct)
 	token = cmd_struct->first_token;
 	if (token->type == PIPE || token_last(token)->type == PIPE)
 	{
-		printf("Syntax error near unexpected token `|'\n");
+		g_status = 2;
+		ft_dprintf(2, "Syntax error near unexpected token `|'\n");
 		return (0);
 	}
 	return (1);
@@ -66,7 +68,8 @@ int	check_option_token(t_token *token)
 	if (token->str[0] == '-' && (token->prev == NULL
 			|| token->prev->type == PIPE))
 	{
-		printf("minishell: %s: command not found\n", token->str);
+		g_status = 2;
+		ft_dprintf(2, "minishell: %s: command not found\n", token->str);
 		return (0);
 	}
 	return (1);

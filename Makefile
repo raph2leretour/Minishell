@@ -55,6 +55,8 @@ SRCS		:=					\
 	parsing/expansion/delete_backslash.c		\
 	parsing/signals/signals.c			\
 	parsing/heredoc/heredoc.c			\
+	parsing/heredoc/heredoc_utils1.c		\
+	parsing/heredoc/heredoc_utils2.c		\
 	parsing/parser.c				\
 	parsing/get_env.c				\
 	parsing/get_cmd_path.c				\

@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:26 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 08:21:05 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 09:53:44 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,11 @@ int	check_exec(t_simple_cmd *simple_cmd)
 int	contains_cmd(t_simple_cmd *simple_cmd)
 {
 	if (!simple_cmd->full_path && !cmd_contains_builtin(simple_cmd)
-		&& !simple_cmd->prev && no_heredoc(simple_cmd) && !check_exec(simple_cmd))
+		&& !simple_cmd->prev && no_heredoc(simple_cmd)
+		&& !check_exec(simple_cmd))
 	{
-		printf("minishell: %s: command not found\n",
+		g_status = 2;
+		ft_dprintf(2, "minishell: %s: command not found\n",
 			simple_cmd->first_token->str);
 		return (0);
 	}

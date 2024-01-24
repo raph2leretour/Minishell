@@ -1,40 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expanding_utils3.c                                 :+:      :+:    :+:   */
+/*   heredoc_utils2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/22 09:37:18 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/23 18:53:45 by smilosav         ###   ########.fr       */
+/*   Created: 2024/01/24 09:18:36 by smilosav          #+#    #+#             */
+/*   Updated: 2024/01/24 09:18:57 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
 
-int	is_dollar_exit(t_token *token, int i)
+char	*get_heredoc_name(void)
 {
-	if (token->str[i + 1] == '?')
-		return (1);
-	return (0);
+	static int	i;
+	char		*name;
+	char		*nbr;
+
+	nbr = ft_itoa(i);
+	if (!nbr)
+		return (NULL);
+	name = ft_strjoin(HEREDOC_NAME, nbr);
+	free(nbr);
+	i++;
+	return (name);
 }
 
-void	expand_exit(t_token *token, int i)
+char	*set_value_heredoc(char *line, int i, char *value, char *key)
 {
 	int		j;
 	char	*before;
 	char	*after;
 	char	*var;
-	char	*status;
 
-	j = i + 1;
-	before = ft_substr(token->str, 0, i);
-	after = ft_substr(token->str, j + 1, ft_strlen(token->str));
-	status = ft_itoa(g_status);
-	var = ft_strjoin(status, after);
-	free(token->str);
-	token->str = ft_strjoin(before, var);
+	j = var_key_len(line, i, key);
+	before = ft_substr(line, 0, i);
+	after = ft_substr(line, j, ft_strlen(line));
+	var = ft_strjoin(value, after);
+	free(line);
+	line = ft_strjoin(before, var);
 	free(before);
 	free(after);
 	free(var);
-	free(status);
+	return (line);
 }

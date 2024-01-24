@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:57:10 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/23 10:10:11 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/24 09:23:13 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define SEMI 5
 # define AND 6
 # define OPTION 7
+# define DELIMITER 8
 # define HEREDOC_NAME "/tmp/.minishell_heredoc_"
 
 extern int			g_status;
@@ -87,7 +88,14 @@ void				delete_invalid_var(t_token *token, int i);
 void				expand_var(t_token *token, int i, t_env *env_var);
 void				signals(void);
 void				expand_exit(t_token *token, int i);
+void				print_error(t_token *delimiter);
 char				*get_cmd_path(char *cmd, t_command *cmd_struct);
+char				*expand_heredoc(char *line, int i, t_env *env_var);
+char				*exit_heredoc(char *line, int i);
+char				*delete_invalid_heredoc(char *line, int i);
+char				*get_expanded_line(t_command *cmd, char *line);
+char				*get_heredoc_name(void);
+char				*set_value_heredoc(char *line, int i, char *value, char *key);
 
 int					add_token_word(t_command *cmd_struct, int i);
 int					add_token_redirection(t_command *cmd_struct, int i);
@@ -132,6 +140,7 @@ int					wrong_var_form(char *token, int i, char *key);
 int					expand_quoted(int i, t_token *token, t_env *env_var);
 int					dollar_quoted(char *token, int i);
 int					no_more_quotes(char *str, int i);
+int					var_key_len(char *token, int i, char *key);
 int					heredoc(t_command *cmd);
 int					handle_backslash(t_command *cmd);
 int					check_executables(t_command *cmd);

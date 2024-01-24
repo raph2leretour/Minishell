@@ -6,21 +6,13 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 08:07:09 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 09:53:14 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 
 int	g_status;
-/*void	check_double_quotes(t_token *first_token)
-{
-	while (first_token)
-	{
-		var_not_double_quoted(first_token->str);
-		first_token = first_token->next;
-	}
-}*/
+
 void	print_command(t_token *first_token)
 {
 	while (first_token)
@@ -63,7 +55,7 @@ void	print_env(t_env *env_var)
 	}
 }
 
-void free_env(t_env *env)
+void	free_env(t_env *env)
 {
 	free_env_vars(env);
 }
@@ -86,19 +78,9 @@ t_command	*process_input(char *str, t_command *cmd, t_env *env)
 	return (cmd);
 }
 
-/*int	end_minishell(t_command* cmd, t_env *env)
-{
-	clear_history();
-	if (cmd)
-		free(cmd);
-	free_env(env);
-	return (0);
-}*/
-
-
 int	main(int argc, char **argv, char **envp)
 {
-	char	*str;
+	char		*str;
 	t_env		*env;
 	t_command	*cmd;
 

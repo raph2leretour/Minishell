@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:34:12 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 08:21:59 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 09:55:07 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,7 @@ void	expand(t_token *token, t_env *env_var)
 		if (token->str[i] == '$')
 		{
 			if (is_dollar_exit(token, i))
-			{
 				expand_exit(token, i);
-				//i--;
-			}
 			if (contains_valid_var(token->str, i, env_var))
 			{
 				expand_var(token, i, env_var);
