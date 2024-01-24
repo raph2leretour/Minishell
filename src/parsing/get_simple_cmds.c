@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:26 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/23 20:37:35 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 08:21:05 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	no_heredoc(t_simple_cmd *simple_cmd)
 	while (token)
 	{
 		if (token->type == REDIRECTION
-			&& !ft_strncmp(token->str, "<<", ft_strlen(token->str)))
+			&& !ft_strcmp(token->str, "<<"))
 			return (0);
 		token = token->next;
 	}
@@ -58,7 +58,7 @@ int	check_exec(t_simple_cmd *simple_cmd)
 	token = simple_cmd->first_token;
 	while (token)
 	{
-		if (token->type == COMMAND && !ft_strncmp(token->str, "./", 2))
+		if (token->type == COMMAND && !ft_strcmp(token->str, "./"))
 			return (1);
 		token = token->next;
 	}

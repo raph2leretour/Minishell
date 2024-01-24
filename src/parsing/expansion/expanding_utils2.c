@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expanding_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:11:15 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/22 10:07:10 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/24 08:24:00 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "lexer.h"
+
+#include "minishell.h"
 
 int	var_key_len2(char *token, int i, char *key)
 {
@@ -21,7 +22,7 @@ int	var_key_len2(char *token, int i, char *key)
 	token_substrlen = ft_strlen(token_substr);
 	valid_var = NULL;
 	valid_var = ft_strjoin("$", key);
-	if (!ft_strncmp(token_substr, valid_var, ft_strlen(valid_var)))
+	if (!ft_strcmp(token_substr, valid_var))
 	{
 		free(token_substr);
 		free(valid_var);
@@ -45,7 +46,7 @@ int	var_key_len(char *token, int i, char *key)
 	token_substrlen = ft_strlen(token_substr);
 	valid_var_p = ft_strjoin(key, "}");
 	valid_var = ft_strjoin("${", valid_var_p);
-	if (!ft_strncmp(token_substr, valid_var, ft_strlen(valid_var)))
+	if (!ft_strcmp(token_substr, valid_var))
 	{
 		free(token_substr);
 		free(valid_var);
@@ -79,7 +80,7 @@ void	expand_var(t_token *token, int i, t_env *env_var)
 	char	*substr;
 	char	*d_token;
 
-	
+
 	j = get_len(token->str, i);
 	substr = NULL;
 	d_token = ft_substr(token->str, i, j);

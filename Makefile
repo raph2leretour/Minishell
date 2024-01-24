@@ -21,7 +21,6 @@ SRCS		:=					\
 	builtin/export.c			\
 	env/get_true_env.c			\
 	env/ft_getenv.c	\
-	utils/ft_error.c			\
 	utils/split_cmd.c			\
 	utils/free_array.c	\
 	exec/create_pipes.c				\
@@ -68,7 +67,7 @@ OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 LIBFT		:= $(LIBFT_DIR)/libft.a
 
 CC			:= cc
-CFLAGS		:= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS		:= -Wall -Wextra -Werror
 CPPFLAGS	:= -I inc
 
 #------------------------------------------------#
@@ -84,7 +83,7 @@ DIR_DUP		= mkdir -p $(@D)
 all: $(LIBFT) $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -fsanitize=address -o $(NAME) $(LIBFT) -lreadline
+	$(CC) $(OBJS) -o $(NAME) $(LIBFT) -lreadline
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(DIR_DUP)

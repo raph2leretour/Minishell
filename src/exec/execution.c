@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/23 22:19:42 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 07:47:39 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token, int b)
 	else if (!ft_strcmp(token->str, "pwd"))
 		status = pwd();
 	else if (!ft_strcmp(token->str, "unset"))
-		status = unset(t_cmd->lst_env, token->next);
+		status = unset(t_cmd, token->next);
 	if (is_any_redirection(cmd))
 		redirect_end(cmd);
 	if (b)

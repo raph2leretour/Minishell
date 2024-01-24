@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:02:27 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/23 22:22:42 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 08:18:24 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 
 void	restore_signal(void)
 {
-	struct sigaction	sa;
+	struct sigaction	siga;
 
-	sa.sa_handler = SIG_DFL;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = 0;
-	sigaction(SIGINT, &sa, NULL);
-	sigaction(SIGQUIT, &sa, NULL);
+	siga.sa_handler = SIG_DFL;
+	sigemptyset(&siga.sa_mask);
+	siga.sa_flags = 0;
+	sigaction(SIGINT, &siga, NULL);
+	sigaction(SIGQUIT, &siga, NULL);
 }
 
 void	ignor_signal(void)
 {
-	struct sigaction	sa;
+	struct sigaction	siga;
 
-	sa.sa_handler = SIG_IGN;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = 0;
-	sigaction(SIGINT, &sa, NULL);
-	sigaction(SIGQUIT, &sa, NULL);
+	siga.sa_handler = SIG_IGN;
+	sigemptyset(&siga.sa_mask);
+	siga.sa_flags = 0;
+	sigaction(SIGINT, &siga, NULL);
+	sigaction(SIGQUIT, &siga, NULL);
 }
 
 void	sigint_handler(int sig)

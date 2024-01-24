@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:34:12 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/22 10:48:29 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/24 08:21:59 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ int	expanding(t_command *cmd_struct)
 	while (token)
 	{
 		if (token->prev && token->prev->type == REDIRECTION
-			&& !ft_strncmp(token->prev->str, "<<", ft_strlen(token->prev->str)))
+			&& !ft_strcmp(token->prev->str, "<<"))
 			token = token->next;
 		if (token && token->type == ARGUMENT)
 		{

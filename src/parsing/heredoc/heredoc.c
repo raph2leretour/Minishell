@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 21:15:52 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/23 10:57:49 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/24 08:23:45 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "minishell.h"
 
 char	*get_heredoc_name(void)
@@ -23,7 +24,7 @@ char	*get_heredoc_name(void)
 	name = ft_strjoin(HEREDOC_NAME, nbr);
 	free(nbr);
 	i++;
-	return (name);	
+	return (name);
 }
 
 bool	fill_heredoc(t_command *cmd, char *delimiter, int fd)
@@ -42,7 +43,7 @@ bool	fill_heredoc(t_command *cmd, char *delimiter, int fd)
 		//set_signals_noninteractive();
 		//if (!evaluate_heredoc_line(cmd, &line, fd, &ret))
 		//	break ;
-		if (!strncmp(line, delimiter, ft_strlen(delimiter) + 1))
+		if (!strcmp(line, delimiter))
 		{
 			ret = true;
 			break ;
@@ -80,12 +81,12 @@ int	heredoc(t_command *cmd)
 		token = simple_cmd->first_token;
 		while (token)
 		{
-			if (token->type == REDIRECTION && !ft_strncmp(token->str, "<<", 2))
-			{	
+			if (token->type == REDIRECTION && !ft_strcmp(token->str, "<<"))
+			{
 				simple_cmd->here_doc = get_heredoc_name();
 				if (get_heredoc_file(cmd, simple_cmd, token->next->str))
-				{	
-					simple_cmd->here_in = open(simple_cmd->here_doc, 
+				{
+					simple_cmd->here_in = open(simple_cmd->here_doc,
 						O_RDONLY);
 				}
 			}

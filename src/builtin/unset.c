@@ -6,11 +6,19 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:39:50 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/23 23:56:50 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 08:36:19 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+t_env	*free_solo_env(t_env *env)
+{
+	free(env->key);
+	free(env->value);
+	free(env);
+	return (NULL);
+}
 
 void	unsetor(t_env *prev, t_env *next)
 {
@@ -30,43 +38,42 @@ void	unsetor(t_env *prev, t_env *next)
 	}
 }
 
-void	freetor(t_env *env, t_env *head)
+void	freetor(t_command *t_cmd, t_env **head)
 {
 	t_env	*prev;
 	t_env	*next;
 
-	prev = env->prev;
-	next = env->next;
-	if (env == head && !env->next)
-		head = NULL;
-	else if (env == head)
-		head = next;
-	free(env->key);
-	free(env->value);
-	free(env);
+	prev = t_cmd->lst_env->prev;
+	next = t_cmd->lst_env->next;
+	if (t_cmd->lst_env == *head && !t_cmd->lst_env->next)
+		*head = NULL;
+	else if (t_cmd->lst_env == *head)
+		*head = next;
+	free(t_cmd->lst_env->key);
+	free(t_cmd->lst_env->value);
+	free(t_cmd->lst_env);
 	unsetor(prev, next);
 }
 
-int	unset(t_env *env, t_token *token)
+int	unset(t_command *t_cmd, t_token *token)
 {
 	t_env	*head;
 
-	if (!env)
+	if (!t_cmd->lst_env)
 		return (1);
-	head = env;
+	head = t_cmd->lst_env;
 	while (token)
 	{
-		while (env)
+		while (t_cmd->lst_env)
 		{
-			if (!ft_strcmp(token->str, env->key))
+			if (!ft_strcmp(token->str, t_cmd->lst_env->key))
 			{
-				freetor(env, head);
+				freetor(t_cmd, &head);
 				break ;
 			}
-			if (env && env->next)
-				env = env->next;
+			t_cmd->lst_env = t_cmd->lst_env->next;
 		}
-		env = head;
+		t_cmd->lst_env = head;
 		token = token->next;
 	}
 	return (0);

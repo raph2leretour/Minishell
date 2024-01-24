@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/23 22:17:38 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 09:10:01 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		is_pipe(t_command *cmd);
 int		create_pipe(t_command *s_cmd);
 int		echo(char **array, t_env *env);
 int		dupificator(t_simple_cmd *cmd);
-int		unset(t_env *env, t_token *token);
+int		unset(t_command *t_cmd, t_token *token);
 int		is_any_redirection(t_simple_cmd *cmd);
 int		ft_export(t_command *s_cmd, t_token *token);
 int		execution(t_command *s_cmd, t_simple_cmd *cmd);
@@ -63,8 +63,6 @@ void	ft_wait(pid_t last_pid);
 void	ft_karl(t_token *token);
 void	ft_exec(t_command *t_cmd);
 void	close_fds(t_simple_cmd *cmd);
-void	ft_error(char *s, int errnum);
-void	clear_pipes(t_command *s_cmd);
 void	redirect_end(t_simple_cmd *cmd);
 void	set_oldpwd(t_env *env, char *oldpwd);
 void	ft_exit(t_command *cmd, t_token *token);
