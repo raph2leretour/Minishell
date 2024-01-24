@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/24 17:43:08 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:20:21 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ void	do_exec(t_command *t_cmd, t_simple_cmd *t_scmd, t_env *s_env)
 	ft_karl(t_scmd->first_token);
 	if (!t_scmd->full_path)
 	{
-		if (!ft_strchr(t_scmd->first_token->str, '/')
-			&& t_scmd->first_token->type != REDIRECTION)
+		if (!ft_strchr(t_scmd->first_token->str, '/'))
 		{
 			ft_dprintf(2, "minishell: %s: Command Not Found\n", \
 				t_scmd->first_token->str);
@@ -70,8 +69,7 @@ void	do_exec(t_command *t_cmd, t_simple_cmd *t_scmd, t_env *s_env)
 		free_exit(t_cmd, c_env, s_cmd, 2);
 	}
 	execve(t_scmd->full_path, s_cmd, c_env);
-	if (t_scmd->first_token->type != REDIRECTION)
-		ft_dprintf(2, "%s: %s\n", t_scmd->first_token->str, strerror(errno));
+	ft_dprintf(2, "%s: %s\n", t_scmd->first_token->str, strerror(errno));
 	free_exit(t_cmd, c_env, s_cmd, 126);
 }
 
