@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/24 11:15:20 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 12:47:18 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,15 @@ void	free_exit(t_command *t_cmd, char **c_env, char **s_cmd, int exit_status)
 	free_env(t_cmd->lst_env);
 	free_cmd(t_cmd);
 	exit(exit_status);
+}
+
+void	only_redir(t_command *t_cmd, t_simple_cmd *cmd, t_token *token)
+{
+	if (token->type == REDIRECTION && (token->str[0] == '>'
+			|| cmd->here_in != -1 || !ft_strcmp(token->str, ">>")))
+	{
+		free_exit(t_cmd, NULL, NULL, EXIT_SUCCESS);
+	}
 }
 
 void	do_exec(t_command *t_cmd, t_simple_cmd *t_scmd, t_env *s_env)
