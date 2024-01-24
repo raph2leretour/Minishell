@@ -58,7 +58,6 @@ SRCS		:=					\
 	parsing/heredoc/heredoc.c			\
 	parsing/heredoc/heredoc_utils1.c		\
 	parsing/heredoc/heredoc_utils2.c		\
-	parsing/parser.c				\
 	parsing/get_env.c				\
 	parsing/get_cmd_path.c				\
 	parsing/get_simple_cmds.c			\
@@ -70,7 +69,7 @@ OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 LIBFT		:= $(LIBFT_DIR)/libft.a
 
 CC			:= cc
-CFLAGS		:= -Wall -Wextra -Werror -g
+CFLAGS		:= -Wall -Wextra -Werror
 CPPFLAGS	:= -I inc
 
 #------------------------------------------------#
