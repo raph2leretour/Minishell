@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/24 07:47:39 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 12:47:18 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token, int b)
 		status = pwd();
 	else if (!ft_strcmp(token->str, "unset"))
 		status = unset(t_cmd, token->next);
-	if (is_any_redirection(cmd))
+	if (is_any_redirection(cmd) || cmd->here_in != -1)
 		redirect_end(cmd);
 	if (b)
 		exit(status);
@@ -44,6 +44,15 @@ void	free_exit(t_command *t_cmd, char **c_env, char **s_cmd, int exit_status)
 	free_env(t_cmd->lst_env);
 	free_cmd(t_cmd);
 	exit(exit_status);
+}
+
+void	only_redir(t_command *t_cmd, t_simple_cmd *cmd, t_token *token)
+{
+	if (token->type == REDIRECTION && (token->str[0] == '>'
+			|| cmd->here_in != -1 || !ft_strcmp(token->str, ">>")))
+	{
+		free_exit(t_cmd, NULL, NULL, EXIT_SUCCESS);
+	}
 }
 
 void	do_exec(t_command *t_cmd, t_simple_cmd *t_scmd, t_env *s_env)
@@ -83,7 +92,7 @@ int	execution(t_command *t_cmd, t_simple_cmd *cmd)
 		pid = fork();
 		if (pid == -1)
 		{
-			close_fds(t_cmd->first_cmd);
+			close_fds(t_cmd->first_cmd, true);
 			perror("minishell: Fork:");
 			return (-1);
 		}
@@ -93,10 +102,7 @@ int	execution(t_command *t_cmd, t_simple_cmd *cmd)
 			child_process(t_cmd, cmd);
 		}
 		ignor_signal();
-		if (cmd-> infile && cmd->infile > 2)
-			close(cmd->infile);
-		if (cmd->outfile && cmd->outfile > 2)
-			close(cmd->outfile);
+		close_fds(cmd, false);
 		cmd = cmd->next;
 	}
 	ft_wait(pid);

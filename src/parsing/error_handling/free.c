@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:11:42 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/23 22:33:24 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 10:47:43 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	free_simple_cmds(t_simple_cmd *first_cmd)
 		tmp = first_cmd->next;
 		if (first_cmd->full_path)
 			free(first_cmd->full_path);
+		if (first_cmd->here_doc)
+			unlink(first_cmd->here_doc);
 		if (first_cmd->here_doc)
 			free(first_cmd->here_doc);
 		free_simple_cmd_tokens(first_cmd->first_token);

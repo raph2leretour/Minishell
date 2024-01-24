@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:26 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 11:50:08 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/24 13:10:58 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,7 @@ int	set_command_path(t_command *cmd_struct)
 		token = simple_cmd->first_token;
 		while (token)
 		{
-			if (check_token(token, simple_cmd, path, cmd_struct))
-				;
+			check_token(token, simple_cmd, path, cmd_struct);
 			token = token->next;
 		}
 		cmd_contains_builtin(simple_cmd);
