@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/24 09:10:01 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:12:55 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	free_array(char **a);
 void	ft_wait(pid_t last_pid);
 void	ft_karl(t_token *token);
 void	ft_exec(t_command *t_cmd);
-void	close_fds(t_simple_cmd *cmd);
+void	close_fds(t_simple_cmd *cmd, bool do_next);
 void	redirect_end(t_simple_cmd *cmd);
 void	set_oldpwd(t_env *env, char *oldpwd);
 void	ft_exit(t_command *cmd, t_token *token);

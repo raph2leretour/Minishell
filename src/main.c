@@ -6,10 +6,11 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 09:53:14 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 09:59:33 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 
 int	g_status;
 
