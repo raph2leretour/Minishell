@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 21:15:52 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 20:26:02 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 21:18:44 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int	get_heredoc_file(t_command *cmd, t_simple_cmd *simple_cmd,
 	int	ret;
 
 	ret = 0;
-	ft_dprintf(2, "%s\n", simple_cmd->here_doc);
 	tmp_fd = open(simple_cmd->here_doc, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	ret = fill_heredoc(cmd, delimiter, tmp_fd);
 	close(tmp_fd);

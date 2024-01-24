@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:11:42 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 10:47:43 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 21:43:51 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,10 @@ void	free_env_vars(t_env *env_var)
 	while (env_var)
 	{
 		tmp = env_var->next;
-		free(env_var->key);
-		free(env_var->value);
+		if (env_var->key)
+			free(env_var->key);
+		if (env_var->value)
+			free(env_var->value);
 		free(env_var);
 		env_var = tmp;
 	}

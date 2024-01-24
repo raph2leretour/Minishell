@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 21:10:48 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 09:56:10 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 21:35:37 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@ int	check_executables(t_command *cmd)
 	token = cmd->first_token;
 	while (token)
 	{
-		if (!ft_strcmp(token->str, "./"))
-			set_executable(token);
+		if (token->str)
+		{
+			if (!ft_strcmp(token->str, "./"))
+				set_executable(token);
+		}
 		token = token->next;
 	}
 	return (1);

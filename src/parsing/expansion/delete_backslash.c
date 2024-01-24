@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   delete_backslash.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 19:56:56 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 20:16:47 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/24 21:33:21 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "lexer.h"
+
+#include "minishell.h"
 
 int	delete_backslash(int i, t_token *token)
 {
@@ -34,6 +35,8 @@ void	delete_token_backslash(t_token *token)
 	i = 0;
 	s_flag = 0;
 	d_flag = 0;
+	if (!token || !token->str)
+		return ;
 	while (token->str[i])
 	{
 		if (token->str[i] == '\'')

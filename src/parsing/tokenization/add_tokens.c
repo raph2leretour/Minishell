@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   add_tokens.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 15:32:38 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/04 13:47:32 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/24 21:52:13 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../libft/include/libft.h"
+
 #include "lexer.h"
 
 int	add_token_redirection(t_command *cmd_struct, int i)

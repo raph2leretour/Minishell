@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:26:34 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 20:20:04 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/24 21:34:18 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	delete_token_quotes(t_token *token)
 	i = 0;
 	q_open = 0;
 	q_close = 0;
+	if (!token || !token->str)
+		return ;
 	while (token->str[i])
 	{
 		if (token->str[i] == '\'')

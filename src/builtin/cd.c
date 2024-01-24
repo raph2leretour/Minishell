@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:15:28 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/24 15:32:02 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 21:17:30 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	set_pwd(t_env *env)
 	{
 		ft_reset(env, key, v_pwd);
 		free(key);
-		free(v_pwd);
 	}
 	else
 	{
@@ -50,7 +49,6 @@ void	set_oldpwd(t_env *env, char *v_oldpwd)
 		{
 			ft_reset(env, key, v_oldpwd);
 			free(key);
-			free(v_oldpwd);
 		}
 		else
 		{
@@ -118,11 +116,13 @@ int	cd(t_command *cmd, t_token *token, t_env *env)
 	oldpwd = getcwd(NULL, 0);
 	if (!path)
 	{
+		free(oldpwd);
 		if (cd_no_path(env) < 0)
 			return (1);
 	}
 	else if (!ft_strcmp(path, "-"))
 	{
+		free(oldpwd);
 		if (cd_less_symbol(env) < 0)
 			return (1);
 	}

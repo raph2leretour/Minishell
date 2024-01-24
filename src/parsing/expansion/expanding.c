@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:34:12 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 09:55:07 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 21:23:13 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,6 @@ int	contains_valid_var(char *token, int i, t_env *env_var)
 	return (0);
 }
 
-//if it's not $env->key  ${env->key} => no expansion
-//if '$env->key' || '${env->key}' => no expansion
-//if $'env->key' => env_key (no expansion)
-//if ${'env->key'} => bash : bad substitution
 int	wrong_var_form(char *token, int i, char *key)
 {
 	char	*valid_var;
@@ -64,9 +60,6 @@ int	wrong_var_form(char *token, int i, char *key)
 	return (1);
 }
 
-//check if token contains $not_var or ${not_var} outside single quotes
-//if it has invalid $, delete it
-//function too long
 void	delete_invalid_dollar(t_token *token, t_env *env_var)
 {
 	int	i;
@@ -123,8 +116,6 @@ void	expand(t_token *token, t_env *env_var)
 	}
 }
 
-//Go through tokens, check if it contains a variable,
-//check if variable is quoted
 int	expanding(t_command *cmd_struct)
 {
 	t_env			*env_struct;

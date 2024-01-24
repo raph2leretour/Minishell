@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:43:09 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/24 18:10:56 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 21:50:22 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ int	atouille(const char *nptr)
 	}
 	else if (*nptr == 43)
 		nptr++;
-	if (!ft_isalpha(*nptr))
+	if (!ft_isdigit(*nptr))
 		return (ft_dprintf(2, "exit: %s: numeric argument required\n", nptr), 2);
 	while ((*nptr >= 48) && (*nptr <= 57))
 	{
-		if (!ft_isalpha(*nptr))
+		if (!ft_isdigit(*nptr))
 			return (ft_dprintf(2, "exit: %s: numeric argument required\n", \
 			nptr), 2);
 		res = (res * 10) + *nptr - 48;
