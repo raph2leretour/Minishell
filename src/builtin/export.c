@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:20:07 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/24 15:32:03 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 20:11:15 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ void	no_arg(t_env *env)
 	{
 		if (env->value)
 		{
-			ft_dprintf(1, "export %s=\"%s\"\n", env->key, env->value);
+			ft_dprintf(1, "minishell: export %s=\"%s\"\n", env->key, env->value);
 		}
 		else
 		{
-			ft_dprintf(1, "export %s\n", env->key);
+			ft_dprintf(1, "minishell: export %s\n", env->key);
 		}
 		env = env->next;
 	}
