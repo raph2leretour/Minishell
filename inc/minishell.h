@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/24 12:47:41 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 17:35:44 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int		ft_export(t_command *s_cmd, t_token *token);
 int		execution(t_command *s_cmd, t_simple_cmd *cmd);
 int		cd(t_command *cmd, t_token *token, t_env *env);
 int		do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token, int b);
+int		ft_exit(t_command *cmd, t_token *token);
 char	**freeror(char **s_cmd);
 char	*get_key(char *env_var);
 char	*get_value(char *env_var);
@@ -65,8 +66,6 @@ void	ft_exec(t_command *t_cmd);
 void	close_fds(t_simple_cmd *cmd, bool do_next);
 void	redirect_end(t_simple_cmd *cmd);
 void	set_oldpwd(t_env *env, char *oldpwd);
-void	ft_exit(t_command *cmd, t_token *token);
-void	only_redir(t_command *t_cmd, t_simple_cmd *cmd, t_token *token);
 void	do_exec(t_command *t_cmd, t_simple_cmd *t_scmd, t_env *s_env);
 void	cd_arg(t_env *env, char *path, char *oldpwd);
 void	ft_reset(t_env *env, char *key, char *value);
