@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:43:09 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/24 21:50:22 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/25 00:52:45 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ void	is_arg_good(t_token *token, t_command *cmd)
 		{
 			ft_dprintf(2, "exit\nminishell: exit: %s: \
 				numeric argument required\n", token->str);
-			free_env(cmd->lst_env);
+			redirect_end(cmd->first_cmd);
+			if (cmd)
+				free_env(cmd->lst_env);
 			free_cmd(cmd);
 			exit(2);
 		}
@@ -75,19 +77,20 @@ int	ft_exit(t_command *cmd, t_token *token)
 	{
 		is_arg_good(token, cmd);
 		if (token->next && token->next->str)
-		{
-			ft_dprintf(2, "exit\nminishell: exit: too many arguments\n");
-			return (2);
-		}
+			return (ft_dprintf(2, \
+				"exit\nminishell: exit: too many arguments\n"), 2);
 		g_status = atouille(token->str);
 		ft_dprintf(1, "exit\n");
-		free_env(cmd->lst_env);
+		redirect_end(cmd->first_cmd);
+		if (cmd)
+			free_env(cmd->lst_env);
 		free_cmd(cmd);
 		exit(g_status);
 	}
 	else
 	{
 		ft_dprintf(1, "exit\n");
+		redirect_end(cmd->first_cmd);
 		if (cmd)
 			free_env(cmd->lst_env);
 		free_cmd(cmd);
