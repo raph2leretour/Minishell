@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:39:50 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/24 08:36:19 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:02:03 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 
 t_env	*free_solo_env(t_env *env)
 {
-	free(env->key);
-	free(env->value);
-	free(env);
+	if (env)
+	{
+		if (env->key)
+			free(env->key);
+		if (env->value)
+			free(env->value);
+		free(env);
+	}
 	return (NULL);
 }
 
@@ -49,8 +54,10 @@ void	freetor(t_command *t_cmd, t_env **head)
 		*head = NULL;
 	else if (t_cmd->lst_env == *head)
 		*head = next;
-	free(t_cmd->lst_env->key);
-	free(t_cmd->lst_env->value);
+	if (t_cmd->lst_env->key)
+		free(t_cmd->lst_env->key);
+	if (t_cmd->lst_env->value)
+		free(t_cmd->lst_env->value);
 	free(t_cmd->lst_env);
 	unsetor(prev, next);
 }

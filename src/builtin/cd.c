@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:15:28 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/23 19:49:54 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:32:02 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	set_pwd(t_env *env)
 		perror("minishell: cd");
 		return ;
 	}
-	if (ft_getenv(key, env))
+	if (is_env(key, env))
 	{
 		ft_reset(env, key, v_pwd);
 		free(key);
@@ -46,7 +46,7 @@ void	set_oldpwd(t_env *env, char *v_oldpwd)
 	if (v_oldpwd && v_oldpwd[0])
 	{
 		key = ft_strdup("OLDPWD");
-		if (ft_getenv(key, env))
+		if (is_env(key, env))
 		{
 			ft_reset(env, key, v_oldpwd);
 			free(key);

@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:20:07 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/23 23:40:07 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:32:03 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	no_arg(t_env *env)
 	head = env;
 	while (env && env->key)
 	{
-		if (env->value && env->value[0])
+		if (env->value)
 		{
 			ft_dprintf(1, "export %s=\"%s\"\n", env->key, env->value);
 		}
@@ -65,7 +65,7 @@ void	ft_reset(t_env *env, char *key, char *value)
 {
 	t_env	*head;
 
-	if (value && value[0])
+	if (value)
 	{
 		head = env;
 		while (env)
@@ -73,7 +73,7 @@ void	ft_reset(t_env *env, char *key, char *value)
 			if (!ft_strcmp(env->key, key))
 			{
 				free(env->value);
-				env->value = ft_substr(value, 0, ft_strlen(value));
+				env->value = value;
 				env = head;
 				return ;
 			}
@@ -91,11 +91,11 @@ void	export_var(t_command *cmd, t_token *token)
 
 	key = get_key(token->str);
 	value = get_value(token->str);
-	if (ft_getenv(key, cmd->lst_env))
+	if (is_env(key, cmd->lst_env))
 	{
 		ft_reset(cmd->lst_env, key, value);
-		free(key);
-		free(value);
+		if (key)
+			free(key);
 	}
 	else
 	{

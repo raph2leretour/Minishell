@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:34:29 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/23 23:47:27 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:27:20 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ char	*get_value(char *env_var)
 	len = i;
 	while (env_var[len])
 		len++;
-	value = ft_substr(env_var, i, len);
+	if (env_var[i - 1] == '=')
+		value = ft_substr(env_var, i, len);
+	else
+		value = NULL;
 	return (value);
 }
 
