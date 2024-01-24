@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:22:52 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/22 09:39:33 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/23 18:54:14 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lexer.h"
@@ -58,7 +58,6 @@ int	contains_invalid_dollar(t_token *token, int i, t_env *env_var)
 	int		j;
 	char	*d_token;
 
-	//ovdje da se doda if $ + 1 == ? return 0
 	if (token->str[i + 1] == '?')
 		return (0);
 	if (basic_checks(token->str, i, env_var) != -1)

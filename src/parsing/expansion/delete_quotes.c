@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:26:34 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/04 14:20:35 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/24 08:51:30 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lexer.h"
@@ -77,6 +77,20 @@ void	delete_token_quotes(t_token *token)
 	}
 }
 
+void	check_quoted_delimiter(t_token *token)
+{
+	char	*d = token->str;
+	int	i;
+
+	i = 0;
+	while (d[i])
+	{
+		if (d[i] == '\'' || d[i] == '"')
+			token->type = DELIMITER;
+		i++;
+	}
+	return ;
+}
 int	delete_quotes(t_command *cmd)
 {
 	t_token	*token;
@@ -84,8 +98,16 @@ int	delete_quotes(t_command *cmd)
 	token = cmd->first_token;
 	while (token)
 	{
-		delete_token_quotes(token);
-		token = token->next;
+		if (token->prev && token->prev->type == REDIRECTION
+			&& !ft_strncmp(token->prev->str, "<<", ft_strlen(token->prev->str)))
+		{
+			check_quoted_delimiter(token);
+		}
+		if (token)
+		{
+			delete_token_quotes(token);
+			token = token->next;
+		}
 	}
 	return (1);
 }

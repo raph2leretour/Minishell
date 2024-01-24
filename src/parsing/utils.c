@@ -6,10 +6,11 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 13:45:12 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/17 18:22:54 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/23 18:46:06 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lexer.h"
+
 int	set_option_type(t_simple_cmd *simple_cmd)
 {
 	t_token	*token;
