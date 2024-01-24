@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_utils1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 09:15:03 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 09:38:00 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/24 13:49:42 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "minishell.h"
 
 char	*expand_heredoc(char *line, int i, t_env *env_var)
