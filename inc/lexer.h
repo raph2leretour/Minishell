@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:57:10 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 11:33:28 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/24 14:38:05 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ char				*exit_heredoc(char *line, int i);
 char				*delete_invalid_heredoc(char *line, int i);
 char				*get_expanded_line(t_command *cmd, char *line);
 char				*get_heredoc_name(void);
-char				*set_value_heredoc(char *line, int i, char *value, char *key);
+char				*set_value_heredoc(char *line, int i, char *value, \
+						char *key);
 
 int					add_token_word(t_command *cmd_struct, int i);
 int					add_token_redirection(t_command *cmd_struct, int i);

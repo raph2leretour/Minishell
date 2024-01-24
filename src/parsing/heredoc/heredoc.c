@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 21:15:52 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 14:01:41 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/24 14:16:15 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,12 @@ int	heredoc(t_command *cmd)
 			if (token->type == REDIRECTION && !ft_strcmp(token->str, "<<"))
 			{
 				if (simple_cmd->here_doc != NULL)
+				{
+					if (simple_cmd->here_in != -1)
+							close(simple_cmd->here_in);
+					simple_cmd->here_in = -1;
 					free(simple_cmd->here_doc);
+				}
 				simple_cmd->here_doc = get_heredoc_name();
 				if (get_heredoc_file(cmd, simple_cmd, token->next))
 					simple_cmd->here_in = open(simple_cmd->here_doc,
