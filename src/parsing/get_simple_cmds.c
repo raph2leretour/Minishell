@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:26 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 18:40:13 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 19:45:55 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	check_exec(t_simple_cmd *simple_cmd)
 	token = simple_cmd->first_token;
 	while (token)
 	{
+		//TODO --> verifier si OK
 		if (token->type == COMMAND && !ft_strcmp(token->str, "./"))
 			return (1);
 		token = token->next;
