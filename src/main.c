@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 20:00:24 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 20:02:16 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,5 @@ int	main(int argc, char **argv, char **envp)
 			free_cmd(cmd);
 		free(str);
 	}
-	free_env(env);
 	return (0);
 }
