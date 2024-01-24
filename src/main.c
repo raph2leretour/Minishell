@@ -6,21 +6,13 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/23 10:36:16 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/23 21:17:02 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "minishell.h"
 
 int	g_status;
-/*void	check_double_quotes(t_token *first_token)
-{
-	while (first_token)
-	{
-		var_not_double_quoted(first_token->str);
-		first_token = first_token->next;
-	}
-}*/
+
 void	print_command(t_token *first_token)
 {
 	while (first_token)
@@ -61,7 +53,7 @@ void	print_env(t_env *env_var)
 	}
 }
 
-void free_env(t_env *env)
+void	free_env(t_env *env)
 {
 	free_env_vars(env);
 }
@@ -72,7 +64,7 @@ t_command	*process_input(char *str, t_command *cmd, t_env *env)
 	add_history(str);
 	if (check_syntax(cmd) && expanding(cmd)
 		&& handle_backslash(cmd) && delete_quotes(cmd)
-		&& check_executables(cmd) 
+		&& check_executables(cmd)
 		&& set_simple_commands(cmd)
 		&& handle_redirections(cmd)
 		&& check_options(cmd)
@@ -85,31 +77,20 @@ t_command	*process_input(char *str, t_command *cmd, t_env *env)
 	return (cmd);
 }
 
-/*int	end_minishell(t_command* cmd, t_env *env)
-{
-	clear_history();
-	if (cmd)
-		free(cmd);
-	free_env(env);
-	return (0);
-}*/
-
-
 int	main(int argc, char **argv, char **envp)
 {
-	char	*str;
+	char		*str;
 	t_env		*env;
 	t_command	*cmd;
 
 	(void)argc;
 	(void)argv;
-
 	env = get_env_vars(envp);
 	cmd = NULL;
 	while (1)
 	{
 		signals();
-		g_status = 0;
+		//g_status = 0;
 		str = readline("minishell$ ");
 		if (!str)
 		{

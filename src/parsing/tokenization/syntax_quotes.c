@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 12:01:05 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/05 12:39:38 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/23 22:01:54 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../libft/include/libft.h"
@@ -40,7 +40,8 @@ int	check_single(char *word, int i)
 	}
 	else
 	{
-		printf("minishell: single quotes not closed\n");
+		g_status = 2;
+		ft_dprintf(2, "minishell: single quotes not closed\n");
 		return (-1);
 	}
 }
@@ -64,7 +65,8 @@ int	check_double(char *word, int i)
 	}
 	else
 	{
-		printf("minishell: double quotes not closed\n");
+		g_status = 2;
+		ft_dprintf(2, "minishell: double quotes not closed\n");
 		return (-1);
 	}
 }
