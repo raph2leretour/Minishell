@@ -6,55 +6,13 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 13:40:13 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/24 20:00:24 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 int	g_status;
-
-void	print_command(t_token *first_token)
-{
-	while (first_token)
-	{
-		printf("Token value: %s ;", first_token->str);
-		printf("Token type: %d\n", first_token->type);
-		first_token = first_token->next;
-	}
-}
-
-void	print_simple_commands(t_simple_cmd *simple_cmd)
-{
-	int	i;
-
-	i = 0;
-	while (simple_cmd)
-	{
-		printf("--------------\n");
-		printf("Simple cmd %d:\n", i++);
-		printf("Full path:%s\n", simple_cmd->full_path);
-		printf("Heredoc file: %s\n", simple_cmd->here_doc);
-		printf("Heredoc fd: %d\n", simple_cmd->here_in);
-		printf("Infile:%d\n", simple_cmd->infile);
-		printf("Outfile:%d\n", simple_cmd->outfile);
-		print_command(simple_cmd->first_token);
-		ft_dprintf(1, "g_status = %d\n", g_status);
-		printf("--------------\n");
-		simple_cmd = simple_cmd->next;
-	}
-}
-
-void	print_env(t_env *env_var)
-{
-	while (env_var)
-	{
-		printf("%s", env_var->key);
-		printf("=");
-		printf("%s\n", env_var->value);
-		env_var = env_var->next;
-	}
-}
 
 void	free_env(t_env *env)
 {
@@ -74,7 +32,6 @@ t_command	*process_input(char *str, t_command *cmd, t_env *env)
 		&& heredoc(cmd))
 	{
 		ft_exec(cmd);
-		//print_simple_commands(cmd->first_cmd);
 	}
 	return (cmd);
 }
