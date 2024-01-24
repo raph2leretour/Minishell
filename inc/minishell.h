@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/24 20:08:03 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 23:02:36 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int		is_pipe(t_command *cmd);
 int		create_pipe(t_command *s_cmd);
 int		echo(char **array, t_env *env);
 int		dupificator(t_simple_cmd *cmd);
+int		dup_redirection(t_simple_cmd *cmd);
 int		unset(t_command *t_cmd, t_token *token);
 int		is_any_redirection(t_simple_cmd *cmd);
 int		ft_export(t_command *s_cmd, t_token *token);

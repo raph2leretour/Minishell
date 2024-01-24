@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:15:28 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/24 21:17:30 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/25 00:34:04 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,6 @@ int	cd(t_command *cmd, t_token *token, t_env *env)
 			return (1);
 	}
 	else
-	{
 		cd_arg(env, path, oldpwd);
-	}
 	return (0);
 }

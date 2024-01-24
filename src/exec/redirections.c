@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:34:11 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/07 16:23:04 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/25 00:22:16 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,12 @@ void	redirect_end(t_simple_cmd *cmd)
 	if (dup2(cmd->in, STDIN_FILENO) < 0)
 	{
 		perror("minishell: in");
-		return ;
 	}
+	close(cmd->in);
 	if (dup2(cmd->out, STDOUT_FILENO) < 0)
 	{
 		perror("minishell: out");
-		return ;
 	}
+	close(cmd->out);
+	close_fds(cmd, true);
 }

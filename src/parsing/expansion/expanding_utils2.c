@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:11:15 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 21:31:08 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/25 00:37:40 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,6 @@ void	expand_var(t_token *token, int i, t_env *env_var)
 		substr = ft_strnstr(d_token, env_var->key, ft_strlen(d_token));
 		if (substr != NULL)
 		{
-			// if (!env_var->value)
-			// 	env_var-
 			free(d_token);
 			set_value(token, i, env_var->value, env_var->key);
 			return ;

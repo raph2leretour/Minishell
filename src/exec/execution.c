@@ -6,16 +6,26 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/24 18:20:21 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/25 00:27:41 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+void	is_many_cmds(t_command *t_cmd, int status)
+{
+	if (t_cmd && t_cmd->lst_env)
+		free_env(t_cmd->lst_env);
+	if (t_cmd)
+		free_cmd(t_cmd);
+	exit(status);
+}
+
 int	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token, int b)
 {
 	int	status;
 
+	status = 0;
 	if (!ft_strcmp(token->str, "cd"))
 		status = cd(t_cmd, token, t_cmd->lst_env);
 	else if (!ft_strcmp(token->str, "echo"))
@@ -30,15 +40,15 @@ int	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token, int b)
 		status = pwd();
 	else if (!ft_strcmp(token->str, "unset"))
 		status = unset(t_cmd, token->next);
-	if (is_any_redirection(cmd) || cmd->here_in != -1)
-		redirect_end(cmd);
+	redirect_end(cmd);
 	if (b)
-		exit(status);
+		is_many_cmds(t_cmd, status);
 	return (status);
 }
 
 void	free_exit(t_command *t_cmd, char **c_env, char **s_cmd, int exit_status)
 {
+	redirect_end(t_cmd->first_cmd);
 	free_array(c_env);
 	free_array(s_cmd);
 	free_env(t_cmd->lst_env);

@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 13:45:12 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 20:14:44 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/25 00:38:36 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "lexer.h"
+
+#include "minishell.h"
 
 int	no_heredoc(t_simple_cmd *simple_cmd)
 {
@@ -33,7 +34,6 @@ int	check_exec(t_simple_cmd *simple_cmd)
 	token = simple_cmd->first_token;
 	while (token)
 	{
-		//TODO --> verifier si OK
 		if (token->type == COMMAND && !ft_strcmp(token->str, "./"))
 			return (1);
 		token = token->next;

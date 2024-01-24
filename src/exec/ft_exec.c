@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:35:17 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/23 22:04:47 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 23:25:40 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_exec(t_command *t_cmd)
 	if (!t_cmd->first_cmd->full_path && !t_cmd->first_cmd->next
 		&& is_builtin(t_cmd->first_token->str))
 	{
-		if (dupificator(t_cmd->first_cmd) < 0)
+		if (dup_redirection(t_cmd->first_cmd) < 0)
 		{
 			g_status = (1);
 			return ;
