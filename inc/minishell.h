@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/24 17:35:44 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 19:05:55 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void	ft_reset(t_env *env, char *key, char *value);
 void	child_process(t_command *t_cmd, t_simple_cmd *cmd);
 void	restore_signal(void);
 void	ignor_signal(void);
+void	hd_signal_mode(void);
+void	only_redit(void);
 t_env	*init_env_var(char *key, char *value);
 
 #endif
