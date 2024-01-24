@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 18:25:26 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 09:56:36 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 12:48:07 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	check_types(t_command *cmd_struct)
 		if (token->type == SEMI || (token->type == PIPE
 				&& ft_strlen(token->str) > 1)
 			|| (token->type == REDIRECTION
-				&& ft_strlen(token->str) > 2))
+				&& ft_strlen(token->str) > 2)
+			|| token->type == AND)
 		{
 			c = token->str[0];
 			g_status = 2;

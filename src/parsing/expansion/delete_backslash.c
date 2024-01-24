@@ -6,7 +6,7 @@
 /*   By: smilosav <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 19:56:56 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/23 18:56:50 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/24 12:02:13 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lexer.h"
@@ -22,8 +22,6 @@ int	delete_backslash(int i, t_token *token)
 	token->str = ft_strjoin(before, after);
 	free(before);
 	free(after);
-	if (i++ == '\\')
-		i++;
 	return (i);
 }
 

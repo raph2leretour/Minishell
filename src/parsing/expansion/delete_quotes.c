@@ -6,9 +6,10 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:26:34 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 08:51:30 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/24 12:58:48 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "lexer.h"
 
 void	substr_and_join(t_token *token, int q_open, int q_close)
@@ -79,9 +80,10 @@ void	delete_token_quotes(t_token *token)
 
 void	check_quoted_delimiter(t_token *token)
 {
-	char	*d = token->str;
-	int	i;
+	char	*d;
+	int		i;
 
+	d = token->str;
 	i = 0;
 	while (d[i])
 	{
@@ -91,6 +93,7 @@ void	check_quoted_delimiter(t_token *token)
 	}
 	return ;
 }
+
 int	delete_quotes(t_command *cmd)
 {
 	t_token	*token;

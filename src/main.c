@@ -6,10 +6,11 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 09:53:14 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 12:30:17 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 
 int	g_status;
 
@@ -73,7 +74,7 @@ t_command	*process_input(char *str, t_command *cmd, t_env *env)
 		&& heredoc(cmd))
 	{
 		ft_exec(cmd);
-		// print_simple_commands(cmd->first_cmd);
+		//print_simple_commands(cmd->first_cmd);
 	}
 	return (cmd);
 }
@@ -95,6 +96,7 @@ int	main(int argc, char **argv, char **envp)
 		str = readline("minishell$ ");
 		if (!str)
 		{
+			free_env(env);
 			ft_exit(NULL, NULL);
 		}
 		cmd = process_input(str, cmd, env);

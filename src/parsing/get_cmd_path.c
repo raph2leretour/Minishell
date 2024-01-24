@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 10:29:02 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/23 22:57:09 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:49:37 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@ char	*path_exists(char **full_path_split, char *full_path, int i)
 	}
 	return (full_path);
 }
+int	found_path_is_valid(char *full_path, char *cmd)
+{
+	if (access(full_path, F_OK) == 0
+		&& ft_strnstr(full_path, cmd, ft_strlen(full_path)))
+		return (1);
+	return (0);
+}
 
 char	*find_cmd_path(char **full_path_split, char *cmd)
 {
@@ -61,7 +68,7 @@ char	*find_cmd_path(char **full_path_split, char *cmd)
 		free(tmp);
 		if (!full_path)
 			return (NULL);
-		if (access(full_path, F_OK) == 0)
+		if (found_path_is_valid(full_path, cmd))
 			break ;
 		i++;
 	}
@@ -70,11 +77,17 @@ char	*find_cmd_path(char **full_path_split, char *cmd)
 	return (full_path);
 }
 
-char	*get_cmd_path(char *cmd, t_command *cmd_struct)
+char	*get_cmd_path(t_token *token, t_command *cmd_struct)
 {
 	char	**full_path_split;
 	char	*path;
+	char	*cmd;
 
+	cmd = token->str;
+	if (cmd[0] == '\0')
+		return (NULL);
+	if (ft_strchr(cmd, '/'))
+		return (NULL);
 	path = NULL;
 	full_path_split = get_path(cmd_struct->lst_env);
 	if (!full_path_split)

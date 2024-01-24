@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:26 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 09:53:44 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:50:08 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,9 @@ int	check_token(t_token *token, t_simple_cmd *simple_cmd, char *path,
 			simple_cmd->full_path = path;
 			return (1);
 		}
-		path = get_cmd_path(token->str, cmd_struct);
+		path = get_cmd_path(token, cmd_struct);
 		if (!simple_cmd->full_path && path)
 		{
-
 			simple_cmd->full_path = path;
 			token->type = COMMAND;
 			return (1);
@@ -87,7 +86,6 @@ int	set_command_path(t_command *cmd_struct)
 
 	path = NULL;
 	simple_cmd = cmd_struct->first_cmd;
-
 	while (simple_cmd)
 	{
 		token = simple_cmd->first_token;
