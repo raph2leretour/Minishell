@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/25 01:03:59 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/25 02:07:36 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int	main(int argc, char **argv, char **envp)
 		if (!str)
 		{
 			free_env(env);
-			// ft_exit(NULL, NULL);
 			sig_exit_main();
 		}
 		cmd = process_input(str, cmd, env);
