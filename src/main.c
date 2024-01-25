@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:54:14 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 20:03:34 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/25 01:03:59 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ t_command	*process_input(char *str, t_command *cmd, t_env *env)
 	return (cmd);
 }
 
+void	sig_exit_main(void)
+{
+	ft_dprintf(1, "exit\n");
+	exit(g_status);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	char		*str;
@@ -54,7 +60,8 @@ int	main(int argc, char **argv, char **envp)
 		if (!str)
 		{
 			free_env(env);
-			ft_exit(NULL, NULL);
+			// ft_exit(NULL, NULL);
+			sig_exit_main();
 		}
 		cmd = process_input(str, cmd, env);
 		env = cmd->lst_env;
