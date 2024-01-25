@@ -6,7 +6,7 @@
 #    By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 14:46:30 by rtissera          #+#    #+#              #
-#    Updated: 2024/01/24 21:09:10 by rtissera         ###   ########.fr        #
+#    Updated: 2024/01/25 05:58:41 by rtissera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,7 @@ OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 DEPS		:= $(OBJS:.o=.d)
 
 CC			:= cc
-CFLAGS		:= -Wall -Wextra -Werror -g
+CFLAGS		:= -Wall -Wextra -Werror
 CPPFLAGS	:= -MMD -MP -I include
 AR			:= ar
 ARFLAGS		:= -r -c -s

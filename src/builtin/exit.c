@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:43:09 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/25 03:50:54 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/25 05:53:16 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,12 @@ int	atouille(const char *nptr)
 int	ft_exit(t_command *cmd, t_token *token)
 {
 	if (cmd && is_pipe(cmd))
-		return (atouille(token->str));
+	{
+		if (token && token->str)
+			return (atouille(token->str));
+		else
+			return (g_status);
+	}
 	if (token && token->str)
 	{
 		is_arg_good(token, cmd);
