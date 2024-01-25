@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 07:52:49 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/25 01:31:23 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/25 04:25:20 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	is_word(char c)
 int	is_builtin(char *str)
 {
 	if (str == NULL)
-		return (0);
+		return (1);
 	if (!ft_strcmp("exit", str))
 		return (2);
 	if (!ft_strcmp("cd", str))

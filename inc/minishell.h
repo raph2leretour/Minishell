@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 13:30:06 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/25 03:51:51 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/25 05:29:49 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 /******************************************************************************/
 int		pwd(void);
 int		ft_env(t_env *env);
+int		nothing(void);
 int		is_pipe(t_command *cmd);
 int		create_pipe(t_command *s_cmd);
 int		echo(char **array, t_env *env);
@@ -72,6 +73,10 @@ void	child_process(t_command *t_cmd, t_simple_cmd *cmd);
 void	restore_signal(void);
 void	ignor_signal(void);
 void	hd_signal_mode(void);
+void	free_exit(t_command *t_cmd, char **c_env, char **s_cmd, \
+		int exit_status);
+void	execve_error_handler(t_command *t_cmd, t_simple_cmd *t_scmd, \
+		char **c_env, char **s_cmd);
 bool	is_env(char *s, t_env *env);
 t_env	*init_env_var(char *key, char *value);
 

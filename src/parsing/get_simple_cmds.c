@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:26 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 20:17:56 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/25 04:10:54 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int	check_token(t_token *token, t_simple_cmd *simple_cmd, char *path,
 		t_command *cmd_struct)
 {
+	if (!token->str)
+		return (0);
 	if (!is_builtin(simple_cmd->first_token->str))
 	{
 		if (is_absolute_path(token->str))

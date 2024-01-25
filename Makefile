@@ -19,6 +19,7 @@ SRCS		:=					\
 	builtin/echo.c				\
 	builtin/unset.c				\
 	builtin/export.c			\
+	builtin/nothing.c			\
 	env/get_true_env.c			\
 	env/ft_getenv.c	\
 	utils/split_cmd.c			\
@@ -26,6 +27,7 @@ SRCS		:=					\
 	exec/create_pipes.c				\
 	exec/ft_exec.c				\
 	exec/execution.c			\
+	exec/execution2.c	\
 	exec/dupificator.c	\
 	exec/child_process.c	\
 	exec/close_fds.c	\

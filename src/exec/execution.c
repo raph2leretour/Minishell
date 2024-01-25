@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/25 03:43:07 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/25 05:30:34 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ int	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token, int b)
 	int	status;
 
 	status = 0;
-	if (!ft_strcmp(token->str, "cd"))
+	if (!token->str)
+		status = nothing();
+	else if (!ft_strcmp(token->str, "cd"))
 		status = cd(t_cmd, token, t_cmd->lst_env);
 	else if (!ft_strcmp(token->str, "echo"))
 		status = echo(split_cmd(cmd, 1), t_cmd->lst_env);
@@ -82,8 +84,7 @@ void	do_exec(t_command *t_cmd, t_simple_cmd *t_scmd, t_env *s_env)
 	}
 	close_fds(t_cmd->first_cmd, true);
 	execve(t_scmd->full_path, s_cmd, c_env);
-	ft_dprintf(2, "%s: %s\n", t_scmd->first_token->str, strerror(errno));
-	free_exit(t_cmd, c_env, s_cmd, 126);
+	execve_error_handler(t_cmd, t_scmd, c_env, s_cmd);
 }
 
 int	execution(t_command *t_cmd, t_simple_cmd *cmd)

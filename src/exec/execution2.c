@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   child_process.c                                    :+:      :+:    :+:   */
+/*   execution2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/25 17:00:10 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/25 04:35:11 by rtissera         ###   ########.fr       */
+/*   Created: 2024/01/25 05:26:21 by rtissera          #+#    #+#             */
+/*   Updated: 2024/01/25 05:29:28 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	child_process(t_command *t_cmd, t_simple_cmd *cmd)
+void	execve_error_handler(t_command *t_cmd, t_simple_cmd *t_scmd, \
+		char **c_env, char **s_cmd)
 {
-	if (dup_redirection(cmd) < 0)
-	{
-		close_fds(cmd, true);
-		if (t_cmd)
-			free_env(t_cmd->lst_env);
-		free_cmd(t_cmd);
-		exit(1);
-	}
-	if (is_builtin(cmd->first_token->str))
-		do_builtin(t_cmd, cmd, cmd->first_token, 1);
-	else
-		do_exec(t_cmd, cmd, t_cmd->lst_env);
+	ft_dprintf(2, "%s: %s\n", t_scmd->first_token->str, strerror(errno));
+	free_exit(t_cmd, c_env, s_cmd, 126);
 }
