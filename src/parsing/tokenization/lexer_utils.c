@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 07:52:49 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 08:22:52 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/25 01:31:23 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	is_redirection(char c)
 
 int	is_word(char c)
 {
-	if (c != '|' && c != '&' && c != ';' && !is_redirection(c)
+	if (c != '|' && !is_redirection(c)
 		&& !is_space(c))
 		return (1);
 	return (0);

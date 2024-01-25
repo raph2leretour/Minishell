@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:16 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/11 21:42:38 by smilosav         ###   ########.fr       */
+/*   Updated: 2024/01/25 01:31:30 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,6 @@ t_command	*tokenize(char *input_cmd, t_env *env)
 			i = add_token_redirection(cmd_struct, i);
 		if (cmd_struct->string[i] == '|')
 			i = add_token_pipe(cmd_struct, i);
-		if (cmd_struct->string[i] == '&')
-			i = add_token_and(cmd_struct, i);
-		if (cmd_struct->string[i] == ';')
-			i = add_token_semi(cmd_struct, i);
 	}
 	free(input_cmd);
 	return (cmd_struct);
