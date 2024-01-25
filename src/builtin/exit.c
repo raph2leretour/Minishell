@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:43:09 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/25 01:17:26 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/25 03:50:54 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,14 @@ void	little_exit(t_command *cmd)
 	if (cmd)
 	{
 		if (cmd->first_cmd)
-			redirect_end(cmd->first_cmd);
+		{
+			close_fds(cmd->first_cmd, true);
+			if (!cmd->first_cmd->next && is_builtin(cmd->first_token->str))
+			{
+				close(cmd->first_cmd->in);
+				close(cmd->first_cmd->out);
+			}
+		}
 		if (cmd)
 			free_env(cmd->lst_env);
 		free_cmd(cmd);
@@ -44,7 +51,14 @@ void	is_arg_good(t_token *token, t_command *cmd)
 			ft_dprintf(2, "exit\nminishell: exit: %s: \
 				numeric argument required\n", token->str);
 			if (cmd && cmd->first_cmd)
-				redirect_end(cmd->first_cmd);
+			{
+				close_fds(cmd->first_cmd, true);
+				if (!cmd->first_cmd->next && is_builtin(cmd->first_token->str))
+				{
+					close(cmd->first_cmd->in);
+					close(cmd->first_cmd->out);
+				}
+			}
 			if (cmd)
 				free_env(cmd->lst_env);
 			free_cmd(cmd);

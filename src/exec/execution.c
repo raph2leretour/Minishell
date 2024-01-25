@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:41:30 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/25 00:27:41 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/25 03:43:07 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	is_many_cmds(t_command *t_cmd, int status)
 {
+	close_fds(t_cmd->first_cmd, true);
 	if (t_cmd && t_cmd->lst_env)
 		free_env(t_cmd->lst_env);
 	if (t_cmd)
@@ -40,7 +41,6 @@ int	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token, int b)
 		status = pwd();
 	else if (!ft_strcmp(token->str, "unset"))
 		status = unset(t_cmd, token->next);
-	redirect_end(cmd);
 	if (b)
 		is_many_cmds(t_cmd, status);
 	return (status);
@@ -48,10 +48,10 @@ int	do_builtin(t_command *t_cmd, t_simple_cmd *cmd, t_token *token, int b)
 
 void	free_exit(t_command *t_cmd, char **c_env, char **s_cmd, int exit_status)
 {
-	redirect_end(t_cmd->first_cmd);
 	free_array(c_env);
 	free_array(s_cmd);
-	free_env(t_cmd->lst_env);
+	if (t_cmd)
+		free_env(t_cmd->lst_env);
 	free_cmd(t_cmd);
 	exit(exit_status);
 }
@@ -68,6 +68,7 @@ void	do_exec(t_command *t_cmd, t_simple_cmd *t_scmd, t_env *s_env)
 		{
 			ft_dprintf(2, "minishell: %s: Command Not Found\n", \
 				t_scmd->first_token->str);
+			close_fds(t_cmd->first_cmd, true);
 			free_exit(t_cmd, NULL, NULL, 127);
 		}
 		t_scmd->full_path = ft_strdup(t_scmd->first_token->str);
@@ -76,8 +77,10 @@ void	do_exec(t_command *t_cmd, t_simple_cmd *t_scmd, t_env *s_env)
 	s_cmd = split_cmd(t_scmd, 0);
 	if (! s_cmd)
 	{
+		close_fds(t_cmd->first_cmd, true);
 		free_exit(t_cmd, c_env, s_cmd, 2);
 	}
+	close_fds(t_cmd->first_cmd, true);
 	execve(t_scmd->full_path, s_cmd, c_env);
 	ft_dprintf(2, "%s: %s\n", t_scmd->first_token->str, strerror(errno));
 	free_exit(t_cmd, c_env, s_cmd, 126);

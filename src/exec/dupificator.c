@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 16:27:53 by rtissera          #+#    #+#             */
-/*   Updated: 2024/01/25 00:34:57 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/25 03:39:20 by rtissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	dup_redirection(t_simple_cmd *cmd)
 {
-	cmd->in = dup(STDIN_FILENO);
-	cmd->out = dup(STDOUT_FILENO);
 	if (cmd->here_in != -1)
 	{
 		if (dup2(cmd->here_in, STDIN_FILENO) < 0)
