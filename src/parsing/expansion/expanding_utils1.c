@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:07:55 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/24 09:54:12 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/25 02:29:25 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@ int	is_name(char c)
 
 int	check_form1(char *token_substr, char *valid_var, char *token, int i)
 {
-	if (!ft_strcmp(token_substr, valid_var)
+	if (!ft_strncmp(token_substr, valid_var, ft_strlen(valid_var))
 		&& (!token[ft_strlen(valid_var) + i]
 			|| token[ft_strlen(valid_var) + i] == '$'
 			|| token[ft_strlen(valid_var) + i] == '"'
 			|| !is_word(token[ft_strlen(valid_var) + i])
 			|| token[ft_strlen(valid_var) + i] == '}'
-			|| token[ft_strlen(valid_var) + i] == '{'))
+			|| token[ft_strlen(valid_var) + i] == '{'
+			|| token[ft_strlen(valid_var) + i] == '\''))
 	{
 		free(token_substr);
 		free(valid_var);
@@ -74,7 +75,7 @@ int	dollar_quoted(char *token, int i)
 		return (0);
 	if (!token[i++])
 		return (1);
-	if (!ft_strcmp(token, "\"$\""))
+	if (!ft_strncmp(token, "\"$\"", 3))
 		return (1);
 	while (j != -1)
 	{

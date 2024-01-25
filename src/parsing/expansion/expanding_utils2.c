@@ -6,7 +6,7 @@
 /*   By: rtissera <rtissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:11:15 by smilosav          #+#    #+#             */
-/*   Updated: 2024/01/25 00:37:40 by rtissera         ###   ########.fr       */
+/*   Updated: 2024/01/25 01:45:06 by smilosav         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	var_key_len2(char *token, int i, char *key)
 	token_substrlen = ft_strlen(token_substr);
 	valid_var = NULL;
 	valid_var = ft_strjoin("$", key);
-	if (!ft_strcmp(token_substr, valid_var))
+	if (!ft_strncmp(token_substr, valid_var, ft_strlen(valid_var)))
 	{
 		free(token_substr);
 		free(valid_var);
@@ -46,7 +46,7 @@ int	var_key_len(char *token, int i, char *key)
 	token_substrlen = ft_strlen(token_substr);
 	valid_var_p = ft_strjoin(key, "}");
 	valid_var = ft_strjoin("${", valid_var_p);
-	if (!ft_strcmp(token_substr, valid_var))
+	if (!ft_strncmp(token_substr, valid_var, ft_strlen(valid_var)))
 	{
 		free(token_substr);
 		free(valid_var);
